@@ -1,8 +1,4 @@
 GmaMonitoramento::Application.routes.draw do
-  resources :tests
-
-  resources :posts
-
   devise_for :users, skip: :registrations do
     # Desabilita o recurso onde o proprio usuario pode apagar sua conta.
     # Dessa forma garante que o usuario não coseguira apagar a propria conta.
@@ -15,6 +11,9 @@ GmaMonitoramento::Application.routes.draw do
       get :cancel
     end
   end
+
+  resources :tests
+  resources :posts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -18,6 +18,8 @@
   <div><%= f.label 'Confirmar senha' %><br />
   <%= f.password_field :password_confirmation %></div>
 
+  <%= select_tipo_de_usuario(f) %>
+
   <div><%= f.submit "Salvar" %></div>
 <% end %>
 

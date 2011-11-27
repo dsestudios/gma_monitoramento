@@ -21,6 +21,8 @@
   <div><%= f.label 'Senha atual' %> <i>(precisamos de sua senha atual para confirmar as alterações)</i><br />
   <%= f.password_field :current_password %></div>
 
+  <%= select_tipo_de_usuario(f) %>
+
   <div><%= f.submit "Atualizar" %></div>
 <% end %>
 

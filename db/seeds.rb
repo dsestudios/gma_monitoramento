@@ -10,12 +10,7 @@
 puts 'Banco de dados vazio'
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 puts 'Criando user padrão'
-<<<<<<< HEAD
-user = User.create! :nome => 'Usuário Teste', :login => 'teste', :email => 'joaoaugusto1@gmail.com', :password => 'teste123', :password_confirmation => 'teste123', :role => "admin"
-user = User.create! :nome => 'Blog', :login => 'blog', :email => 'blog@blog.com.br', :password => 'blog123', :password_confirmation => 'blog123', :role => "blog"
-user = User.create! :nome => 'Test', :login => 'test', :email => 'test@test.com.br', :password => 'test123', :password_confirmation => 'test123', :role => "test"
-puts 'Novo usuário criado: ' << user.nome + " - " + user.login
-=======
-user = User.create! :nome => 'Usuário Teste', :nome_usuario => 'teste', :email => 'joaoaugusto1@gmail.com', :password => 'teste123', :password_confirmation => 'teste123'
+user = User.create! :nome => 'Usuário Teste', :nome_usuario => 'teste', :email => 'joaoaugusto1@gmail.com', :password => 'teste123', :password_confirmation => 'teste123', :role => "admin"
+user = User.create! :nome => 'Blog', :nome_usuario => 'blog', :email => 'blog@blog.com.br', :password => 'blog123', :password_confirmation => 'blog123', :role => "blog"
+user = User.create! :nome => 'Test', :nome_usuario => 'test', :email => 'test@test.com.br', :password => 'test123', :password_confirmation => 'test123', :role => "test"
 puts 'Novo usuário criado: ' << user.nome + " - " + user.nome_usuario
->>>>>>> 6e8267222776a6b734d467f42a021688e382bfe9
