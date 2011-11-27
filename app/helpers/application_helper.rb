@@ -14,4 +14,25 @@ module ApplicationHelper
     html.html_safe
   end
 
+  # Retorna o campo Campo para selecionar a imagem do perfil do usuário
+  # param form = formulario da view
+  # param user = Model do user
+  def seleciona_imagem_perfil(form, user)
+    html = <<-HTML
+    <table>
+     <tr>
+      <td>
+       <p>#{image_tag user.avatar(:thumb)}</p>
+      </td>
+      <td>
+       <div>#{form.label 'Selecione uma imagem do perfil'}<br />
+       #{form.file_field :avatar}</div>
+      </td>
+    </tr>
+    </table>
+    HTML
+
+    html.html_safe
+  end
+
 end

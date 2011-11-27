@@ -1,6 +1,6 @@
 <h2>Novo usuário</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :nome %><br />
@@ -19,6 +19,8 @@
   <%= f.password_field :password_confirmation %></div>
 
   <%= select_tipo_de_usuario(f) %>
+
+  <%= seleciona_imagem_perfil(f, resource) %>
 
   <div><%= f.submit "Salvar" %></div>
 <% end %>

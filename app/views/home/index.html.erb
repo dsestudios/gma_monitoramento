@@ -1,1 +1,14 @@
 <h1>HOME - Pagina inicial</h1>
+
+<table>
+  <tr>
+    <td>
+      <p><%= image_tag @user.avatar(:thumb) %></p>
+    </td>
+    <td>
+      <p><%= @user.nome %></p>
+      <p><%= @user.role_descricao %></p>
+    </td>
+  </tr>
+</table>
+
