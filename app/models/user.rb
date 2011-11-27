@@ -8,10 +8,11 @@ class User
 
   field :nome
   field :login
+  field :role
 
   validates_presence_of :nome, :login
   validates_uniqueness_of :login, :email, :case_sensitive => false
 
-  attr_accessible :nome, :login, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :nome, :login, :email, :password, :password_confirmation, :remember_me, :role
 
 end
