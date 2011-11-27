@@ -39,6 +39,7 @@
     <orderEntry type="library" scope="PROVIDED" name="brazilian-rails (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mongo (v1.4.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bson_ext (v1.4.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.2.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.6.1, Ruby SDK 1.9.2-p290) [gem]" level="application" />

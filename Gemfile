@@ -33,5 +33,6 @@ gem 'rails', '3.0.11'
 gem "rails", "3.0.11"
 #gem 'sqlite3'
 gem "mongoid", "2.2.4"
+gem "bson_ext", "1.4"
 gem "devise", "1.5.1"
 gem "brazilian-rails", "3.0.4"
