@@ -64,6 +64,7 @@ GEM
     bson (1.4.0)
     bson_ext (1.4.0)
     builder (2.1.2)
+    cancan (1.6.7)
     devise (1.5.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -123,6 +124,7 @@ PLATFORMS
 DEPENDENCIES
   brazilian-rails (= 3.0.4)
   bson_ext (= 1.4)
+  cancan (= 1.6.7)
   devise (= 1.5.1)
   mongoid (= 2.2.4)
   rails (= 3.0.11)
