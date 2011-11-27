@@ -10,5 +10,5 @@
 puts 'Banco de dados vazio'
 Mongoid.master.collections.reject { |c| c.name =~ /^system/}.each(&:drop)
 puts 'Criando user padrão'
-user = User.create! :nome => 'Usuário Teste', :login => 'teste', :email => 'joaoaugusto1@gmail.com', :password => 'teste123', :password_confirmation => 'teste123'
-puts 'Novo usuário criado: ' << user.nome + " - " + user.login
+user = User.create! :nome => 'Usuário Teste', :nome_usuario => 'teste', :email => 'joaoaugusto1@gmail.com', :password => 'teste123', :password_confirmation => 'teste123'
+puts 'Novo usuário criado: ' << user.nome + " - " + user.nome_usuario

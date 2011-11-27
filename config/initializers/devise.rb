@@ -112,7 +112,7 @@ Devise.setup do |config|
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
-  # config.timeout_in = 30.minutes
+  config.timeout_in = 20.minutes
 
   # ==> Configuration for :lockable
   # Defines which strategy will be used to lock an account.
@@ -217,7 +217,7 @@ Devise.setup do |config|
       def authenticate!
         #TODO gambiarra.. ainda não sei fazer uma busca com OR.. ARRUMAR
         login = params[:user][:email]
-        resource = User.find(:first, :conditions => {:login => login})
+        resource = User.find(:first, :conditions => {:nome_usuario => login})
         if resource.nil?
           resource = User.find(:first, :conditions => {:email => login})
         end

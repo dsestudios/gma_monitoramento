@@ -19,16 +19,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.5.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="brI18n (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="brstring (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="brstring (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mongoid (v2.2.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-mount (v0.6.14, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="brnumeros (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.31, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.5.7, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="brdata (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-test (v0.5.7, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cancan (v1.6.7, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v1.5.1, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="brdinheiro (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
@@ -37,9 +37,9 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.0.18, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.0.5, Ruby SDK 1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="brazilian-rails (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mongo (v1.4.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="brazilian-rails (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bson_ext (v1.4.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v1.2.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v3.0.11, Ruby SDK 1.9.2-p290) [gem]" level="application" />
@@ -55,9 +55,9 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v2.1.2, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.2.19, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.10, Ruby SDK 1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="brhelper (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rake (v0.9.2.2, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v0.9.2.2, Ruby SDK 1.9.2-p290) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="brhelper (v3.0.4, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.17.2, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.6.6, Ruby SDK 1.9.2-p290) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="abstract (v1.0.0, Ruby SDK 1.9.2-p290) [gem]" level="application" />
