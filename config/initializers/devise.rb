@@ -206,4 +206,30 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
+  # Adicionada estrategia para procurar por login ou email
+  config.warden do |manager|
+    manager.strategies.add(:login_with_username_or_email) do
+      def valid?
+        params[:user] && params[:user][:email] && params[:user][:password]
+      end
+
+      def authenticate!
+        #TODO gambiarra.. ainda não sei fazer uma busca com OR.. ARRUMAR
+        login = params[:user][:email]
+        resource = User.find(:first, :conditions => {:login => login})
+        if resource.nil?
+          resource = User.find(:first, :conditions => {:email => login})
+        end
+        if not resource.nil? and resource.valid_password?(params[:user][:password])
+          resource.after_database_authentication
+          success!(resource)
+        elsif !halted?
+          fail(:invalid)
+        end
+      end
+    end
+    manager.default_strategies(scope: :user).unshift :login_with_username_or_email
+  end
+
 end
