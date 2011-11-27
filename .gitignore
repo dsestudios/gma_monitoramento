@@ -2,4 +2,8 @@
 db/*.sqlite3
 log/*.log
 tmp/
+<<<<<<< HEAD
 .idea/
+=======
+.idea/
+>>>>>>> 6e8267222776a6b734d467f42a021688e382bfe9
