@@ -1,5 +1,9 @@
 <h1>HOME - Pagina inicial</h1>
 
+<% if can?(:manager, :all) %>
+    <p><%= link_to( "Administração", [:admin, :index] ) %></p>
+<% end %>
+
 <table>
   <tr>
     <td>
@@ -8,6 +12,9 @@
     <td>
       <p><%= @user.nome %></p>
       <p><%= @user.role_descricao %></p>
+      <p><%= @user.current_sign_in_at.to_s_br %></p>
+      <p>Ultimo acesso: <%= I18n.l(@user.last_sign_in_at) %></p>
+      <p>Quantidade de acesso: <%= @user.sign_in_count %></p>
     </td>
   </tr>
 </table>

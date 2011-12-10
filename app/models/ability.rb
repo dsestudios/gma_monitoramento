@@ -7,10 +7,23 @@ class Ability
   end
 
   def initialize(user)
-    can :manage, :all if user.role == :admin
-    can :manage, :all if user.role == :monitor
-    can :manage, Post if user.role == "blog"
-    can :manage, Test if user.role == "test"
+    return sem_permissao if user.nil? or user.role.nil?
+    permissao_de_administrador if user.role.to_sym == :admin
+    permissao_de_monitor(user) if user.nil? or user.role.to_sym == :monitor
+  end
+
+  private
+
+  def permissao_de_administrador
+    can [:manage], :all
+  end
+
+  def permissao_de_monitor(user)
+    can [:update], User, :id => user.id #somente poderar alterar a propria conta
+  end
+
+  def sem_permissao
+    can [], []
   end
 
 end

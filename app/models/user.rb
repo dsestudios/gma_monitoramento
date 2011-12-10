@@ -6,9 +6,13 @@ class User
   include Mongoid::Paperclip
 
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :omniauthable, :registerable
+  devise :database_authenticatable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :timeoutable
 
   has_mongoid_attached_file :avatar,
                             :styles => {:medium => "300x300>", :thumb => "100x100>"},

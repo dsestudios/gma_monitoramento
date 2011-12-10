@@ -1,5 +1,6 @@
 # encoding: UTF-8
 module ApplicationHelper
+  include FormTagsStandard
 
   # Retorna o campo SELECT com todos os tipos de usuário
   # param form = formulario da view

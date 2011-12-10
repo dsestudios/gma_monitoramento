@@ -1,17 +1,18 @@
-<h2>Login</h2>
+<%= titulo("Login") %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label "Usuário ou Email" %><br />
-  <%= f.text_field :email %></div>
 
-  <div><%= f.label 'Senha' %><br />
-  <%= f.password_field :password %></div>
+  <%= add_fields( f.label("Usuário"), f.text_field(:email) ) %>
+  <%= add_fields( f.label("Senha"), f.password_field(:password) )%>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label 'Lembrar minha senha' %></div>
-  <% end -%>
+  <p>
+    <% if devise_mapping.rememberable? -%>
+        <%= add_fields_no_tags( f.check_box(:remember_me), f.label('Lembrar de mim'), " | " ) %>
+    <% end -%>
+    <%= link_to("Esqueci minha senha", new_password_path(resource_name) )%>
+  </p>
 
-  <div><%= f.submit "Entrar" %></div>
+
+  <%= add_fields( f.submit("Entrar") )%>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
