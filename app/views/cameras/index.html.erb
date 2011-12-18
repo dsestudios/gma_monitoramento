@@ -1,0 +1,25 @@
+<h1>Listagem de câmeras</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Número câmera</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cameras.each do |camera| %>
+  <tr>
+    <td><%= camera.nome %></td>
+    <td><%= camera.numero_camera %></td>
+    <td><%= link_to 'Exibir', camera %></td>
+    <td><%= link_to 'Editar', edit_camera_path(camera) %></td>
+    <td><%= link_to 'Remover', camera, :confirm => 'Confirmar exclusão?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova câmera', new_camera_path %>
