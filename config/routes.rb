@@ -1,6 +1,14 @@
 GmaMonitoramento::Application.routes.draw do
   devise_for:users, :path_prefix => 'd'
 
+  #scope "admin" do
+  #  resources :users
+  #end
+
+  resources :users
+  get "admin/index"
+  resources :ocorrencias
+
   #, skip: :registrations do
   #  # Desabilita o recurso onde o proprio usuario pode apagar sua conta.
   #  # Dessa forma garante que o usuario não coseguira apagar a propria conta.
@@ -19,14 +27,6 @@ GmaMonitoramento::Application.routes.draw do
     # (app/controllers/admin/products_controller.rb)
   #  resources :users
   #end
-
-  #scope "admin" do
-    resources :users
-  #end
-
-  get "admin/index"
-  resources :tests
-  resources :posts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

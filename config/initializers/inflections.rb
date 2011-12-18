@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # Be sure to restart your server when you modify this file.
 
 # Add new inflection rules using the following format
@@ -10,5 +11,12 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
+
+  #irregulares
+  inflect.irregular 'user', 'users'
+  inflect.irregular 'ocorrencia', 'ocorrencias'
+  inflect.irregular 'ocorrencia_item', 'ocorrencia_itens'
+
   inflect.uncountable %w( home admin )
+
 end

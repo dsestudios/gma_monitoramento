@@ -1,18 +1,16 @@
 <%= titulo("Login") %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-  <%= add_fields( f.label("Usuário"), f.text_field(:email) ) %>
-  <%= add_fields( f.label("Senha"), f.password_field(:password) )%>
+  <%= f.input :email, :as => :string, :label => "Usuário", :hint => "informar nome de usuário ou email." %>
+  <%= f.input :password, :label => "Senha" %>
 
-  <p>
-    <% if devise_mapping.rememberable? -%>
-        <%= add_fields_no_tags( f.check_box(:remember_me), f.label('Lembrar de mim'), " | " ) %>
-    <% end -%>
-    <%= link_to("Esqueci minha senha", new_password_path(resource_name) )%>
-  </p>
+  <% if devise_mapping.rememberable? -%>
+    <%= f.input :remember_me, :as => :boolean, :label => "Lembrar de mim" %>
+  <% end -%>
 
+  <%= link_to("Esqueci minha senha", new_password_path(resource_name) )%>
 
-  <%= add_fields( f.submit("Entrar") )%>
+  <%= f.button :submit, :label => "Entrar" %>
 <% end %>
 
