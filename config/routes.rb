@@ -1,4 +1,6 @@
 GmaMonitoramento::Application.routes.draw do
+  resources :cameras
+
   devise_for:users, :path_prefix => 'd'
 
   #scope "admin" do
