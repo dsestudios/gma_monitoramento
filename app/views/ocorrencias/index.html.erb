@@ -1,0 +1,23 @@
+<%= titulo("Ocorrências") %>
+
+<table>
+  <tr>
+    <th>Codigo</th>
+    <th>Grupo</th>
+    <th>Ação</th>
+  </tr>
+
+<% @ocorrencias.each do |ocorrencia| %>
+  <tr>
+    <td><%= ocorrencia.codigo %></td>
+    <td><%= ocorrencia.grupo %></td>
+    <td><%= link_to t("screen.button.show"), ocorrencia %> |
+        <%= link_to t("screen.button.edit"), edit_ocorrencia_path(ocorrencia) %> |
+        <%= link_to t("screen.button.destroy"), ocorrencia, :confirm => t("screen.messages.destroy_registro", :model => "ocorrência"), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nova Ocorrência', new_ocorrencia_path %>

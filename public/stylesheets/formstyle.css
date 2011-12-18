@@ -1,0 +1,21 @@
+#f input
+{
+ font-size:13px;
+ color:black;
+ background:white;
+ width: 255px;
+ height: 27px;
+ padding: 5px 0 2px 4px;
+}
+#f input[type="checkbox"]
+{
+ width:20px;
+ height:20px;
+ padding:0px;
+}
+#f input[type="radio"]
+{
+ width:20px;
+ height:20px;
+ padding:0px;
+}

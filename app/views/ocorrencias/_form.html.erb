@@ -1,0 +1,18 @@
+<%= simple_form_for(@ocorrencia) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :grupo %>
+  </div>
+
+  <div id="itens">
+    <%= f.fields_for :ocorrencia_itens do |builder| %>
+        <%= render "ocorrencia_itens/ocorrencia_item_fields", :f => builder %>
+    <% end %>
+    <p><%= link_to_add_fields "+", f, :ocorrencia_itens, "ocorrencia_itens/ocorrencia_item_fields" %></p>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

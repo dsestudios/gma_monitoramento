@@ -1,0 +1,22 @@
+<%= titulo("Ocorrência") %>
+
+<p>
+  <b>Codigo:</b>
+  <%= @ocorrencia.codigo %>
+</p>
+
+<p>
+  <b>Grupo:</b>
+  <%= @ocorrencia.grupo %>
+</p>
+
+<p>
+  <b>Ocorrências</b>
+  <br>
+  <% @ocorrencia.ocorrencia_itens.each do |item| %>
+    <li><%= item.descricao %></li>
+  <% end %>
+</p>
+
+<%= link_to t("screen.button.edit"), edit_ocorrencia_path(@ocorrencia) %> |
+<%= link_to_back(ocorrencias_path) %>
