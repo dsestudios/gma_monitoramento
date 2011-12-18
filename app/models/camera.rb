@@ -4,5 +4,5 @@ class Camera
   field :numero_camera, :type => Integer
 
   validates_presence_of	:nome, :numero_camera
-  validates_numericality_of :numero_camera, :only_integer => true
+  validates_numericality_of :numero_camera, :only_integer => true, :message => "O valor do campo deve ser numerico"
 end
