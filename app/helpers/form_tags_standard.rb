@@ -2,6 +2,7 @@
 module FormTagsStandard
 
   def titulo valor
+    params[:titulo] = valor
     "<h1>#{valor}</h1>".html_safe
   end
 

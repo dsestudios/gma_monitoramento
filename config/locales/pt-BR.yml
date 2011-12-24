@@ -144,14 +144,29 @@ pt-BR:
       save: "Salvar"
       update: "Atualizar"
       back: "Voltar"
+      login: "Logar"
+      logout: "Sair"
     messages:
       destroy_registro: "Tem certeza que deseja excluir este %{model}?"
 
   validation:
     must_be_number: "O valor do campo deve ser numérico"
+
   messages:
     notice:
       acesso_negado: "Você não tem permissão para acessar esta área."
       new_registro: "%{model} críado com sucesso."
       edit_registro: "%{model} atualizado com sucesso."
     alert:
+
+  #Nome de exibição dos Models
+  models_display_names:
+    user:
+      singular: "Usuário"
+      plural: "Usuários"
+    camera:
+      singular: "Câmera"
+      plural: "Câmeras"
+    ocorrencia:
+      singular: "Ocorrência"
+      plural: "Ocorrências"

@@ -1,0 +1,30 @@
+.barra_menu {
+	background-image: url(/images/imagens_index/fundo_menu.jpg);
+	background-repeat: repeat-x;
+}
+.menu_nome {
+	background-image: url(/images/imagens_index/fundo_iden_pag.gif);
+	background-repeat: repeat-x;
+    text-align: left;
+}
+.rodape_menu {
+	background-image: url(/images/imagens_index/rodape_fundo.jpg);
+	background-repeat: repeat-x;
+	font-family: Verdana, Geneva, sans-serif;
+    text-align: center;
+}
+.fundo_meio {
+	background-color: #3E3959;
+	font-size: 10px;
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+}
+.rodape_menu_ass {
+	font-size: 9px;
+	color: #FFF;
+	text-align: center;
+}
+.rodape_menu_ass {
+	color: #FFF;
+}

@@ -1,4 +1,4 @@
-<%= titulo("Todos os usuários") %>
+<% titulo(User.nome_exibicao_plural) %>
 
 <%= link_to "Novo usuário", new_user_path %>
 
@@ -20,4 +20,4 @@
     <hr>
 <% end %>
 
-<%= link_to_back %>
+<%= link_to_back([:admin, :index]) %>

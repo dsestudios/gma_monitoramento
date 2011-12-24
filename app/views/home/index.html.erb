@@ -1,4 +1,4 @@
-<h1>HOME - Pagina inicial</h1>
+<% titulo("Home") %>
 
 <% if can?(:manager, :all) %>
     <p><%= link_to( "Administração", [:admin, :index] ) %></p>

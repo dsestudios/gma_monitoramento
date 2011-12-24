@@ -1,4 +1,4 @@
-<%= titulo("Editar usuário") %>
+<% titulo("Editar usuário") %>
 
 <%= form_for(@user, :html => { :method => :put, :multipart => true} ) do |f| %>
   <% if @user.errors.any? %>

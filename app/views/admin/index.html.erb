@@ -1,7 +1,9 @@
-<%= titulo("Administração") %>
+<% titulo("Administração") %>
 
-    <td><%= link_to 'Usuários', users_path %></td>
-    <td><%= link_to 'Câmeras', "" %></td>
-    <td><%= link_to 'Ocorrências', ocorrencias_path %></td>
+    <li><%= link_to User.nome_exibicao_plural, users_path %></li>
+
+    <li><%= link_to Camera.nome_exibicao_plural, cameras_path %></li>
+
+    <li><%= link_to Ocorrencia.nome_exibicao_plural, ocorrencias_path %></li>
 
 <%= link_to_back %>

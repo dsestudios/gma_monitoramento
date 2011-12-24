@@ -1,7 +1,8 @@
-en:
+# encoding: UTF-8
+pt-BR:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
+    "yes": 'Sim'
+    "no": 'Não'
     required:
       text: 'required'
       mark: '*'
@@ -9,7 +10,7 @@ en:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Some errors were found, please take a look:"
+      default_message: "Alguns erros foram encontrados, por favor de uma olhada:"
     # Labels and hints examples
     # labels:
     #   password: 'Password'
@@ -22,3 +23,10 @@ en:
     #   username: 'User name to sign in.'
     #   password: 'No special characters, please.'
 
+  helpers:
+    submit:
+      create: "Salvar %{model}"
+      update: "Salvar alterações" #{model}
+
+      ocorrencia:
+        create: "Salvar ocorrência"

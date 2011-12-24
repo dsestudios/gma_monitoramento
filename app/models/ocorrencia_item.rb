@@ -6,5 +6,5 @@ class OcorrenciaItem
 
   embedded_in :ocorrencia
 
-  validates_presence_of :descricao
+  #validates_presence_of :descricao
 end

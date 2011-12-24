@@ -1,4 +1,6 @@
-<%= titulo("Ocorrências") %>
+<% titulo("Ocorrências") %>
+
+<p><%= link_to 'Nova Ocorrência', new_ocorrencia_path %></p>
 
 <table>
   <tr>
@@ -18,6 +20,4 @@
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'Nova Ocorrência', new_ocorrencia_path %>
+<%= link_to_back %>

@@ -40,13 +40,17 @@ module ApplicationHelper
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
   end
 
-  def link_to_add_fields(name, f, association, partial = "")
+  def link_to_add_fields(name, f, association, partial)
     new_object = f.object.class.reflect_on_association(association).klass.new
     fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
-      partial = association.to_s.singularize + "_fields" if partial.blank?
       render(partial, :f => builder)
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+  end
+
+  def saudacao
+    return "" if not user_signed_in?
+    "Olá, #{link_to(current_user.nome, edit_user_path(current_user))}".html_safe
   end
 
 end

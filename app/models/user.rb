@@ -23,6 +23,8 @@ class User
   field :role
 
   validates_presence_of :nome, :nome_usuario
+  validates_length_of :nome_usuario, :in => 5..20
+  validates_length_of :password, :in => 6..20
   validates_uniqueness_of :nome_usuario, :email, :case_sensitive => false
 
   attr_accessible :nome, :nome_usuario, :email, :password, :password_confirmation, :remember_me, :role, :avatar
