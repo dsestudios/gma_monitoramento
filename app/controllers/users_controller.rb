@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => t("messages.notice.new_registro", :model => "Usuário") ) }
+        format.html { redirect_to(users_path, :notice => t("messages.notice.new_registro", :model => "Usuário") ) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     seguranca_trata_campos
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => t("messages.notice.edit_registro", :model => "Usuário")) }
+      if @user.update_with_password(params[:user])
+        format.html { redirect_to(root_path, :notice => t("messages.notice.edit_registro", :model => "Usuário")) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to(user_url) }
+      format.html { redirect_to(users_path) }
       format.xml  { head :ok }
     end
   end
@@ -64,13 +64,10 @@ class UsersController < ApplicationController
   private
 
   def seguranca_trata_campos
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
-
+    #Se não pode alterar
     if cannot? :manager, @user
       params[:user].delete(:role)
+      params[:user].delete(:nome_usuario)
     end
 
   end

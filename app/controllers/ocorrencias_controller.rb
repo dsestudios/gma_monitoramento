@@ -60,7 +60,6 @@ class OcorrenciasController < ApplicationController
   # PUT /ocorrencias/1.xml
   def update
     @ocorrencia = Ocorrencia.find(params[:id])
-    @ocorrencia.ocorrencia_itens.delete_all if !params[:ocorrencia].include?('ocorrencia_itens_attributes')
 
     respond_to do |format|
       if @ocorrencia.update_attributes(params[:ocorrencia])

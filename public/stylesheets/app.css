@@ -2,3 +2,10 @@
 	text-align: left;
     font-size: 16px;
 }
+
+.centraliza {
+    position: relative;
+	margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 12%;
+}

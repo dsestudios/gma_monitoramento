@@ -11,21 +11,32 @@ pt-BR:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Alguns erros foram encontrados, por favor de uma olhada:"
+
     # Labels and hints examples
-    # labels:
-    #   password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail para efetuar o sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   username: 'User name to sign in.'
-    #   password: 'No special characters, please.'
+    labels:
+      user: "Usuário"
+      password: "Senha"
+      password_confirmation: "Confirmar senha"
+      current_password: "Senha atual"
+      nome_usuario: "Usuário"
+      email: "E-mail"
+      descricao: "Descrição"
+
+      user:
+        new:
+          #email: 'E-mail para efetuar o sign in.'
+        edit:
+          #email: 'E-mail.'
+
+    hints:
+      user:
+        edit:
+          password: "Deixe em branco se você não quiser mudar"
+          current_password: "É necessario informar a sua senha atual para confirmar as alterações"
 
   helpers:
     submit:
-      create: "Salvar %{model}"
+      create: "Salvar" #%{model}
       update: "Salvar alterações" #{model}
 
       ocorrencia:

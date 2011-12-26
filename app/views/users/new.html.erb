@@ -1,38 +1,5 @@
-<% titulo("Novo usuário") %>
+<% titulo("Novo #{User.nome_exibicao}") %>
 
-<%= form_for(@user, :html => { :multipart => true }) do |f| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-  <div><%= f.label :nome %><br />
-  <%= f.text_field :nome %></div>
-
-  <div><%= f.label 'Usuário' %><br />
-  <%= f.text_field :nome_usuario %></div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label 'Senha' %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label 'Confirmar senha' %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <%= select_tipo_de_usuario(f) %>
-
-  <%= seleciona_imagem_perfil(f, @user) %>
-
-  <div><%= f.submit t("screen.button.save") %></div>
-<% end %>
+<%= render "form" %>
 
 <%= link_to_back %>

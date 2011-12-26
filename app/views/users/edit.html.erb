@@ -1,48 +1,5 @@
-<% titulo("Editar usuário") %>
+<% titulo("Editar #{User.nome_exibicao}") %>
 
-<%= form_for(@user, :html => { :method => :put, :multipart => true} ) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <%= seleciona_imagem_perfil(f, @user) %>
-
-  <div><%= f.label :nome %><br />
-  <%= f.text_field :nome %></div>
-
-  <div><%= f.label 'Usuário' %><br />
-  <% if can? :manager, @user %>
-    <%= f.text_field :nome_usuario %></div>
-  <% else %>
-    <%= @user.nome_usuario %>
-  <% end %>
-  </div>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label 'Senha' %> <i>(Deixar em branco se você não quiser mudar)</i><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label 'Confirmar senha' %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label 'Senha atual' %> <i>(precisamos de sua senha atual para confirmar as alterações)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <% if can? :manager, @user %>
-    <%= select_tipo_de_usuario(f) %>
-  <% end %>
-
-  <div><%= f.submit t("screen.button.update") %></div>
-<% end %>
+<%= render "form" %>
 
 <%= link_to_back %>

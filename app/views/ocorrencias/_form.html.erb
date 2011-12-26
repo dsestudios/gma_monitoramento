@@ -6,7 +6,7 @@
   </div>
 
   <div class="ocorrencia_itens">
-      <%= f.fields_for :ocorrencia_itens do |builder| %>
+      <%= f.simple_fields_for :ocorrencia_itens do |builder| %>
         <%= render "ocorrencia_itens/ocorrencia_item_fields", :f => builder %>
       <% end %>
     <div class="itens_adicionais">

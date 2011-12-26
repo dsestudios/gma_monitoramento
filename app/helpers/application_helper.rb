@@ -26,8 +26,7 @@ module ApplicationHelper
        <p>#{image_tag user.avatar(:thumb)}</p>
       </td>
       <td>
-       <div>#{form.label 'Selecione uma imagem do perfil'}<br />
-       #{form.file_field :avatar}</div>
+       #{form.input :avatar, :as => :file, :label => "Selecione uma imagem do perfil" }
       </td>
     </tr>
     </table>
@@ -37,12 +36,12 @@ module ApplicationHelper
   end
 
   def link_to_remove_fields(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
+    f.input(:_destroy, :as => :hidden ) + link_to_function(name, "remove_fields(this)")
   end
 
   def link_to_add_fields(name, f, association, partial)
     new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+    fields = f.simple_fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
       render(partial, :f => builder)
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
@@ -51,6 +50,14 @@ module ApplicationHelper
   def saudacao
     return "" if not user_signed_in?
     "Olá, #{link_to(current_user.nome, edit_user_path(current_user))}".html_safe
+  end
+
+  def action_new?
+    params[:action] == :new.to_s or params[:action] == :create.to_s
+  end
+
+  def action_edit?
+    params[:action] == :edit.to_s or params[:action] == :update.to_s
   end
 
 end
