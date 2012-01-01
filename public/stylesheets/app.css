@@ -1,11 +1,47 @@
 .titulo {
+	background-image: url(/images/css_filetes/titulo.gif);
+	background-repeat: repeat-x;
+	font-family: IMPACT;
+	color: #FFF;
+	/* position: absolute; */
+    position: absolute;
+	height: auto;
+	width: auto;
 	text-align: left;
-    font-size: 16px;
+    text-transform: uppercase;
 }
 
-.centraliza {
-    position: relative;
-	margin-left: 10%;
-    margin-top: 5%;
-    margin-bottom: 12%;
+.fundo_escrita {
+	background-color: #514A73;
+}
+
+.label_app {
+  background-image: url(/images/css_filetes/fundo_botao.gif);
+  background-repeat: repeat-x;
+  background-position: left;
+  font-family: verdana;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 2% 2% 2% 2%;
+  margin-right: 10px;
+}
+
+.link_label:link {
+color:#000000;
+text-decoration:none;
+}
+.link_label:visited {
+color:#000000;
+text-decoration:none;
+}
+.link_label:hover {
+color:#000000;
+text-decoration:none;
+}
+.link_label:active {
+color:#000000;
+text-decoration:none;
 }

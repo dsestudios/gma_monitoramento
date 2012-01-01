@@ -5,18 +5,18 @@
 }
 
 .simple_form label {
-  float: left;
-  width: 120px;
+  background-image: url(/images/css_filetes/fundo_botao.gif);
+  background-repeat: repeat-x;
+  background-position: left;
+  font-family: verdana;
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
   text-align: center;
   text-transform: uppercase;
-  margin: 2px 10px;
-  color: black;
-  background: yellow;
-  background-image: url('/images/caixa_label.png');
-  background-repeat: repeat;
-  border: 2px solid #999;
-  font-weight: bold;
-  font-size: 14px;
+  padding: 2% 2% 2% 2%;
+  margin-right: 10px;
+  /* float: left; */
 }
 
 div.boolean, .simple_form input[type='submit'] {

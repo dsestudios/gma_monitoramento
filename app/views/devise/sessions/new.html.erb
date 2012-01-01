@@ -2,16 +2,16 @@
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-    <%= f.input :email, :as => :string, :label => "Usuário", :input_html => {:size => 20, :maxlength => 20}, :hint => "informar nome de usuário ou email." %>
+    <%= f.input :email, :as => :string, :label => "Usuário", :placeholder => t("simple_form.placeholders.user.sing_in.email"), :input_html => {:size => 30} %>
     <%= f.input :password, :input_html => {:size => 20, :maxlength => 20} %>
 
-    <% if devise_mapping.rememberable? -%>
-        <%= f.input :remember_me, :as => :boolean, :label => "Lembrar de mim" %>
-    <% end -%>
-
-    <%= link_to("Esqueci minha senha", new_password_path(resource_name) )%>
+    <%# if devise_mapping.rememberable? -%>
+        <%# f.input :remember_me, :as => :boolean, :label => "Lembrar de mim" %>
+    <%# end -%>
 
     <%= f.button :submit, :value => "Entrar" %>
+
+    <%= link_to("Esqueci minha senha", new_password_path(resource_name) )%>
 
 <% end %>
 

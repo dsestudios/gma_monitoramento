@@ -31,8 +31,14 @@ pt-BR:
     hints:
       user:
         edit:
-          password: "Deixe em branco se você não quiser mudar"
           current_password: "É necessario informar a sua senha atual para confirmar as alterações"
+
+    placeholders:
+      user:
+        sing_in:
+          email: "nome de usuário ou e-mail"
+        edit:
+          password: "Deixe em branco se você não quiser mudar"
 
   helpers:
     submit:

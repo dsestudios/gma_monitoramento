@@ -171,6 +171,7 @@ pt-BR:
       show: "Consultar"
       destroy: "Excluir"
       save: "Salvar"
+      create: "Criar"
       update: "Atualizar"
       back: "Voltar"
       login: "Logar"

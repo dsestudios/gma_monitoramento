@@ -22,9 +22,10 @@ class User
   field :nome_usuario
   field :role
 
-  validates_presence_of :nome, :nome_usuario
+  validates_presence_of :nome, :nome_usuario, :email
   validates_length_of :nome, :in => 3..20
   validates_length_of :nome_usuario, :in => 5..20
+  validates_length_of :email, :in => 5..30
   validates_length_of :password, :in => 6..20, :allow_blank => true, :on => :update
   validates_uniqueness_of :nome_usuario, :email, :case_sensitive => false
 

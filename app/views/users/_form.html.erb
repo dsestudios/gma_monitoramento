@@ -8,7 +8,6 @@
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <br />
     <%= f.input :current_password if action_edit? %>
 
     <% if can? :manager, @user %>
