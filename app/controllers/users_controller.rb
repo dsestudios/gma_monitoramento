@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.all
+    @users = User.all.order_by([[:nome, :asc]])
   end
 
   def new
@@ -41,7 +41,8 @@ class UsersController < ApplicationController
     seguranca_trata_campos
 
     respond_to do |format|
-      if @user.update_with_password(params[:user])
+      salvou = can?(:manage, :all) ? @user.update_attributes(params[:user]) : @user.update_with_password(params[:user])
+      if salvou
         format.html { redirect_to(root_path, :notice => t("messages.notice.edit_registro", :model => "Usuário")) }
         format.xml  { head :ok }
       else
@@ -64,10 +65,16 @@ class UsersController < ApplicationController
   private
 
   def seguranca_trata_campos
+    valores = params[:user]
+    if valores[:password].blank?
+      valores.delete(:password)
+      valores.delete(:password_confirmation.to_s) if valores[:password_confirmation.to_s].blank?
+    end
+
     #Se não pode alterar
     if cannot? :manager, @user
-      params[:user].delete(:role)
-      params[:user].delete(:nome_usuario)
+      valores.delete(:role)
+      valores.delete(:nome_usuario)
     end
 
   end

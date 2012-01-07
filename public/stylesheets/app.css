@@ -3,16 +3,36 @@
 	background-repeat: repeat-x;
 	font-family: IMPACT;
 	color: #FFF;
-	/* position: absolute; */
     position: absolute;
 	height: auto;
 	width: auto;
 	text-align: left;
     text-transform: uppercase;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.texto1 {
+	font-family: IMPACT;
+	color: #FFF;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: normal;
 }
 
 .fundo_escrita {
 	background-color: #514A73;
+}
+
+.conteudo_view {
+    position: relative;
+    margin: 16px 16px 16px 16px;
+}
+
+.conteudo_admin_scope {
+    background-color: #514A73;
+    padding: 15px 15px 15px 15px;
+    margin-top: 16px;
 }
 
 .label_app {

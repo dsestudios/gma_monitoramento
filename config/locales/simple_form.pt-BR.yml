@@ -21,12 +21,17 @@ pt-BR:
       nome_usuario: "Usuário"
       email: "E-mail"
       descricao: "Descrição"
+      numero: "Número"
 
       user:
         new:
           #email: 'E-mail para efetuar o sign in.'
         edit:
           #email: 'E-mail.'
+
+      camera:
+        nome: "Local da câmera"
+        numero_camera: "Número da câmera"
 
     hints:
       user:

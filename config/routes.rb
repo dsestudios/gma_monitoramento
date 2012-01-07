@@ -3,12 +3,11 @@ GmaMonitoramento::Application.routes.draw do
 
   resources :users
   get "admin/index"
-  resources :ocorrencias
-  resources :cameras
 
-  #scope "admin" do
-  #  resources :users
-  #end
+  scope "admin" do
+    resources :ocorrencias
+    resources :cameras
+  end
 
   #, skip: :registrations do
   #  # Desabilita o recurso onde o proprio usuario pode apagar sua conta.

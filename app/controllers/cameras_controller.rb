@@ -1,9 +1,10 @@
 class CamerasController < ApplicationController
+  load_and_authorize_resource
+
   # GET /cameras
   # GET /cameras.xml
-  load_and_authorize_resource
   def index
-    @cameras = Camera.all
+    @cameras = Camera.all.order_by([[:nome, :asc]])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +47,7 @@ class CamerasController < ApplicationController
 
     respond_to do |format|
       if @camera.save
-        format.html { redirect_to(@camera, :notice => 'Camera was successfully created.') }
+        format.html { redirect_to(new_camera_path, :notice => t("messages.notice.new_registro", :model => Camera.nome_exibicao ) ) }
         format.xml  { render :xml => @camera, :status => :created, :location => @camera }
       else
         format.html { render :action => "new" }
@@ -62,7 +63,7 @@ class CamerasController < ApplicationController
 
     respond_to do |format|
       if @camera.update_attributes(params[:camera])
-        format.html { redirect_to(@camera, :notice => 'Camera was successfully updated.') }
+        format.html { redirect_to(cameras_path, :notice => t("messages.notice.edit_registro", :model => Camera.nome_exibicao )) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

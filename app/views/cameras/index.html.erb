@@ -1,25 +1,9 @@
-<h1>Listagem de câmeras</h1>
+<%= admin_bloco do %>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Número câmera</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <%= link_to "Novo", new_camera_path %>
 
-<% @cameras.each do |camera| %>
-  <tr>
-    <td><%= camera.nome %></td>
-    <td><%= camera.numero_camera %></td>
-    <td><%= link_to 'Exibir', camera %></td>
-    <td><%= link_to 'Editar', edit_camera_path(camera) %></td>
-    <td><%= link_to 'Remover', camera, :confirm => 'Confirmar exclusão?', :method => :delete %></td>
-  </tr>
+    <%= grid_imagem(@cameras, :foto_do_lugar, :nome) %>
+
+    <%= link_to_back([:admin, :index]) %>
+
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'Nova câmera', new_camera_path %>

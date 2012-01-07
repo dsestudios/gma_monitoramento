@@ -1,6 +1,8 @@
-<%# titulo("Editar ocorrência") %>
+<%= admin_bloco do %>
 
 <%= render 'form' %>
 
 <%= link_to t("screen.button.show"), @ocorrencia %> |
 <%= link_to_back(ocorrencias_path) %>
+
+<% end %>

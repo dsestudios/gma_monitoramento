@@ -37,4 +37,51 @@ module FormTagsStandard
     "<span class='label_app'>#{link_to(*args, &block)}</span>".html_safe
   end
 
+  def admin_bloco &block
+    return "" if !block_given?
+
+    buffer = with_output_buffer { yield }
+
+    return buffer if cannot?(:manager, @user)
+
+    html = <<-HTML
+      #{render "admin/menu"}
+      <div class="conteudo_admin_scope">
+       #{buffer}
+      </div>
+    HTML
+
+    html.html_safe
+  end
+
+  def grid_imagem(array_model, method_imagem, method_titulo, max_column = 5)
+    html = "<table align='center'>"
+    count = 0;
+    array_model.each do |m|
+      symbol_action = "edit_#{m.class.to_s.downcase}_path".to_sym
+      count += 1
+
+      if count == 1
+        html << "<tr align='center' height='150px'>"
+      end
+
+      html << <<-HTML
+       <td align="center" width="150px">
+        #{link_to(image_tag(m.send(method_imagem, :thumb)), send(symbol_action, m)) }<br />
+        <span class="texto1">#{m.send(method_titulo)}</span><br />
+        #{link_to t("screen.button.edit"), send(symbol_action, m) } | #{link_to t("screen.button.destroy"), m, :confirm => t("screen.messages.destroy_registro", :model => m.class.nome_exibicao), :method => :delete }<br />
+       </td>
+      HTML
+
+      if count == max_column or array_model.last == m
+        html << "</tr>"
+        count = 0
+      end
+
+    end
+    html << "</table>"
+
+    html.html_safe
+  end
+
 end

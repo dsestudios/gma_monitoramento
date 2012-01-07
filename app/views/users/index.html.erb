@@ -1,23 +1,9 @@
-<%# titulo(User.nome_exibicao_plural) %>
+<%= admin_bloco do %>
 
-<%= link_to "Novo usuário", new_user_path %>
+    <%= link_to "Novo usuário", new_user_path %>
 
-<% @users.each do |u| %>
-    <table>
-      <tr>
-        <td>
-          <p><%= image_tag u.avatar(:thumb) %></p>
-        </td>
-        <td>
-          <p><%= link_to u.nome, edit_user_path(u) %></p>
-          <p><%= u.role_descricao %></p>
-          <p>Ultimo acesso: <%= I18n.l(u.last_sign_in_at) if !u.last_sign_in_at.nil? %></p>
-          <p>Quantidade de acesso: <%= u.sign_in_count %></p>
-          <p><%= link_to t("screen.button.destroy"), u, :confirm => t("screen.messages.destroy_registro", :model => "usuário"), :method => :delete %></p>
-        </td>
-      </tr>
-    </table>
-    <hr>
+    <%= grid_imagem(@users, :avatar, :nome) %>
+
+    <%= link_to_back([:admin, :index]) %>
+
 <% end %>
-
-<%= link_to_back([:admin, :index]) %>

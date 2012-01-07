@@ -1,6 +1,8 @@
-<h1>Editar camera</h1>
+<%= admin_bloco do %>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Exibir', @camera %> |
-<%= link_to 'Voltar', cameras_path %>
+    <%= link_to t("screen.button.show"), @camera %> |
+    <%= link_to_back(cameras_path) %>
+
+<% end %>

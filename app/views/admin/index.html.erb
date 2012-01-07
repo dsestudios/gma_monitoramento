@@ -1,12 +1,5 @@
 <% titulo("Administração") %>
 
-<table align="center">
-  <tr>
-    <td><%= link_label_to User.nome_exibicao_plural, users_path %></td>
-    <td><%= link_label_to Camera.nome_exibicao_plural, cameras_path %></td>
-    <td><%= link_label_to "Monitores", "" %></td>
-    <td><%= link_label_to Ocorrencia.nome_exibicao_plural, ocorrencias_path %></td>
-  </tr>
-</table>
+<%= render "menu" %>
 
 <%= link_to_back %>

@@ -1,7 +1,8 @@
-<%= simple_form_for(@camera) do |f| %>
+<%= simple_form_for(@camera, :html=>{:multipart =>true}) do |f| %>
   <%= f.error_notification %>
 
   <div class="inputs">
+    <%= seleciona_imagem(f, @camera, :foto_do_lugar) %>
     <%= f.input :nome %>
     <%= f.input :numero_camera, :as => :integer %>
   </div>

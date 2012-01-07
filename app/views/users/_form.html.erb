@@ -2,13 +2,13 @@
   <%= f.error_notification %>
 
   <div class="inputs">
-    <%= seleciona_imagem_perfil(f, @user) %>
+    <%= seleciona_imagem(f, @user, :avatar) %>
     <%= f.input :nome %>
     <%= f.input :nome_usuario, :input_html => {:disabled => cannot?(:manager, @user)} %>
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.input :current_password if action_edit? %>
+    <%= f.input :current_password if action_edit? and cannot?(:manager, @user) %>
 
     <% if can? :manager, @user %>
         <%= select_tipo_de_usuario(f) %>

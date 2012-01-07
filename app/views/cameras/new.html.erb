@@ -1,5 +1,7 @@
-<h1>Nova câmera</h1>
+<%= admin_bloco do %>
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<%= link_to 'Back', cameras_path %>
+    <%= link_to_back(cameras_path) %>
+
+<% end %>

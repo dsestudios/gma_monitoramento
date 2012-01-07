@@ -8,25 +8,26 @@ module ApplicationHelper
   # param label = Titulo do campo => Default = 'Tipo de usuário'
   def select_tipo_de_usuario(form, method = :role, label = 'Tipo de usuário')
     html = <<-HTML
-    <div>#{form.label(label)}<br />
+    <div>#{form.label(label)}
     #{form.select method, Ability.tipos_de_usuarios.collect{|k,v| [v,k]} }</div>
     HTML
 
     html.html_safe
   end
 
-  # Retorna o campo Campo para selecionar a imagem do perfil do usuário
+  # Retorna o campo para selecionar uma imagem para upload
   # param form = formulario da view
-  # param user = Model do user
-  def seleciona_imagem_perfil(form, user)
+  # param user = Model que recebera a imagem
+  # param method = Symbol do campo do model que armazena a imagem
+  def seleciona_imagem(form, model, method)
     html = <<-HTML
     <table>
      <tr>
       <td>
-       <p>#{image_tag user.avatar(:thumb)}</p>
+       <p>#{image_tag model.send(method, :thumb) }</p>
       </td>
       <td>
-       #{form.input :avatar, :as => :file, :label => "Selecione uma imagem do perfil" }
+       #{form.input method, :as => :file }
       </td>
     </tr>
     </table>
@@ -58,6 +59,14 @@ module ApplicationHelper
 
   def action_edit?
     params[:action] == :edit.to_s or params[:action] == :update.to_s
+  end
+
+  def action_index?
+    params[:action] == :index.to_s
+  end
+
+  def action_show?
+    params[:action] == :show.to_s
   end
 
 end
