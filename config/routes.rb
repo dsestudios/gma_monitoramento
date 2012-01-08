@@ -77,6 +77,9 @@ GmaMonitoramento::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  #route condicional quando for admin deve levar a pagina do admin  (request.env["warden"].user ))
+  root :to => "admin#index", :constraints => lambda{|request| request.session[:user_admin] }
   root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
