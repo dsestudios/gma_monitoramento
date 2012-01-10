@@ -1,0 +1,24 @@
+<%= admin_bloco do %>
+
+<p><%= link_to 'Novo Monitor', new_visor_path %></p>
+
+<table>
+  <tr>
+    <th>Número</th>
+    <th>Nome</th>
+  </tr>
+
+<% @visores.each do |visor| %>
+  <tr>
+    <td><%= visor.numero %></td>
+    <td><%= visor.nome %></td>
+    <td><%= link_to t("screen.button.show"), visor %> |
+        <%= link_to t("screen.button.edit"), edit_visor_path(visor) %> |
+        <%= link_to t("screen.button.destroy"), visor, :confirm => t("screen.messages.destroy_registro", :model => "monitor"), :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to_back %>
+
+<% end %>

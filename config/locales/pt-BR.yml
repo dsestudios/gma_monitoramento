@@ -200,3 +200,6 @@ pt-BR:
     ocorrencia:
       singular: "Ocorrência"
       plural: "Ocorrências"
+    visor:
+      singular: "Monitor"
+      plural: "Monitores"

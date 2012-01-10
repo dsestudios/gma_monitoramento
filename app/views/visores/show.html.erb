@@ -1,0 +1,17 @@
+<%= admin_bloco do %>
+
+    <p>
+      <b>Nome:</b>
+      <%= @visor.nome %>
+    </p>
+
+    <p>
+      <b>Número:</b>
+      <%= @visor.numero %>
+    </p>
+
+
+    <%= link_to t("screen.button.edit"), edit_visor_path(@visor) %> |
+    <%= link_to_back(visores_path) %>
+
+<% end %>

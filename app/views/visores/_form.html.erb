@@ -1,0 +1,12 @@
+<%= simple_form_for(@visor, :html=>{:multipart =>true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :nome %>
+    <%= f.input :numero %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

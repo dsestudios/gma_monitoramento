@@ -1,4 +1,6 @@
 GmaMonitoramento::Application.routes.draw do
+  resources :visores
+
   devise_for:users, :path_prefix => 'd'
 
   resources :users
