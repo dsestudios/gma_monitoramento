@@ -1,6 +1,6 @@
 .titulo {
-	background-image: url(/images/css_filetes/titulo.gif);
-	background-repeat: repeat-x;
+	/*background-image: url(/images/css_filetes/titulo.gif);
+	background-repeat: repeat-x; **/
 	font-family: IMPACT;
 	color: #FFF;
     position: absolute;

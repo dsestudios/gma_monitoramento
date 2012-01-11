@@ -29,7 +29,6 @@ source 'http://rubygems.org'
 #############################
 
 gem "rails", "3.0.11"
-#gem 'sqlite3'
 gem "mongoid", "2.2.4"
 gem "bson_ext", "1.4"
 gem "devise", "1.5.1"
@@ -37,3 +36,4 @@ gem "brazilian-rails", "3.0.4"
 gem "cancan", "1.6.7"
 gem "mongoid-paperclip", "0.0.7" #gem que integra o paper-clipe com o mongoid para upload de arquivos
 gem "simple_form"
+gem "aws-s3"

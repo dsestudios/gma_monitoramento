@@ -6,22 +6,13 @@ class OcorrenciasController < ApplicationController
   # GET /ocorrencias.xml
   def index
     @ocorrencias = Ocorrencia.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @ocorrencias }
-    end
+    respond_to_index(@ocorrencias)
   end
 
   # GET /ocorrencias/1
   # GET /ocorrencias/1.xml
   def show
-    @ocorrencia = Ocorrencia.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @ocorrencia }
-    end
+    @ocorrencia = respond_to_show(Ocorrencia)
   end
 
   # GET /ocorrencias/new
@@ -30,57 +21,29 @@ class OcorrenciasController < ApplicationController
     @ocorrencia = Ocorrencia.new
     @ocorrencia.ocorrencia_itens.build
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @ocorrencia }
-    end
+    respond_to_new(@ocorrencia)
   end
 
   # GET /ocorrencias/1/edit
   def edit
-    @ocorrencia = Ocorrencia.find(params[:id])
+    @ocorrencia = respond_to_edit(Ocorrencia)
   end
 
   # POST /ocorrencias
   # POST /ocorrencias.xml
   def create
-    @ocorrencia = Ocorrencia.new(params[:ocorrencia])
-    respond_to do |format|
-      if @ocorrencia.save
-        format.html { redirect_to(@ocorrencia, :notice => t("messages.notice.new_registro", :model => "Ocorrência") ) }
-        format.xml  { render :xml => @ocorrencia, :status => :created, :location => @ocorrencia }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @ocorrencia.errors, :status => :unprocessable_entity }
-      end
-    end
+    @ocorrencia = respond_to_create(Ocorrencia)
   end
 
   # PUT /ocorrencias/1
   # PUT /ocorrencias/1.xml
   def update
-    @ocorrencia = Ocorrencia.find(params[:id])
-
-    respond_to do |format|
-      if @ocorrencia.update_attributes(params[:ocorrencia])
-        format.html { redirect_to(@ocorrencia, :notice => t("messages.notice.edit_registro", :model => "Ocorrência")) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @ocorrencia.errors, :status => :unprocessable_entity }
-      end
-    end
+    @ocorrencia = respond_to_update(Ocorrencia)
   end
 
   # DELETE /ocorrencias/1
   # DELETE /ocorrencias/1.xml
   def destroy
-    @ocorrencia = Ocorrencia.find(params[:id])
-    @ocorrencia.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(ocorrencias_url) }
-      format.xml  { head :ok }
-    end
+    @ocorrencia = respond_to_destroy(Ocorrencia)
   end
 end

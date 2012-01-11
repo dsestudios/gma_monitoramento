@@ -1,86 +1,44 @@
 class CamerasController < ApplicationController
   load_and_authorize_resource
 
-  # GET /cameras
-  # GET /cameras.xml
+  # GET
   def index
     @cameras = Camera.all.order_by([[:nome, :asc]])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @cameras }
-    end
+    respond_to_index(@cameras)
   end
 
   # GET /cameras/1
   # GET /cameras/1.xml
   def show
-    @camera = Camera.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @camera }
-      format.json { render :json => @camera }
-    end
+    @camera = respond_to_show(Camera)
   end
 
   # GET /cameras/new
   # GET /cameras/new.xml
   def new
-    @camera = Camera.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @camera }
-    end
+    @camera = respond_to_new(Camera)
   end
 
   # GET /cameras/1/edit
   def edit
-    @camera = Camera.find(params[:id])
+    @camera = respond_to_edit(Camera)
   end
 
   # POST /cameras
   # POST /cameras.xml
   def create
-    @camera = Camera.new(params[:camera])
-
-    respond_to do |format|
-      if @camera.save
-        format.html { redirect_to(new_camera_path, :notice => t("messages.notice.new_registro", :model => Camera.nome_exibicao ) ) }
-        format.xml  { render :xml => @camera, :status => :created, :location => @camera }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @camera.errors, :status => :unprocessable_entity }
-      end
-    end
+    @camera = respond_to_create(Camera)
   end
 
   # PUT /cameras/1
   # PUT /cameras/1.xml
   def update
-    @camera = Camera.find(params[:id])
-
-    respond_to do |format|
-      if @camera.update_attributes(params[:camera])
-        format.html { redirect_to(cameras_path, :notice => t("messages.notice.edit_registro", :model => Camera.nome_exibicao )) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @camera.errors, :status => :unprocessable_entity }
-      end
-    end
+    @camera = respond_to_update(Camera)
   end
 
   # DELETE /cameras/1
   # DELETE /cameras/1.xml
   def destroy
-    @camera = Camera.find(params[:id])
-    @camera.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(cameras_url) }
-      format.xml  { head :ok }
-    end
+    @camera = respond_to_destroy(Camera)
   end
 end
