@@ -65,3 +65,18 @@ text-decoration:none;
 color:#000000;
 text-decoration:none;
 }
+
+#mensagem {
+    text-align: center;
+    font-size: 14px;
+    background-color: #999999;
+    margin-top: 10px;
+}
+
+#mensagem .alert {
+    color: #cc0000;
+}
+
+#mensagem .notice{
+    color: green;
+}

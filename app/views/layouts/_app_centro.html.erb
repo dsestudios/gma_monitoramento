@@ -17,8 +17,10 @@
       <tr>
         <td colspan="9" class="fundo_meio">
 
-          <p class="notice" style="color: #7cfc00;"><%= notice %></p>
-          <p class="alert" style="color: white;"><%= alert %></p>
+          <div id="mensagem">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+          </div>
 
           <div class ="conteudo_view">
               <%= yield %>

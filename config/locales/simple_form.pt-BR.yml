@@ -33,6 +33,9 @@ pt-BR:
         nome: "Local da câmera"
         numero_camera: "Número da câmera"
 
+      ocorrencia:
+        grupo: "Categoria"
+
     hints:
       user:
         edit:
