@@ -1,0 +1,41 @@
+.celula{
+  width:100%;
+  /*background-color:#000000; */
+  /*padding: 10px; */
+  float:left;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.celula .imageSingle {
+  float: left;
+  margin: 2px;
+  width: 170px;
+  text-align:center;
+  /* border:solid 1px #333; */
+}
+.celula .imageSingle .image {
+  /*width:110px; */
+  height:100px;
+  /*margin:3px;*/
+  text-align: center;
+  max-height: 100px;
+}
+.celula .footer {
+  text-align:center;
+  /*width: 110px; */
+  height: 30px;
+  max-height: 30px;
+  /*border-top:solid 1px #333; */
+  /*color:#999; */
+  font-weight:bold;
+  /*padding-top: 7px;
+  padding-bottom:7px;
+  margin-top: 10px; */
+}
+
+.borda_arrendondada{
+  /*-webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;*/
+}

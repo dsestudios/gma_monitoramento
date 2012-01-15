@@ -20,7 +20,11 @@ module FormTagsStandard
   end
 
   def link_to_back local=""
-    link_to(t("screen.button.back"), local.blank? ? :back : local)
+    "<p>#{link_to(t("screen.button.back"), local.blank? ? :back : local)}</p>".html_safe
+  end
+
+  def link_to_delete model
+    link_to(t("screen.button.destroy"), model, :confirm => t("screen.messages.destroy_registro", :model => model.class.nome_exibicao.downcase), :method => :delete)
   end
 
   def link_label_to(*args, &block)
@@ -54,32 +58,49 @@ module FormTagsStandard
     html.html_safe
   end
 
-  def grid_imagem(array_model, method_imagem, method_titulo, max_column = 5)
-    html = "<table align='center'>"
+  def grid_imagem(array_model, method_imagem, method_titulo, max_column = 4)
+    html = <<-HTML
+      <script type="text/javascript">
+        jQuery(document).ready(function($){
+            $('img.borda_arrendondada').imgr({
+                radius:'10px'
+            });
+        });
+      </script>
+    HTML
+
+    #html << "<div style='clear:both'></div>"
+    html << "<table align='center'><tr align='center'><td><div class='celula'>"
+
     count = 0;
     array_model.each do |m|
       symbol_action = "edit_#{m.class.to_s.downcase}_path".to_sym
       count += 1
 
       if count == 1
-        html << "<tr align='center' height='150px'>"
+        #html << "<tr align='center' height='150px'>"
+        #html << "<div style='clear:both'></div>"
       end
 
+      texto = m.send(method_titulo)
+      texto_comprimido = texto.length > 16 ? texto[0,14] + "..." : texto
+
       html << <<-HTML
-       <td align="center" width="150px">
-        #{link_to(image_tag(m.send(method_imagem, :thumb)), send(symbol_action, m)) }<br />
-        <span class="texto1">#{m.send(method_titulo)}</span><br />
-        #{link_to t("screen.button.edit"), send(symbol_action, m) } | #{link_to t("screen.button.destroy"), m, :confirm => t("screen.messages.destroy_registro", :model => m.class.nome_exibicao), :method => :delete }<br />
-       </td>
+        <div class="imageSingle">
+            <div class="image">#{link_to(image_tag(m.send(method_imagem, :thumb), :alt => texto, :class => "borda_arrendondada"), send(symbol_action, m)) }</div>
+            <div class="footer"><span class="texto1">#{texto_comprimido}</span></div>
+            <div class="footer">#{link_to t("screen.button.edit"), send(symbol_action, m) } | #{link_to t("screen.button.destroy"), m, :confirm => t("screen.messages.destroy_registro", :model => m.class.nome_exibicao), :method => :delete }</div>
+        </div>
       HTML
 
       if count == max_column or array_model.last == m
-        html << "</tr>"
+        html << "<div style='clear:both'></div>"
         count = 0
       end
 
     end
-    html << "</table>"
+
+    html << "</div></td></tr></table>"
 
     html.html_safe
   end

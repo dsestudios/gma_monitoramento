@@ -2,19 +2,22 @@
 
 <p><%= link_to 'Novo Monitor', new_visor_path %></p>
 
-<table>
+<table width="100%" border="0" cellspacing="6">
   <tr>
-    <th>Número</th>
-    <th>Nome</th>
+    <th class="celula_escura" width="10%">Número</th>
+    <th class="celula_escura">Nome</th>
+    <th class="celula_escura" width="30%">Ação</th>
   </tr>
 
 <% @visores.each do |visor| %>
   <tr>
-    <td><%= visor.numero %></td>
-    <td><%= visor.nome %></td>
-    <td><%= link_to t("screen.button.show"), visor %> |
+    <td class="celula_escura"><%= visor.numero %></td>
+    <td class="celula_escura"><%= visor.nome %></td>
+    <td class="celula_escura">
+        <%= link_to t("screen.button.show"), visor %> |
         <%= link_to t("screen.button.edit"), edit_visor_path(visor) %> |
-        <%= link_to t("screen.button.destroy"), visor, :confirm => t("screen.messages.destroy_registro", :model => "monitor"), :method => :delete %></td>
+        <%= link_to_delete visor %>
+    </td>
   </tr>
 <% end %>
 </table>

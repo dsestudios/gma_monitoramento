@@ -2,20 +2,20 @@
 
 <p><%= link_to 'Nova Ocorrência', new_ocorrencia_path %></p>
 
-<table>
+<table width="100%" border="0" cellspacing="6">
   <tr>
-    <th>Codigo</th>
-    <th>Grupo</th>
-    <th>Ação</th>
+    <th class="celula_escura">Categoria</th>
+    <th class="celula_escura" width="30%">Ação</th>
   </tr>
 
 <% @ocorrencias.each do |ocorrencia| %>
   <tr>
-    <td><%= ocorrencia.codigo %></td>
-    <td><%= ocorrencia.grupo %></td>
-    <td><%= link_to t("screen.button.show"), ocorrencia %> |
+    <td class="celula_escura"><%= ocorrencia.grupo %></td>
+    <td class="celula_escura">
+        <%= link_to t("screen.button.show"), ocorrencia %> |
         <%= link_to t("screen.button.edit"), edit_ocorrencia_path(ocorrencia) %> |
-        <%= link_to t("screen.button.destroy"), ocorrencia, :confirm => t("screen.messages.destroy_registro", :model => "ocorrência"), :method => :delete %></td>
+        <%= link_to t("screen.button.destroy"), ocorrencia, :confirm => t("screen.messages.destroy_registro", :model => "ocorrência"), :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </table>

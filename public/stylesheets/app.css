@@ -69,7 +69,7 @@ text-decoration:none;
 #mensagem {
     text-align: center;
     font-size: 14px;
-    background-color: #999999;
+    background-color: #514A73;
     margin-top: 10px;
 }
 
@@ -79,4 +79,19 @@ text-decoration:none;
 
 #mensagem .notice{
     color: green;
+}
+
+.fundo_forms {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: x-small;
+	background-color: #514A73;
+}
+
+.celula_escura {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: small;
+	background-color: #3E3959;
+    height:30px;
+    max-height: 30px;
+    padding-left: 5px;
 }
