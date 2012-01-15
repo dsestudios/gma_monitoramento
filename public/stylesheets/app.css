@@ -74,11 +74,11 @@ text-decoration:none;
 }
 
 #mensagem .alert {
-    color: #cc0000;
+    color: #ffc0cb;
 }
 
 #mensagem .notice{
-    color: green;
+    color: #7cfc00;
 }
 
 .fundo_forms {
