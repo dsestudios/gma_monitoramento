@@ -5,13 +5,14 @@
     <%= f.input :grupo %>
   </div>
 
-  <div class="ocorrencia_itens">
+  <div id="ocorrencia_itens">
       <%= f.simple_fields_for :ocorrencia_itens do |builder| %>
         <%= render "ocorrencia_itens/ocorrencia_item_fields", :f => builder %>
       <% end %>
-    <div class="itens_adicionais">
-      <%= link_to_add_fields "+", f, :ocorrencia_itens, "ocorrencia_itens/ocorrencia_item_fields" %>
-    </div>
+  </div>
+
+  <div class="itens_adicionais">
+    <%= link_to_add_field(image_tag("mais.png"), f, :ocorrencia_itens, "ocorrencia_itens/ocorrencia_item_fields") %>
   </div>
 
   <div class="actions">

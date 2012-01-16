@@ -36,16 +36,17 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def link_to_remove_fields(name, f)
-    f.input(:_destroy, :as => :hidden ) + link_to_function(name, "remove_fields(this)")
+  def link_to_remove_field(label_link, form, local)
+    form.input(:_destroy, :as => :hidden ) + link_to_function(label_link, "remove_field(this)")
   end
 
-  def link_to_add_fields(name, f, association, partial)
-    new_object = f.object.class.reflect_on_association(association).klass.new
-    fields = f.simple_fields_for(association, new_object, :child_index => "new_#{association}") do |builder|
+  def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "")
+    local_append = "##{model_item_sym}" if local_append.blank?
+    new_object = form.object.class.reflect_on_association(model_item_sym).klass.new
+    new_field = form.simple_fields_for(model_item_sym, new_object, :child_index => "new_#{model_item_sym}") do |builder|
       render(partial, :f => builder)
     end
-    link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
+    link_to_function(descricao_link, "add_field( '#{local_append}', '#{model_item_sym}', '#{escape_javascript(new_field)}' )")
   end
 
   def saudacao

@@ -20,7 +20,7 @@ module FormTagsStandard
   end
 
   def link_to_back local=""
-    "<p>#{link_to(t("screen.button.back"), local.blank? ? :back : local)}</p>".html_safe
+    link_to(t("screen.button.back"), local.blank? ? :back : local)
   end
 
   def link_to_delete model
