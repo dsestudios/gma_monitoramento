@@ -29,6 +29,11 @@
     margin: 16px 16px 16px 16px;
 }
 
+.remove_conteudo_view {
+    position: relative;
+    margin: -16px -19px -16px -16px;
+}
+
 .conteudo_admin_scope {
     background-color: #514A73;
     padding: 15px 15px 15px 15px;
@@ -94,4 +99,29 @@ text-decoration:none;
     height:30px;
     max-height: 30px;
     padding-left: 5px;
+}
+
+.celula_clara {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: small;
+	background-color: #514A73;
+    height:30px;
+    max-height: 30px;
+    padding-left: 5px;
+}
+
+.text_area_claro {
+	background-color: #514A73;
+    border: 0;
+}
+
+.div_flutuante {
+    left: 0%;
+    width: 94%;
+    text-align: center;
+    margin-left: 3%;
+    position: absolute;
+    background-color: #3E3959;
+    border: 3px solid;
+    border-color: yellow;
 }

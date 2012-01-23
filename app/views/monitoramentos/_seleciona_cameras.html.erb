@@ -1,0 +1,14 @@
+<div id="seleciona_cameras" style="top: 44px" class="div_flutuante">
+
+  <% #TODO GAMBIARRA - na parte do action deveria ser add_cameras_monitoramento_path mas não sei pq não funciona %>
+  <%= simple_form_for(objeto, :as => :monitoramento, :url => "#{objeto.id}/add_cameras", :html => {:method => :post}) do |f| %>
+
+    <%= grid_imagem_block( Camera.all, :foto_do_lugar, :nome ) do |c| %>
+      <%= check_box_tag "monitoramento[camera_ids][]", c.id, objeto.cameras.include?(c) %>
+      <%= c.nome %>
+    <% end %>
+
+    <%= f.button :submit, :value => t("screen.button.confirm") %> <%= link_to t("screen.button.cancel"), "#", :id => "ocultar_div" %>
+  <% end %>
+
+</div>

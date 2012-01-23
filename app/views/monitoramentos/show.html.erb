@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @monitoramento.user %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @monitoramento.data %>
+</p>
+
+<p>
+  <b>Periodo:</b>
+  <%= @monitoramento.periodo %>
+</p>
+
+<p>
+  <b>Cameras:</b>
+  <%= @monitoramento.cameras %>
+</p>
+
+<p>
+  <b>Novidades:</b>
+  <%= @monitoramento.novidades %>
+</p>
+
+<p>
+  <b>Ocorrencias:</b>
+  <%= @monitoramento.ocorrencias %>
+</p>
+
+
+<%= link_to 'Edit', edit_monitoramento_path(@monitoramento) %> |
+<%= link_to 'Back', monitoramentos_path %>

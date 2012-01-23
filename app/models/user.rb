@@ -22,6 +22,9 @@ class User
   field :nome_usuario
   field :role
 
+  #relacionamentos
+  has_many :monitoramentos
+
   validates_presence_of :nome, :nome_usuario, :email
   validates_presence_of :password, :password_confirmation, :on => :create
   validates_length_of :nome, :in => 3..50

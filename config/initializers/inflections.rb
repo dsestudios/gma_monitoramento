@@ -17,6 +17,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'ocorrencia', 'ocorrencias'
   inflect.irregular 'ocorrencia_item', 'ocorrencia_itens'
   inflect.irregular 'visor', 'visores'
+  inflect.irregular 'monitoramento', 'monitoramentos'
 
   inflect.uncountable %w( home admin )
 

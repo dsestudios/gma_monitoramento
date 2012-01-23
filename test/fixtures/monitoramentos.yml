@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  data: 2012-01-16
+  periodo: MyString
+  cameras: 
+  novidades: MyString
+  ocorrencias: 
+
+two:
+  user: 
+  data: 2012-01-16
+  periodo: MyString
+  cameras: 
+  novidades: MyString
+  ocorrencias: 

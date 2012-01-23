@@ -1,14 +1,18 @@
 GmaMonitoramento::Application.routes.draw do
-  resources :visores
-
   devise_for:users, :path_prefix => 'd'
 
   resources :users
   get "admin/index"
+  resources :monitoramentos do
+    member do
+      post "add_cameras", :to => "monitoramentos#add_cameras"
+    end
+  end
 
   scope "admin" do
     resources :ocorrencias
     resources :cameras
+    resources :visores
   end
 
   #, skip: :registrations do

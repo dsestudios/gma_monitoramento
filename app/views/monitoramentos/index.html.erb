@@ -1,0 +1,27 @@
+<p><%= link_to 'Novo', new_monitoramento_path %></p>
+
+<table width="100%" border="0" cellspacing="6">
+  <tr>
+    <th class="celula_clara">GMC</th>
+    <th class="celula_clara">Data</th>
+    <th class="celula_clara"> Periodo</th>
+    <th class="celula_clara">Novidades</th>
+    <th class="celula_clara" width="30%">Ação</th>
+  </tr>
+
+<% @monitoramentos.each do |monitoramento| %>
+  <tr>
+    <td class="celula_clara"><%= monitoramento.user.nome %></td>
+    <td class="celula_clara"><%= l(monitoramento.data) %></td>
+    <td class="celula_clara"><%= monitoramento.periodo_descricao %></td>
+    <td class="celula_clara"><%= monitoramento.novidades[0,50] %>...</td>
+    <td class="celula_clara">
+        <%= link_to t("screen.button.show"), monitoramento %> |
+        <%= link_to t("screen.button.edit"), edit_monitoramento_path(monitoramento) %> |
+        <%= link_to t("screen.button.destroy"), monitoramento, :confirm => t("screen.messages.destroy_registro", :model => Monitoramento.nome_exibicao ), :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+

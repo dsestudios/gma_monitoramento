@@ -22,6 +22,9 @@ pt-BR:
       email: "E-mail"
       descricao: "Descrição"
       numero: "Número"
+      periodo: "Período"
+      ocorrencia: "Ocorrência"
+      ocorrencias: "Ocorrências"
 
       user:
         new:
@@ -35,6 +38,9 @@ pt-BR:
 
       ocorrencia:
         grupo: "Categoria"
+
+      monitoramento:
+        user: "GMC"
 
     hints:
       user:

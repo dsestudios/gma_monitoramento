@@ -72,10 +72,19 @@ module ControllerPadrao
   end
 
   # PUT
-  def respond_to_update(model_class)
+  def respond_to_update(model_class_or_object)
+    object_model = model_class_or_object
+    model_class = model_class_or_object
+
+    if model_class_or_object.instance_of? Class
+      object_model = model_class.find(params[:id])
+      symbol_model = model_class.name.downcase.to_sym
+      eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
+    else
+      model_class = object_model.class
+    end
+
     symbol_model = model_class.name.downcase.to_sym
-    object_model = model_class.find(params[:id])
-    eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
 
     respond_to do |format|
       if object_model.update_attributes(params[symbol_model])
