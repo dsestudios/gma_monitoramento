@@ -1,0 +1,18 @@
+<div id="seleciona_cameras" style="top: 44px" class="div_flutuante">
+
+  <%= simple_form_for(objeto) do |f| %>
+
+    <%= grid_imagem_block( Camera.all, :foto_do_lugar, :nome ) do |c| %>
+      <%= check_box_tag "monitoramento[camera_ids][]", c.id, objeto.cameras.include?(c) %>
+      <%= c.nome %>
+    <% end %>
+
+    <%= f.button :submit, :name => "add_cameras", :value => t("screen.button.confirm") %>
+    <%= link_to t("screen.button.cancel"), "#cameras", :id => "ocultar_div" %>
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+    div_dialog("seleciona_cameras")
+</script>

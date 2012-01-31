@@ -1,8 +1,7 @@
 <div class="remove_conteudo_view">
 
-<%= simple_form_for(@monitoramento) do |f| %>
-
-  <%= f.error_notification %>
+   <%= simple_form_for(@monitoramento, :remote => true) do |f| %>
+         <%= f.error_notification %>
 
 <table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="770">
 <!-- fwtable fwsrc="Untitled" fwpage="Page 1" fwbase="cadastrar_relatorio2.jpg" fwstyle="Dreamweaver" fwdocid = "1532263474" fwnested="0" -->
@@ -40,26 +39,7 @@
   <tr>
    <td rowspan="2" colspan="5">
 
-<script type="text/javascript">
-   $(document).ready(function(){
-
-	  $('#seleciona_cameras').hide();
-
-      $('a#exibir_div').click(function(){
-
-		$('#seleciona_cameras').show('slow');
-
-   	   });
-
-      $('a#ocultar_div').click(function(){
-
-   		$('#seleciona_cameras').hide('slow');
-      })
-
-});
-</script>
-
-     <a id="exibir_div" href="#"><img name="cadastrar_relatorio2_r4_c6" src="/images/cadastro_imgs/cadastrar_relatorio2_r4_c6.jpg" width="109" height="29" border="0" id="cadastrar_relatorio2_r4_c6" alt="" /></a>
+     <a id="seleciona_cameras_exibir_div" href="#cameras"><img name="cadastrar_relatorio2_r4_c6" src="/images/cadastro_imgs/cadastrar_relatorio2_r4_c6.jpg" width="109" height="29" border="0" id="cadastrar_relatorio2_r4_c6" alt="" /></a>
 
    </td>
    <td colspan="6" rowspan="2" valign="top" class="fundo_forms"><p style="margin:0px"></p></td>
@@ -73,13 +53,14 @@
   </tr>
   <tr>
 
+   <!-- CAMERAS -->
    <td colspan="11" valign="top" class="fundo_forms">
      <p style="margin:0px">
-
-       <% @monitoramento.cameras.each do |c| %>
-         <p><%= c.nome %></p>
-       <% end %>
-
+         <div id="lista_cameras" style="overflow: auto; height: 100px;">
+           <% @monitoramento.cameras.each do |c| %>
+            <%= render "monitoramentos/cameras/add_camera", :camera => c %>
+           <% end %>
+         </div>
      </p>
    </td>
 
@@ -108,7 +89,10 @@
    <td colspan="11" rowspan="13" valign="top" class="fundo_forms">
      <p style="margin:0px">
 
-       <%= f.input :novidades, :as => :text, :label => false, :input_html => {:cols => 62, :rows => 13, :class => "text_area_claro"} %>
+       <!-- NOVIDADES -->
+       <div id="div_novidades">
+         <%= f.input :novidades, :as => :text, :label => false, :input_html => {:cols => 62, :rows => 13, :class => "text_area_claro"} %>
+       </div>
 
      </p>
    </td>
@@ -133,6 +117,7 @@
    <td colspan="2" valign="top" class="fundo_forms">
      <p style="margin:0px">
 
+       <!-- NOME DO USUÁRIO -->
        <%= @monitoramento.user.nome %>
 
      </p>
@@ -196,7 +181,13 @@
   </tr>
   <tr>
    <td colspan="8" rowspan="2" class="background_site">&nbsp;</td>
-   <td colspan="6"><img name="cadastrar_relatorio2_r26_c9" src="/images/cadastro_imgs/cadastrar_relatorio2_r26_c9.jpg" width="200" height="24" border="0" id="cadastrar_relatorio2_r26_c9" alt="" /></td>
+
+   <td colspan="6">
+
+      <img name="cadastrar_relatorio2_r26_c9" src="/images/cadastro_imgs/cadastrar_relatorio2_r26_c9.jpg" width="200" height="24" border="0" id="cadastrar_relatorio2_r26_c9" alt="" />
+
+   </td>
+
    <td colspan="2" rowspan="2" class="background_site">&nbsp;</td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="24" border="0" alt="" /></td>
   </tr>
@@ -205,9 +196,15 @@
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="13" border="0" alt="" /></td>
   </tr>
   <tr>
-   <td colspan="17" class="background_site">
+   <td colspan="17" align="center" valign="top" class="background_site">
+     <table id="ocorrencia_itens" width="100%" border="0" cellspacing="6" valign="middle" align="center"  bottom="middle">
 
-     <%= f.association :ocorrencias, :label => false, :collection => Ocorrencia.all, :label_method => :grupo, :input_html => {:size => 14} %>
+     <!-- OCORRENCIAS -->
+     <%= render "monitoramentos/ocorrencias/lista_ocorrencias", :form_pai => f %>
+
+     </table>
+
+     <p><span class='label_app'><%= link_to_add_field('Adicionar nova ocorrência', f, :ocorrencia_itens, "monitoramentos/ocorrencias/edit_dinamico", "", "link_label", false) %></span></p>
 
    </td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="251" border="0" alt="" /></td>
@@ -225,14 +222,21 @@
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="23" border="0" alt="" /></td>
   </tr>
 
+  <span style="margin-left: 2%" ><%# f.button :submit %></span>
+
+
+
   <tr>
-   <td colspan="17" align="center" valign="top" class="background_site">
-     <table width="100%" border="0" cellspacing="6">
-     <tr>
-       <td width="36%" height="30" class="fundo_forms"> <%= collection_select("nada", :nada, @monitoramento.cameras.all, :id, :nome, :include_blank => true) %> </td>
-       <td width="64%" height="30" class="fundo_forms">&nbsp;</td>
-     </tr>
+   <td colspan="17" align="center" valign="middle" class="background_site">
+     <table id="camera_defeitos" width="100%" border="0" cellspacing="6" valign="middle" align="center"  bottom="middle">
+
+     <!-- CAMERAS DEFEITOS -->
+     <%= render "monitoramentos/camera_defeitos/lista_camera_defeitos", :form_pai => f %>
+
      </table>
+
+     <p><span class='label_app'><%= link_to_add_field('Adicionar um novo defeito', f, :camera_defeitos, "monitoramentos/camera_defeitos/edit_camera_defeito", "", "link_label") %></span></p>
+
    </td>
    <td></td>
   </tr>
@@ -258,10 +262,16 @@
 -->
 </table>
 
-    <span style="margin-left: 2%" ><%= f.button :submit %></span>
+    <span style="margin-left: 2%" ><%= submit_tag("Salvar", :disable_with => "Salvando...") %></span>
+
+    <%# render 'monitoramentos/cameras/seleciona_cameras2', :f => f, :objeto => @monitoramento %>
+
+    <%# render 'monitoramentos/ocorrencias/seleciona' %>
 
 <% end %>
 
-    <%= render 'seleciona_cameras', :objeto => @monitoramento %>
+    <%= render 'monitoramentos/cameras/seleciona_cameras', :objeto => @monitoramento %>
+
+
 </div>
 

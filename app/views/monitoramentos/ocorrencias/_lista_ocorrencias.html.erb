@@ -1,0 +1,18 @@
+<%# simple_fields_for (:ocorrencia_itens) do |f| %>
+    <%# render "monitoramentos/ocorrencias/edit", :f => f %>
+<%# end %>
+
+<% @monitoramento.ocorrencia_itens.each do |oi| %>
+    <%= render "monitoramentos/ocorrencias/show", :ocorrencia_itens => oi %>
+<% end %>
+
+
+<div style="display: none;">
+    <%= form_pai.button :submit, :id => "carrega_ocorrencia_itens", :name => "carrega_ocorrencia_itens", :value => "Carrega"%>
+    <%= form_pai.button :submit, :id => "add_ocorrencia", :name => "add_ocorrencia", :value => t("screen.button.confirm") %>
+</div>
+
+
+
+
+

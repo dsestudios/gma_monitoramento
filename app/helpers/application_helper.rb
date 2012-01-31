@@ -37,16 +37,28 @@ module ApplicationHelper
   end
 
   def link_to_remove_field(label_link, form, local)
-    form.input(:_destroy, :as => :hidden ) + link_to_function(label_link, "remove_field(this)")
+    local = "this" if local.blank?
+    form.input(:_destroy, :as => :hidden ) + link_to_function(label_link, "remove_field(this, #{local})")
   end
 
-  def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "")
+  def link_to_remove_field_novo(label_link, local, nome_array, object_id)
+    local = "this" if local.blank?
+    "<div><div style='display: none;'>#{check_box_tag(nome_array, object_id, true)}</div> #{link_to_function(label_link, "remove_field_novo(this, #{local})")}</div>".html_safe
+  end
+
+  def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "", classCSS = "", usaFormPai = true)
     local_append = "##{model_item_sym}" if local_append.blank?
     new_object = form.object.class.reflect_on_association(model_item_sym).klass.new
-    new_field = form.simple_fields_for(model_item_sym, new_object, :child_index => "new_#{model_item_sym}") do |builder|
+
+    formPai = form
+    if !usaFormPai
+      formPai = self
+    end
+
+    new_field = formPai.simple_fields_for(model_item_sym, new_object, :child_index => "new_#{model_item_sym}") do |builder|
       render(partial, :f => builder)
     end
-    link_to_function(descricao_link, "add_field( '#{local_append}', '#{model_item_sym}', '#{escape_javascript(new_field)}' )")
+    link_to_function(descricao_link, "add_field( '#{local_append}', '#{model_item_sym}', '#{escape_javascript(new_field)}' )", :class => classCSS)
   end
 
   def saudacao

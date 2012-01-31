@@ -3,11 +3,7 @@ GmaMonitoramento::Application.routes.draw do
 
   resources :users
   get "admin/index"
-  resources :monitoramentos do
-    member do
-      post "add_cameras", :to => "monitoramentos#add_cameras"
-    end
-  end
+  resources :monitoramentos
 
   scope "admin" do
     resources :ocorrencias

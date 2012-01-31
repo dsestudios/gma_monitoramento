@@ -14,7 +14,7 @@
     <td class="celula_clara"><%= monitoramento.user.nome %></td>
     <td class="celula_clara"><%= l(monitoramento.data) %></td>
     <td class="celula_clara"><%= monitoramento.periodo_descricao %></td>
-    <td class="celula_clara"><%= monitoramento.novidades[0,50] %>...</td>
+    <td class="celula_clara"><%= monitoramento.novidades[0,50] if !monitoramento.novidades.nil?  %>...</td>
     <td class="celula_clara">
         <%= link_to t("screen.button.show"), monitoramento %> |
         <%= link_to t("screen.button.edit"), edit_monitoramento_path(monitoramento) %> |

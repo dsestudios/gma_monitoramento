@@ -18,6 +18,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'ocorrencia_item', 'ocorrencia_itens'
   inflect.irregular 'visor', 'visores'
   inflect.irregular 'monitoramento', 'monitoramentos'
+  inflect.irregular 'camera_defeito', 'camera_defeitos'
+
+  inflect.singular("ocorrencias", "ocorrencia")
+  inflect.plural("ocorrencia", "ocorrencias")
 
   inflect.uncountable %w( home admin )
 

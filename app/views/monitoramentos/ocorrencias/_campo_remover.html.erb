@@ -1,0 +1,7 @@
+<%# collection_select(:ocorrencia_itens, :descricao, @itens, :id, :descricao)  %>
+
+<%= simple_fields_for :ocorrencia_itens do |f| %>
+    <td width="2%" height="30" style="padding-top:10px">
+      <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_item_ids][]", @ocorrencia_itens.id) %>
+    </td>
+<% end %>

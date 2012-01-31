@@ -9,6 +9,9 @@ class Camera
   field :nome, :type => String
   field :numero_camera, :type => Integer
 
+  #relacionamentos
+  has_many :camera_defeitos
+
   has_mongoid_attached_file :foto_do_lugar,
                             :styles => {:medium => "300x300>", :thumb => "100x100>"},
                             :default_url => "sem_foto.jpg"

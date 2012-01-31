@@ -1,0 +1,12 @@
+<tr id="<%= dom_id(f.object) %>" align="center">
+      <td width="36%" height="30" class="fundo_forms" style="padding-top:10px">
+        <%= f.input :camera, :as => :select, :label => false, :input_html => { :style => "width:95%"}, :collection => @monitoramento.cameras, :label_method => :nome, :selected => (f.object.camera.nil? ? "" : f.object.camera.id)  %>
+      </td>
+      <td width="62%" height="30" class="fundo_forms" style="padding-top:10px">
+        <%= f.input :defeito, :label => false, :input_html => { :style => "width:95%"} %>
+      </td>
+      <td width="2%" height="30" style="padding-top:10px">
+        <%= link_to_remove_field("X", f, "'tr'") %>
+      </td>
+</tr>
+
