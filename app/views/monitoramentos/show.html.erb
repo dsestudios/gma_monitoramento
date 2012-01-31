@@ -1,23 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User:</b>
-  <%= @monitoramento.user %>
+  <b>GMC:</b>
+  <%= @monitoramento.user.nome %>
 </p>
 
 <p>
   <b>Data:</b>
-  <%= @monitoramento.data %>
+  <%= l(@monitoramento.data) %>
 </p>
 
 <p>
   <b>Periodo:</b>
-  <%= @monitoramento.periodo %>
+  <%= @monitoramento.periodo_descricao %>
 </p>
 
 <p>
   <b>Cameras:</b>
-  <%= @monitoramento.cameras %>
+  <% @monitoramento.cameras.each do |c| %>
+    <p><%= image_tag(c.foto_do_lugar(:thumb)) %></p>
+    <p><%= c.nome + " (#{c.numero_camera})" %></p>
+  <% end %>
 </p>
 
 <p>
@@ -27,9 +30,15 @@
 
 <p>
   <b>Ocorrencias:</b>
-  <%= @monitoramento.ocorrencias %>
+  <% @monitoramento.ocorrencia_itens.each do |o| %>
+    <li><%= "#{o.ocorrencia.grupo} - #{o.descricao}" %>
+  <% end %>
 </p>
 
+<p>
+  <b>Cameras defeitos</b>
+  <% @monitoramento.camera_defeitos.each do |c| %>
+    <li><%= "#{c.camera.nome} - #{c.defeito}" %>
+  <% end %>
+</p>
 
-<%= link_to 'Edit', edit_monitoramento_path(@monitoramento) %> |
-<%= link_to 'Back', monitoramentos_path %>
