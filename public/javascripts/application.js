@@ -7,8 +7,17 @@ function add_field(local_append, model_item, content) {
 }
 
 function remove_field(eu, local) {
+   if (local == eu){
+       return remove_field1(eu, local);
+   }
   $(eu).closest(local).fadeOut();
   $(eu).prev().attr("value", "1");
+}
+
+
+function remove_field1(eu, local) {
+  $(local).parent().fadeOut();
+  $(local).prev().attr("value", "1");
 }
 
 function remove_field_novo(eu, local) {

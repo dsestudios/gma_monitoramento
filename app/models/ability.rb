@@ -20,6 +20,15 @@ class Ability
 
   def permissao_de_monitor(user)
     can [:update], User, :id => user.id #somente poderar alterar a propria conta
+
+    can [:index, :new, :update], Monitoramento do |m|
+      if m.user.nil?
+        true
+      else
+        m.user.id == user.id
+      end
+    end
+
   end
 
   def sem_permissao

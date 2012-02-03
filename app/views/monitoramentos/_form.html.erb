@@ -1,11 +1,14 @@
 <div class="remove_conteudo_view">
 
    <%= simple_form_for(@monitoramento, :remote => true) do |f| %>
-         <%= f.error_notification %>
 
 <table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="770">
 <!-- fwtable fwsrc="Untitled" fwpage="Page 1" fwbase="cadastrar_relatorio2.jpg" fwstyle="Dreamweaver" fwdocid = "1532263474" fwnested="0" -->
   <tr>
+
+    <%# f.error_notification %>
+    <%# @monitoramento.errors.to_s %>
+
    <td><img src="/images/cadastro_imgs/spacer.gif" width="3" height="1" border="0" alt="" /></td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="7" height="1" border="0" alt="" /></td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="188" height="1" border="0" alt="" /></td>
@@ -142,7 +145,9 @@
    <td colspan="2" valign="top" class="fundo_forms">
      <p style="margin:0px">
 
-     <%= l(@monitoramento.data) %>
+     <!-- DATA -->
+     Inicio: <%= l(@monitoramento.data) %><br>
+     Fim: <%= l(@monitoramento.data_final) %>
 
      </p>
    </td>
@@ -272,6 +277,7 @@
 
     <%= render 'monitoramentos/cameras/seleciona_cameras', :objeto => @monitoramento %>
 
-
 </div>
+
+
 

@@ -18,14 +18,18 @@ class MonitoramentosController < ApplicationController
   # GET /monitoramentos/new
   # GET /monitoramentos/new.xml
   def new
-    @monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => Util.periodo_atual, :data => Time.now })
+    periodo = Util.periodo_atual
+    datas = Util.periodo_hora_inicial_e_final(periodo)
+    @monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
 
     if @monitoramento.nil?
       @monitoramento = Monitoramento.new
       @monitoramento.user = current_user
-      @monitoramento.periodo = Util.periodo_atual
-      @monitoramento.data = Time.now
+      @monitoramento.periodo = periodo
+      @monitoramento.data = datas[:inicio]
+      @monitoramento.data_final = datas[:fim]
       @monitoramento.efetivado = false
+      @monitoramento.visor = nil
       @monitoramento.save
     end
 
@@ -41,9 +45,8 @@ class MonitoramentosController < ApplicationController
   # POST /monitoramentos.xml
   def create
 
-
-    if params[:commit] == "OK"
-      return add_cameras
+    if action_fluxo("")
+      return
     end
 
     @monitoramento = Monitoramento.find(params[:id])
@@ -70,15 +73,28 @@ class MonitoramentosController < ApplicationController
 
 private
 
+  def set_monitor
+    @monitoramento = Monitoramento.find(params[:id])
+    if !@monitoramento.update_attributes(params[:monitoramento])
+      @erro = @monitoramento.errors.to_s
+    end
+
+    redirect_to new_monitoramento_path
+  end
+
   def add_cameras
     @monitoramento = Monitoramento.find(params[:id])
 
     parametros = params[:monitoramento]
 
     if parametros.nil?
-      @monitoramento.update_attributes({:camera_ids => []})
+      if !@monitoramento.update_attributes({:camera_ids => []})
+        @erro = @monitoramento.errors.to_s
+      end
     else
-      @monitoramento.update_attributes(params[:monitoramento])
+      if !@monitoramento.update_attributes(params[:monitoramento])
+        @erro = @monitoramento.errors.to_s
+      end
     end
 
     #respond_to do |format|
@@ -93,8 +109,9 @@ private
     @ocorrencia_itens = OcorrenciaItem.find(params[:ocorrencia_itens][:descricao])
     @itens = @ocorrencia_itens.ocorrencia.ocorrencia_itens
     @monitoramento.ocorrencia_itens << @ocorrencia_itens
-   # @monitoramento.update_attributes(params[:monitoramento])
-    @monitoramento.save
+    if !@monitoramento.save
+      @erro = @monitoramento.errors.to_s
+    end
 
     respond_to do |format|
       format.js { render :action => "add_ocorrencia" }
@@ -113,6 +130,7 @@ private
   end
 
   def action_fluxo(action)
+    return set_monitor if ( params.include?(:set_monitor) )
     return add_cameras if ( params.include?(:add_cameras) )
     return carrega_ocorrencia_itens if ( params.include?(:carrega_ocorrencia_itens) )
     return add_ocorrencia if ( params.include?(:add_ocorrencia) )

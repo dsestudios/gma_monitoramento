@@ -10,16 +10,7 @@ class Ocorrencia
 
   validates_presence_of :grupo
   validates_uniqueness_of :grupo
- # validates_presence_of :ocorrencia_itens, :message => "É necessario informar pelo menos uma ocorrência."
-
-#  validates_acceptance_of :ocorrencia_itens, :if => :validates_itens_preenchido, :message => "É necessario informar pelo menos uma ocorrência."
-
-  #def validates_itens_preenchido
-  #  ocorrencia_itens.each do |i|
-  #    return true if i.descricao.blank?
-  #  end
-  #  false
-  #end
+  validates_associated :ocorrencia_itens
 
 end
 

@@ -7,7 +7,13 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     flash.notice = I18n.t("messages.notice.acesso_negado")
-    redirect_to root_path
+
+    begin
+      redirect_to :back
+    rescue Exception => e
+      redirect_to root_path
+    end
+
   end
 
   #Metodo sobrescrito do Devise para manipular o fluxo apos fazer o login

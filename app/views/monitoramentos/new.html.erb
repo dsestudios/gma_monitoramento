@@ -1,3 +1,5 @@
 <%= render 'form' %>
 
-
+<% if @monitoramento.visor.nil? %>
+    <%= render 'set_monitor' %>
+<% end %>
