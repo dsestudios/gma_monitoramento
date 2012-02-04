@@ -1,12 +1,12 @@
-<tr id="<%= dom_id(ocorrencia_itens) %>" align="center">
+<tr id="<%= dom_id(ocorrencia_item) %>" align="center">
       <td width="36%" height="30" class="fundo_forms" style="padding-top:10px">
-        <%= ocorrencia_itens.ocorrencia.grupo %>
+        <%= ocorrencia_item.ocorrencia.grupo %>
       </td>
       <td width="62%" height="30" class="fundo_forms" style="padding-top:10px">
-        <%= ocorrencia_itens.descricao %>
+        <%= ocorrencia_item.descricao %>
       </td>
       <td width="2%" height="30" style="padding-top:10px">
-        <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_item_ids][]", ocorrencia_itens.id) %>
+        <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_item_ids][]", ocorrencia_item.id) %>
       </td>
 </tr>
 

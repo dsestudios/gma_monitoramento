@@ -46,14 +46,14 @@ $(function() {
       })
     },
     onClose:function (d) {
-      var self = this;
-      d.container.animate(
-        {top:"-" + (d.container.height() + 20)},
-        500,
-        function () {
-          self.close(); // or $.modal.close();
-        }
-      );
+      //var self = this;
+      //d.container.animate(
+      //  {top:"-" + (d.container.height() + 20)},
+      //  500,
+      //  function () {
+      //    //self.close(); // or $.modal.close();
+      //  }
+     // );
     }
   });
 });

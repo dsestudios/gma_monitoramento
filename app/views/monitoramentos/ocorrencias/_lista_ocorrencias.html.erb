@@ -1,9 +1,5 @@
-<%# simple_fields_for (:ocorrencia_itens) do |f| %>
-    <%# render "monitoramentos/ocorrencias/edit", :f => f %>
-<%# end %>
-
 <% @monitoramento.ocorrencia_itens.each do |oi| %>
-    <%= render "monitoramentos/ocorrencias/show", :ocorrencia_itens => oi %>
+    <%= render "monitoramentos/ocorrencias/show", :ocorrencia_item => oi %>
 <% end %>
 
 

@@ -46,7 +46,9 @@ module ApplicationHelper
     "<div><div style='display: none;'>#{check_box_tag(nome_array, object_id, true)}</div> #{link_to_function(label_link, "remove_field_novo(this, #{local})")}</div>".html_safe
   end
 
-  def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "", classCSS = "", usaFormPai = true)
+  def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "", classCSS = "", usaFormPai = true, args = {} )
+    maximo_fields_por_vez = args[:fields_por_vez] == nil ? -1 : args[:fields_por_vez]
+
     local_append = "##{model_item_sym}" if local_append.blank?
     new_object = form.object.class.reflect_on_association(model_item_sym).klass.new
 
@@ -55,10 +57,12 @@ module ApplicationHelper
       formPai = self
     end
 
+    id_padrao = "new_#{model_item_sym.to_s.singularize}"
+
     new_field = formPai.simple_fields_for(model_item_sym, new_object, :child_index => "new_#{model_item_sym}") do |builder|
       render(partial, :f => builder)
     end
-    link_to_function(descricao_link, "add_field( '#{local_append}', '#{model_item_sym}', '#{escape_javascript(new_field)}' )", :class => classCSS)
+    link_to_function(descricao_link, "add_field( '#{local_append}', '#{model_item_sym}', '#{id_padrao}', '#{escape_javascript(new_field)}', '#{maximo_fields_por_vez}' )", :class => classCSS)
   end
 
   def saudacao

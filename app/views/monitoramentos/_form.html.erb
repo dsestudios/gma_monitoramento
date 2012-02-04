@@ -6,8 +6,10 @@
 <!-- fwtable fwsrc="Untitled" fwpage="Page 1" fwbase="cadastrar_relatorio2.jpg" fwstyle="Dreamweaver" fwdocid = "1532263474" fwnested="0" -->
   <tr>
 
+   <div id="errors">
     <%# f.error_notification %>
     <%# @monitoramento.errors.to_s %>
+   </div>
 
    <td><img src="/images/cadastro_imgs/spacer.gif" width="3" height="1" border="0" alt="" /></td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="7" height="1" border="0" alt="" /></td>
@@ -209,7 +211,7 @@
 
      </table>
 
-     <p><span class='label_app'><%= link_to_add_field('Adicionar nova ocorrência', f, :ocorrencia_itens, "monitoramentos/ocorrencias/edit_dinamico", "", "link_label", false) %></span></p>
+     <p><span class='label_app'><%= link_to_add_field('Adicionar nova ocorrência', f, :ocorrencia_itens, "monitoramentos/ocorrencias/edit_dinamico", "", "link_label", false, {:fields_por_vez => 1} ) %></span></p>
 
    </td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="251" border="0" alt="" /></td>

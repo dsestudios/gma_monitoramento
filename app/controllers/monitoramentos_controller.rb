@@ -1,6 +1,5 @@
 class MonitoramentosController < ApplicationController
   load_and_authorize_resource
-  before_filter :carrega_dados
 
   # GET /monitoramentos
   # GET /monitoramentos.xml
@@ -12,12 +11,15 @@ class MonitoramentosController < ApplicationController
   # GET /monitoramentos/1
   # GET /monitoramentos/1.xml
   def show
+    carrega_dados
     @monitoramento = respond_to_show(Monitoramento)
   end
 
   # GET /monitoramentos/new
   # GET /monitoramentos/new.xml
   def new
+    carrega_dados
+
     periodo = Util.periodo_atual
     datas = Util.periodo_hora_inicial_e_final(periodo)
     @monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
@@ -38,6 +40,7 @@ class MonitoramentosController < ApplicationController
 
   # GET /monitoramentos/1/edit
   def edit
+    carrega_dados
     @monitoramento = respond_to_edit(Monitoramento)
   end
 
@@ -86,7 +89,6 @@ private
     @monitoramento = Monitoramento.find(params[:id])
 
     parametros = params[:monitoramento]
-
     if parametros.nil?
       if !@monitoramento.update_attributes({:camera_ids => []})
         @erro = @monitoramento.errors.to_s
@@ -97,18 +99,14 @@ private
       end
     end
 
-    #respond_to do |format|
-    #  format.js { render :action => "add_cameras" }
-    #end
-
     redirect_to new_monitoramento_path
   end
 
   def add_ocorrencia
+    @ocorrencia_item = OcorrenciaItem.find(params[:ocorrencia_itens][:descricao])
+
     @monitoramento = Monitoramento.find(params[:id])
-    @ocorrencia_itens = OcorrenciaItem.find(params[:ocorrencia_itens][:descricao])
-    @itens = @ocorrencia_itens.ocorrencia.ocorrencia_itens
-    @monitoramento.ocorrencia_itens << @ocorrencia_itens
+    @monitoramento.ocorrencia_itens << @ocorrencia_item
     if !@monitoramento.save
       @erro = @monitoramento.errors.to_s
     end
@@ -119,10 +117,9 @@ private
   end
 
   def carrega_ocorrencia_itens
-    @monitoramento = Monitoramento.find(params[:id])
+#    @monitoramento = Monitoramento.find(params[:id])
     id_ocorrencia = params[:ocorrencia_itens][:ocorrencia]
-    @itens = Ocorrencia.find(id_ocorrencia).ocorrencia_itens
-    @ocorrencia_itens = OcorrenciaItem.new
+    @itens = OcorrenciaItem.where(:ocorrencia_id => id_ocorrencia).order_by([[:descricao, :asc]]);
 
     respond_to do |format|
       format.js { render :action => "carrega_ocorrencia_itens" }
@@ -139,8 +136,8 @@ private
   end
 
   def carrega_dados
-    @cameras_all = Camera.all
-    @ocorrencia_all = Ocorrencia.all
+    @cameras_all = Camera.all.order_by([[:nome, :asc]])
+    @ocorrencia_all = Ocorrencia.all.order_by([[:grupo, :asc]])
   end
 
 end

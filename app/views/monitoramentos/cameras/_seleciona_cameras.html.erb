@@ -3,7 +3,7 @@
   <%= simple_form_for(objeto) do |f| %>
 
     <div style="overflow: auto; height: 400px;">
-        <%= grid_imagem_block( Camera.all, :foto_do_lugar, :nome ) do |c| %>
+        <%= grid_imagem_block( @cameras_all, :foto_do_lugar, :nome ) do |c| %>
           <%= check_box_tag "monitoramento[camera_ids][]", c.id, objeto.cameras.include?(c) %>
           <%= c.nome %>
         <% end %>
