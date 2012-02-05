@@ -1,3 +1,0 @@
-<% if user_signed_in? %>
-    <%= "<span style=\"padding-right: 50px\">#{saudacao} (#{link_to(t("screen.button.logout"), destroy_user_session_path, :method=>'delete')})</span>".html_safe %>
-<% end %>
