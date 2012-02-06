@@ -88,6 +88,7 @@ module ControllerPadrao
 
     respond_to do |format|
       if object_model.update_attributes(params[symbol_model])
+        format.js
         format.html { redirect_to( model_class, :notice => t("messages.notice.edit_registro", :model => model_class.nome_exibicao )) }
         format.xml  { head :ok }
       else

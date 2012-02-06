@@ -27,6 +27,12 @@ module FormTagsStandard
     link_to(t("screen.button.destroy"), model, :confirm => t("screen.messages.destroy_registro", :model => model.class.nome_exibicao.downcase), :method => :delete)
   end
 
+  def links_to_operacao model, *args
+     "#{link_to t("screen.button.show"), model} |
+      #{link_to t("screen.button.edit"), [:edit, model] } |
+      #{link_to_delete(model)}".html_safe
+  end
+
   def link_label_to(*args, &block)
     hash_values = {}
     args.each do |a|
@@ -140,7 +146,7 @@ module FormTagsStandard
 
       html << <<-HTML
         <div class="imageSingle">
-            <div class="image">#{link_to(image_tag(m.send(method_imagem, :thumb), :alt => texto, :class => "borda_arrendondada"), send(symbol_action, m)) }</div>
+            <div class="image">#{image_tag(m.send(method_imagem, :thumb), :alt => texto, :class => "borda_arrendondada") }</div>
             #{buffer}
         </div>
       HTML

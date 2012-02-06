@@ -2,22 +2,18 @@
 
 <p><%= link_to 'Novo Monitor', new_visor_path %></p>
 
-<table width="100%" border="0" cellspacing="6">
+<table id="tabela_listagem" width="100%" border="0" cellspacing="6">
   <tr>
-    <th class="celula_escura" width="10%">Número</th>
-    <th class="celula_escura">Nome</th>
-    <th class="celula_escura" width="30%">Ação</th>
+    <th width="10%">Número</th>
+    <th>Nome</th>
+    <th width="30%">Ação</th>
   </tr>
 
 <% @visores.each do |visor| %>
   <tr>
-    <td class="celula_escura"><%= visor.numero %></td>
-    <td class="celula_escura"><%= visor.nome %></td>
-    <td class="celula_escura">
-        <%= link_to t("screen.button.show"), visor %> |
-        <%= link_to t("screen.button.edit"), edit_visor_path(visor) %> |
-        <%= link_to_delete visor %>
-    </td>
+    <td><%= visor.numero %></td>
+    <td><%= visor.nome %></td>
+    <td><%= links_to_operacao(visor) %></td>
   </tr>
 <% end %>
 </table>

@@ -1,0 +1,86 @@
+<div class="remove_conteudo_view">
+  <br />
+
+<table style="display: inline-table;" align="left" border="0" cellpadding="0" cellspacing="0" width="770">
+
+<tr>
+	    <td align="center" valign="baseline" bgcolor="#3D3759"><img name="cadastrar_pre_r2_c3" src="images/prefiltro/cadastrar_pre_r2_c3.jpg" width="743" height="189" border="0" id="cadastrar_pre_r2_c3" alt="" /></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759">
+          <table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="743">
+	      <tr>
+	        <td width="81" height="21" align="center" valign="middle" nowrap="nowrap" bgcolor="#3D3759">
+              <img src="images/prefiltro/cadastrar_pre_r4_c3.jpg" alt="" width="76" height="21" border="0" align="right" cellpadding="0" cellspacing="0" />
+            </td>
+
+            <% @monitores.each do |m| %>
+                <td align="center" valign="middle" class="botao_baixo"><%= link_to( m.nome, monitoramentos_path(:prefiltro => "false", :periodo => "M", :monitor => m.id), :class => "link_label")  %></td>
+            <% end %>
+
+            <!--
+	        <td width="180" align="center" valign="middle" class="botao_baixo">MONITOR 01</td>
+	        <td width="235" align="center" valign="middle" class="botao_baixo">MONITOR 02</td>
+	        <td width="172" align="center" valign="middle" class="botao_baixo">MONITOR 03</td>
+             -->
+	        <td width="75" align="right"><img name="cadastrar_pre_r4_c7" src="images/prefiltro/cadastrar_pre_r4_c7.jpg" width="75" height="21" border="0" id="cadastrar_pre_r4_c7_" alt="" /></td>
+	        </tr>
+	      </table></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759">&nbsp;</td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759"><img name="cadastrar_pre_r2_c3" src="images/prefiltro/cadastrar_pre2_r2_c3.jpg" width="743" height="189" border="0" id="cadastrar_pre_r2_c2" alt="" /></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759"><table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="743">
+	      <tr>
+	        <td width="81" align="center" valign="middle" nowrap="nowrap" bgcolor="#3D3759"><img src="images/prefiltro/cadastrar_pre2_r4_c3.jpg" alt=""  width="76" height="21" border="0" align="right" cellpadding="0" cellspacing="0" /></td>
+
+            <% @monitores.each do |m| %>
+                <td align="center" valign="middle" class="botao_baixo"><%= link_to( m.nome, monitoramentos_path(:prefiltro => "false", :periodo => "T", :monitor => m.id), :class => "link_label")  %></td>
+            <% end %>
+
+            <!--
+            <td width="180" align="center" valign="middle" class="botao_baixo">MONITOR 01</td>
+	        <td width="235" align="center" valign="middle" class="botao_baixo">MONITOR 02</td>
+	        <td width="172" align="center" valign="middle" class="botao_baixo">MONITOR 03</td>
+	        -->
+
+	        <td width="75" align="right"><img name="cadastrar_pre_r4_c7" src="images/prefiltro/cadastrar_pre2_r4_c7.jpg" width="75" height="21" border="0" id="cadastrar_pre_r4_c7__" alt="" /></td>
+	        </tr>
+	      </table></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759">&nbsp;</td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759"><img name="cadastrar_pre_r2_c3" src="images/prefiltro/cadastrar_pre3_r2_c3.jpg" width="743" height="189" border="0" id="cadastrar_pre_r2_c4" alt="" /></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759"><table style="display: inline-table;" border="0" cellpadding="0" cellspacing="0" width="743">
+	      <tr>
+	        <td width="81" align="center" valign="middle" nowrap="nowrap" bgcolor="#3D3759"><img src="images/prefiltro/cadastrar_pre3_r4_c3.jpg" alt=""  width="76" height="21" border="0" align="right" cellpadding="0" cellspacing="0" /></td>
+
+            <% @monitores.each do |m| %>
+                <td align="center" valign="middle" class="botao_baixo"><%= link_to( m.nome, monitoramentos_path(:prefiltro => "false", :periodo => "N", :monitor => m.id), :class => "link_label")  %></td>
+            <% end %>
+
+            <!--
+	        <td width="180" align="center" valign="middle" class="botao_baixo">MONITOR 01</td>
+	        <td width="235" align="center" valign="middle" class="botao_baixo">MONITOR 02</td>
+	        <td width="172" align="center" valign="middle" class="botao_baixo">MONITOR 03</td>
+	        -->
+
+	        <td width="75" align="right"><img name="cadastrar_pre_r4_c7" src="images/prefiltro/cadastrar_pre3_r4_c7.jpg" width="75" height="21" border="0" id="cadastrar_pre_r4_c7" alt="" /></td>
+	        </tr>
+	      </table></td>
+	    </tr>
+	  <tr>
+	    <td align="center" bgcolor="#3D3759">&nbsp;</td>
+	    </tr>
+ </table>
+
+    <br />
+</div>

@@ -1,0 +1,27 @@
+<p><%= link_to 'Novo', new_monitoramento_path %></p>
+
+<p>
+Filtos:
+<li> Período: <%= @periodo %> </li>
+<li> Monitor: <%= @visor_nome %> </li>
+</p>
+
+<table id="tabela_listagem_clara" width="100%" border="0" cellspacing="6">
+  <tr>
+    <th>GCM</th>
+    <th>Data</th>
+    <!-- <th>Período</th> -->
+    <th>Novidades</th>
+    <th width="30%">Ação</th>
+  </tr>
+
+<% @monitoramentos.each do |monitoramento| %>
+  <tr>
+    <td width="25%"><%= monitoramento.user.nome %></td>
+    <td width="15%"><%= l(monitoramento.data) %></td>
+    <!-- <td><%= monitoramento.periodo_descricao %></td> -->
+    <td width="30%"><%= monitoramento.novidades[0,50] if !monitoramento.novidades.nil?  %>...</td>
+    <td width="30%"><%= links_to_operacao(monitoramento) %></td>
+  </tr>
+<% end %>
+</table>

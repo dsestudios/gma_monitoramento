@@ -126,3 +126,67 @@ text-decoration:none;
     border: 3px solid;
     border-color: yellow;
 }
+
+.botao_baixo {
+	background-image: url(/images/css_filetes/fundo_barra_baixo.gif);
+	background-repeat: repeat-x;
+	background-position: left;
+	font-family: impact;
+    font-weight: lighter;
+	font-size: 17px;
+    text-transform: uppercase;
+	color: #000;
+	background-color: #FFA508;
+}
+
+#tabela_listagem table{
+    width: 100%;
+    border: 0;
+}
+
+#tabela_listagem th{
+    background-image: url(/images/css_filetes/fundo_barra_baixo.gif);
+	background-repeat: repeat-x;
+	background-position: left;
+	font-family: impact;
+    font-weight: 100;
+	font-size: 17px;
+    text-transform: uppercase;
+	color: #000;
+	background-color: #FFA508;
+}
+
+#tabela_listagem td{
+    font-family: Verdana, Geneva, sans-serif;
+	font-size: small;
+	background-color: #3E3959;
+    height:30px;
+    max-height: 30px;
+    padding-left: 5px;
+}
+
+#tabela_listagem_clara table{
+    width: 100%;
+    border: 0;
+}
+
+#tabela_listagem_clara th{
+    background-image: url(/images/css_filetes/fundo_barra_baixo.gif);
+	background-repeat: repeat-x;
+	background-position: left;
+	font-family: impact;
+    font-weight: 100;
+	font-size: 17px;
+    text-transform: uppercase;
+	color: #000;
+	background-color: #FFA508;
+}
+
+#tabela_listagem_clara td{
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: small;
+	background-color: #514A73;
+    height:30px;
+    max-height: 30px;
+    padding-left: 5px;
+}

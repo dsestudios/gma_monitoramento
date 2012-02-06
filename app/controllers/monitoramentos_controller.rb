@@ -1,10 +1,24 @@
 class MonitoramentosController < ApplicationController
   load_and_authorize_resource
+  #before_filter :carrega_dados
 
   # GET /monitoramentos
   # GET /monitoramentos.xml
   def index
-    @monitoramentos = Monitoramento.all
+    prefiltro = params[:prefiltro]
+
+    if prefiltro == "true"
+      @monitores = Visor.all.order_by([[:nome, :asc]])
+    elsif prefiltro.nil?
+      @periodo = "Todos"
+      @visor_nome = "Todos"
+      @monitoramentos = Monitoramento.all
+    else
+      @periodo = Util.periodo_descricao(params[:periodo])
+      @visor_nome = Visor.find(params[:monitor]).nome
+      @monitoramentos = Monitoramento.where(:periodo => params[:periodo], :visor_id => params[:monitor])
+    end
+
     respond_to_index(@monitoramentos)
   end
 
