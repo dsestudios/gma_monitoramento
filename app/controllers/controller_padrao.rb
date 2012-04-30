@@ -53,14 +53,19 @@ module ControllerPadrao
   end
 
   # POST
-  def respond_to_create(model_class)
-    symbol_model = model_class.name.downcase.to_sym
-    object_model = model_class.new(params[symbol_model])
-    eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
+  def respond_to_create(model_class_or_object, redirect_success = nil)
+    object_model = model_class_or_object
+
+    if model_class_or_object.instance_of? Class
+      symbol_model = model_class_or_object.name.downcase.to_sym
+      object_model = model_class_or_object.new(params[symbol_model])
+      eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
+    end
 
     respond_to do |format|
       if object_model.save
-        format.html { redirect_to([:new, symbol_model], :notice => t("messages.notice.new_registro", :model => model_class.nome_exibicao ) ) }
+        redirect_success ||= [:new, symbol_model]
+        format.html { redirect_to(redirect_success, :notice => t("messages.notice.new_registro", :model => object_model.class.nome_exibicao ) ) }
         format.xml  { render :xml => object_model, :status => :created, :location => object_model }
       else
         format.html { render :action => "new", :location => object_model }

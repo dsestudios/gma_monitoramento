@@ -19,6 +19,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'visor', 'visores'
   inflect.irregular 'monitoramento', 'monitoramentos'
   inflect.irregular 'camera_defeito', 'camera_defeitos'
+  inflect.irregular 'operador', 'operadores'
+  inflect.irregular 'monitoramento_ocorrencia', 'monitoramento_ocorrencias'
 
   inflect.singular("ocorrencias", "ocorrencia")
   inflect.plural("ocorrencia", "ocorrencias")

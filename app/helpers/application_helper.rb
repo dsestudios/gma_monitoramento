@@ -2,11 +2,11 @@
 module ApplicationHelper
   include FormTagsStandard
 
-  # Retorna o campo SELECT com todos os tipos de usuário
+  # Retorna o campo SELECT com todos os tipos de "usuário"
   # param form = formulario da view
   # param method = Nome do campo que devera receber o dado selecionado => Default = :role
-  # param label = Titulo do campo => Default = 'Tipo de usuário'
-  def select_tipo_de_usuario(form, method = :role, label = 'Tipo de usuário')
+  # param label = Titulo do campo => Default = 'Tipo de "user"'
+  def select_tipo_de_usuario(form, method = :role, label = "Tipo de #{User.nome_exibicao}")
     html = <<-HTML
     <div>#{form.label(label)}
     #{form.select method, Ability.tipos_de_usuarios.collect{|k,v| [v,k]} }</div>
@@ -48,16 +48,14 @@ module ApplicationHelper
 
   def link_to_add_field(descricao_link, form, model_item_sym, partial, local_append = "", classCSS = "", usaFormPai = true, args = {} )
     maximo_fields_por_vez = args[:fields_por_vez] == nil ? -1 : args[:fields_por_vez]
-
     local_append = "##{model_item_sym}" if local_append.blank?
     new_object = form.object.class.reflect_on_association(model_item_sym).klass.new
+    id_padrao = args[:id_padrao].nil? ? "new_#{ActiveModel::Naming.singular(new_object)}" : args[:id_padrao]
 
     formPai = form
     if !usaFormPai
       formPai = self
     end
-
-    id_padrao = "new_#{model_item_sym.to_s.singularize}"
 
     new_field = formPai.simple_fields_for(model_item_sym, new_object, :child_index => "new_#{model_item_sym}") do |builder|
       render(partial, :f => builder)

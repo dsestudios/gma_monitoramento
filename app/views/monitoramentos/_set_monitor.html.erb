@@ -2,16 +2,16 @@
     <div id="osx-modal-title">INICIANDO NOVO TURNO...</div>
     <% if Visor.all.empty? %>
         <div id="osx-modal-data">
-		    <h2>Não existem monitores cadastrados.</h2>
-			<p> Para continuar é necessario cadastrar um monitor. </p>
-            <p><%= link_label_to 'Cadastrar novo monitor', [:new, :visor] %> </p>
+		    <h2><%= t("messages.nenhuma_mesa_cadastrada")%></h2>
+			<p><%= t("messages.precisa_cadastra_mesa") %></p>
+            <p><%= link_label_to "Cadastrar #{Visor.nome_exibicao}", [:new, :visor] %> </p>
 	    </div>
     <% else %>
         <%= simple_form_for(@monitoramento, :html => {:class => ''} ) do |f| %>
                 <div id="osx-modal-data">
-                    <h2>Selecione o monitor utilizado:</h2>
+                    <h2>Selecione a <%= Visor.nome_exibicao.downcase %>:</h2>
                     <p> <%= f.input :visor, :as => :select, :label => false, :input_html => { :style => "width:70%"}, :collection => Visor.all, :label_method => lambda{ |v| "#{v.numero} - #{v.nome}" } %></p>
-                  <p><%= f.button :submit, :id => "set_monitor", :name => "set_monitor", :value => "Continuar"%></p>
+                    <p><%= f.button :submit, :id => "set_monitor", :name => "set_monitor", :value => t("screen.button.continue") %> <%= link_to t("screen.button.cancel"), root_path %> </p>
                 </div>
         <% end %>
     <% end %>

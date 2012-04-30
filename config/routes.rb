@@ -3,7 +3,11 @@ GmaMonitoramento::Application.routes.draw do
 
   resources :users
   get "admin/index"
-  resources :monitoramentos
+  resources :monitoramentos do
+    member do
+      get "remove_ocorrencia"
+    end
+  end
 
   scope "admin" do
     resources :ocorrencias

@@ -1,0 +1,7 @@
+<td width="30%" height="30" class="fundo_forms" style="padding-top:10px">
+  <% if ocorrencia.nil? %>
+    <%= select_tag :ocorrencia_grupo, options_from_collection_for_select(@ocorrencia_all, :id, :grupo), :style => "width:95%", :onChange => "executa_click('#carrega_ocorrencia_itens')", :include_blank => true %>
+  <% else %>
+    <%= ocorrencia.ocorrencia_item.ocorrencia.grupo %>
+  <% end %>
+</td>

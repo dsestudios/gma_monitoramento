@@ -23,7 +23,7 @@ pt-BR:
   time:
     formats:
       default: "%A, %d de %B de %Y, %H:%M hs"
-      time: "%H:%M hs"
+      time: "%H:%M"
       short: "%d/%m, %H:%M hs"
       long: "%A, %d de %B de %Y, %H:%M hs"
       only_second: "%S"
@@ -178,6 +178,8 @@ pt-BR:
       logout: "Sair"
       confirm: "Confirmar"
       cancel: "Cancelar"
+      continue: "Continuar"
+      add: "Adicionar"
     messages:
       destroy_registro: "Tem certeza que deseja excluir este %{model}?"
 
@@ -185,6 +187,9 @@ pt-BR:
     must_be_number: "O valor do campo deve ser numérico"
 
   messages:
+    nenhuma_mesa_cadastrada: "Não existem mesas cadastrados."
+    precisa_cadastra_mesa: "Para continuar é necessario cadastrar pelo menos uma mesa."
+    nao_informado: "Não informado"
     notice:
       acesso_negado: "Você não tem permissão para acessar esta área."
       new_registro: "%{model} críado com sucesso."
@@ -194,8 +199,8 @@ pt-BR:
   #Nome de exibição dos Models
   models_display_names:
     user:
-      singular: "Usuário"
-      plural: "Usuários"
+      singular: "Operador"
+      plural: "Operadores"
     camera:
       singular: "Câmera"
       plural: "Câmeras"
@@ -203,8 +208,8 @@ pt-BR:
       singular: "Ocorrência"
       plural: "Ocorrências"
     visor:
-      singular: "Monitor"
-      plural: "Monitores"
+      singular: "Mesa"
+      plural: "Mesas"
     monitoramento:
       singular: "Monitoramento"
       plural: "Monitoramentos"
@@ -214,3 +219,4 @@ pt-BR:
       manha: "Manha"
       tarde: "Tarde"
       noite: "Noite"
+      madrugada: "Madrugada"

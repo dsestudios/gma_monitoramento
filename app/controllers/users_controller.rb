@@ -21,18 +21,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
     seguranca_trata_campos
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to(users_path, :notice => t("messages.notice.new_registro", :model => "Usuário") ) }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
+    respond_to_create(@user, users_path)
   end
 
   def update
@@ -43,7 +33,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       salvou = can?(:manage, :all) ? @user.update_attributes(params[:user]) : @user.update_with_password(params[:user])
       if salvou
-        format.html { redirect_to(root_path, :notice => t("messages.notice.edit_registro", :model => "Usuário")) }
+        format.html { redirect_to(root_path, :notice => t("messages.notice.edit_registro", :model => User.nome_exibicao)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

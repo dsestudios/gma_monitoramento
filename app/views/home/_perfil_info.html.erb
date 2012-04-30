@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td>
+      <p><%= image_tag @user.avatar(:thumb) %></p>
+    </td>
+    <td>
+      <p><%= @user.nome %></p>
+      <p><%= @user.role_descricao %></p>
+      <p><%= @user.current_sign_in_at.to_s_br %></p>
+      <p>Ultimo acesso: <%= I18n.l(@user.last_sign_in_at) %></p>
+      <p>Quantidade de acesso: <%= @user.sign_in_count %></p>
+
+      <br />
+      <ul>Até o momento você já informou:</ul>
+      <li><%= @user.monitoramentos.count %> relatórios de monitoramento.</li>
+      <li><%= @ocorrencias_count %> ocorrências.</li>
+    </td>
+  </tr>
+</table>

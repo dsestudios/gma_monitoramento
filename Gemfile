@@ -36,5 +36,22 @@ gem "brazilian-rails", "3.0.4"
 gem "cancan", "1.6.7"
 gem "mongoid-paperclip", "0.0.7" #gem que integra o paper-clipe com o mongoid para upload de arquivos
 gem "simple_form"
-gem "aws-s3"
 gem "jquery-rails"
+gem "mongoid_rails_migrations" #permite criar e executar migrations com Mongoid
+#gem "aws-s3" >> Gem do Amazon Sevice para hospedagem de arquivo no amazon (por enquanto nao utilizada))
+
+group :development, :test do
+#  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
+  gem 'factory_girl_rails'
+#  gem 'rspec-rails'
+#  gem 'simplecov'
+end
+
+#rails generate cucumber:install capybara
+#rails generate cucumber_rails_training_wheels:install
+#rails generate rspec:install

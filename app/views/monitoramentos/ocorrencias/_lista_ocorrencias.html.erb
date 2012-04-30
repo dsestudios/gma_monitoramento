@@ -1,12 +1,10 @@
-<% @monitoramento.ocorrencia_itens.each do |oi| %>
-    <%= render "monitoramentos/ocorrencias/show", :ocorrencia_item => oi %>
-<% end %>
+<table id="ocorrencias" width="100%" border="0" cellspacing="6" valign="middle" align="center"  bottom="middle">
 
+  <% @monitoramento.ocorrencias.order_by([:hora, :asc]).each do |oi| %>
+      <%= render "monitoramentos/ocorrencias/show", :ocorrencia_item => oi %>
+  <% end %>
 
-<div style="display: none;">
-    <%= form_pai.button :submit, :id => "carrega_ocorrencia_itens", :name => "carrega_ocorrencia_itens", :value => "Carrega"%>
-    <%= form_pai.button :submit, :id => "add_ocorrencia", :name => "add_ocorrencia", :value => t("screen.button.confirm") %>
-</div>
+</table>
 
 
 

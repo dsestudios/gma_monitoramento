@@ -204,14 +204,18 @@
   </tr>
   <tr>
    <td colspan="17" align="center" valign="top" class="background_site">
-     <table id="ocorrencia_itens" width="100%" border="0" cellspacing="6" valign="middle" align="center"  bottom="middle">
 
      <!-- OCORRENCIAS -->
-     <%= render "monitoramentos/ocorrencias/lista_ocorrencias", :form_pai => f %>
+     <%= render "monitoramentos/ocorrencias/lista_ocorrencias"%>
 
-     </table>
+     <div style="display: none;">
+          <%= f.button :submit, :id => "carrega_ocorrencia_itens", :name => "carrega_ocorrencia_itens", :value => "Carrega"%>
+          <%= f.button :submit, :id => "carrega_ocorrencia_cameras", :name => "carrega_ocorrencia_cameras", :value => "Carrega"%>
+          <%= f.button :submit, :id => "carrega_ocorrencia_hora", :name => "carrega_ocorrencia_hora", :value => "Carrega"%>
+          <%= f.button :submit, :id => "add_ocorrencia", :name => "add_ocorrencia", :value => t("screen.button.confirm") %>
+     </div>
 
-     <p><span class='label_app'><%= link_to_add_field('Adicionar nova ocorrência', f, :ocorrencia_itens, "monitoramentos/ocorrencias/edit_dinamico", "", "link_label", false, {:fields_por_vez => 1} ) %></span></p>
+     <p><span class='label_app'><%= link_to_add_field('Adicionar nova ocorrência', f, :ocorrencias, "monitoramentos/ocorrencias/edit_dinamico", "", "link_label", false, {:fields_por_vez => 1} ) %></span></p>
 
    </td>
    <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="251" border="0" alt="" /></td>
@@ -247,37 +251,14 @@
    </td>
    <td></td>
   </tr>
-<!--
-<tr>
-   <td colspan="17" class="background_site">&nbsp;</td>
-   <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="12" border="0" alt="" /></td>
-  </tr>
-  <tr>
-   <td colspan="3" class="background_site">&nbsp;</td>
-   <td colspan="6" class="background_site"><img name="cadastrar_relatorio2_r34_c4" src="/images/cadastro_imgs/cadastrar_relatorio2_r34_c4.jpg" width="112" height="23" border="0" id="cadastrar_relatorio2_r34_c4" alt="" /></td>
-   <td colspan="2" class="background_site">&nbsp;</td>
-   <td class="background_site"><img name="cadastrar_relatorio2_r34_c12" src="/images/cadastro_imgs/cadastrar_relatorio2_r34_c12.jpg" width="103" height="23" border="0" id="cadastrar_relatorio2_r34_c12" alt="" /></td>
-   <td class="background_site">&nbsp;</td>
-   <td colspan="2" class="background_site"><img name="cadastrar_relatorio2_r34_c14" src="/images/cadastro_imgs/cadastrar_relatorio2_r34_c14.jpg" width="112" height="23" border="0" id="cadastrar_relatorio2_r34_c14" alt="" /></td>
-   <td colspan="2" class="background_site">&nbsp;</td>
-   <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="23" border="0" alt="" /></td>
-  </tr>
-  <tr>
-   <td height="21" colspan="17" class="background_site">&nbsp;</td>
-   <td><img src="/images/cadastro_imgs/spacer.gif" width="1" height="21" border="0" alt="" /></td>
-  </tr>
--->
+
 </table>
 
     <span style="margin-left: 2%" ><%= submit_tag("Salvar", :disable_with => "Salvando...") %></span>
 
-    <%# render 'monitoramentos/cameras/seleciona_cameras2', :f => f, :objeto => @monitoramento %>
-
-    <%# render 'monitoramentos/ocorrencias/seleciona' %>
-
 <% end %>
 
-    <%= render 'monitoramentos/cameras/seleciona_cameras', :objeto => @monitoramento %>
+<%= render 'monitoramentos/cameras/seleciona_cameras', :objeto => @monitoramento %>
 
 </div>
 

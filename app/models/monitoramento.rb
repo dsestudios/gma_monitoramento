@@ -12,6 +12,7 @@ class Monitoramento
   belongs_to :user
   belongs_to :visor
   has_many :camera_defeitos
+  has_many :ocorrencias, :class_name => "MonitoramentoOcorrencia"
   has_and_belongs_to_many :cameras
   has_and_belongs_to_many :ocorrencia_itens
 

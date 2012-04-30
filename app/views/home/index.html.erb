@@ -1,21 +1,13 @@
 <% titulo("Home") %>
 
-<% if can?(:manager, :all) %>
-    <p><%= link_to( "Administração", [:admin, :index] ) %></p>
+<% if @monitoramento_nao_finalizado %>
+    <div id="mensagem">
+        <p class="notice">
+          Você possui um cadastro de relatório do turno atual em aberto. <br />
+          <%= link_to("Clique aqui para ir ao relatório.", edit_monitoramento_path(@monitoramento_nao_finalizado)) %>
+        </p>
+    </div>
 <% end %>
 
-<table>
-  <tr>
-    <td>
-      <p><%= image_tag @user.avatar(:thumb) %></p>
-    </td>
-    <td>
-      <p><%= @user.nome %></p>
-      <p><%= @user.role_descricao %></p>
-      <p><%= @user.current_sign_in_at.to_s_br %></p>
-      <p>Ultimo acesso: <%= I18n.l(@user.last_sign_in_at) %></p>
-      <p>Quantidade de acesso: <%= @user.sign_in_count %></p>
-    </td>
-  </tr>
-</table>
+<%= render "perfil_info" %>
 

@@ -1,6 +1,6 @@
 <%= admin_bloco do %>
 
-    <%= link_to "Novo usuário", new_user_path %>
+    <%= link_to "Novo #{User.nome_exibicao}", new_user_path %>
 
     <%= grid_imagem(@users, :avatar, :nome) %>
 

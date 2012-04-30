@@ -14,11 +14,11 @@ pt-BR:
 
     # Labels and hints examples
     labels:
-      user: "Usuário"
+      user: "Operador"
       password: "Senha"
       password_confirmation: "Confirmar senha"
       current_password: "Senha atual"
-      nome_usuario: "Usuário"
+      nome_usuario: "Operador"
       email: "E-mail"
       descricao: "Descrição"
       numero: "Número"
@@ -50,7 +50,7 @@ pt-BR:
     placeholders:
       user:
         sing_in:
-          email: "nome de usuário ou e-mail"
+          email: "nome do operador ou e-mail"
         edit:
           password: "Deixe em branco se você não quiser mudar"
 

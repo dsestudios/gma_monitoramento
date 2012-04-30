@@ -1,5 +1,7 @@
-<%= simple_fields_for :ocorrencia_itens do |f| %>
-    <td width="2%" height="30" style="padding-top:10px">
-      <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_item_ids][]", @ocorrencia_itens.id) %>
-    </td>
-<% end %>
+<td <%= ocorrencia.nil? ? "id='campo_remover'" : "" %> width="2%" height="30" style="padding-top:10px">
+  <% if ocorrencia.nil? %>
+    <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_ids][]", "0") %>
+  <% else %>
+    <%= link_to("X", remove_ocorrencia_monitoramento_path(@monitoramento, :ocorrencia_id => ocorrencia.id), :remote => true, :onClick => "remove_field_novo(this, 'tr')") %>
+  <% end %>
+</td>

@@ -5,6 +5,7 @@ class OcorrenciaItem
   field :descricao, :type => String
   belongs_to :ocorrencia, :class_name => "Ocorrencia"
 
+  has_many :monitoramento_ocorrencias
   has_and_belongs_to_many :monitoramentos
 
   #validates_presence_of :descricao  #da o pau pois se ele é removido do form e estiver em branco tenta focar e ai da pau

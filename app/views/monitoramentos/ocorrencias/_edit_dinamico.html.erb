@@ -1,19 +1,21 @@
-<% if !f.object.nil? %>
-    <% ocorrencia = f.object.ocorrencia.nil? ? Ocorrencia.new : f.object.ocorrencia %>
-    <% ocorrencia_itens = f.object.ocorrencia.nil? ? [] : f.object.ocorrencia.ocorrencia_itens %>
 <tr id="<%= dom_id(f.object) %>" align="center">
 
-      <td width="36%" height="30" class="fundo_forms" style="padding-top:10px">
-        <%= f.input :ocorrencia, :as => :select, :label => false, :input_html => { :style => "width:95%", :onChange => "executa_click('#carrega_ocorrencia_itens')"}, :collection => @ocorrencia_all, :label_method => :grupo %>
+      <!-- COLUNA OCORRENCIA GRUPO -->
+      <%= render "monitoramentos/ocorrencias/campo_grupo", :ocorrencia => nil %>
+
+      <td id="campo_ocorrencia_descricao" width="30%" height="30" class="fundo_forms" style="padding-top:10px">
+
       </td>
 
-      <td id="campo_ocorrencia_descricao" width="62%" height="30" class="fundo_forms" style="padding-top:10px">
+      <td id="campo_ocorrencia_camera" width="20%" height="30" class="fundo_forms" style="padding-top:10px">
 
       </td>
 
-      <td id="campo_remover" width="2%" height="30" style="padding-top:10px">
-        <%= link_to_remove_field_novo("X", "'tr'", "monitoramento[ocorrencia_item_ids][]", "0") %>
+      <td id="campo_ocorrencia_hora" width="18%" height="30" class="fundo_forms" style="padding-top:10px">
+
       </td>
+
+      <!-- COLUNA REMOVER -->
+      <%= render "monitoramentos/ocorrencias/campo_remover", :ocorrencia => nil %>
+
 </tr>
-
-<% end %>

@@ -5,19 +5,24 @@ class MonitoramentosController < ApplicationController
   # GET /monitoramentos
   # GET /monitoramentos.xml
   def index
-    prefiltro = params[:prefiltro]
 
-    if prefiltro == "true"
+    if params[:prefiltro] == "true"
       @monitores = Visor.all.order_by([[:nome, :asc]])
-    elsif prefiltro.nil?
-      @periodo = "Todos"
-      @visor_nome = "Todos"
-      @monitoramentos = Monitoramento.all
-    else
-      @periodo = Util.periodo_descricao(params[:periodo])
-      @visor_nome = Visor.find(params[:monitor]).nome
-      @monitoramentos = Monitoramento.where(:periodo => params[:periodo], :visor_id => params[:monitor])
+      respond_to_index(@monitoramentos)
+      return
     end
+
+    periodo = params[:periodo]
+    mesa = params[:monitor]
+
+    condicao = {}
+    condicao[:periodo] = periodo if periodo
+    condicao[:visor_id] = mesa if mesa
+    order_by = [[:data, :asc], [:data_final, :asc]]
+
+    @periodo = periodo ? Util.periodo_descricao(periodo) : "Todos"
+    @visor_nome = mesa ? Visor.find(mesa).nome : "Todos"
+    @monitoramentos = Monitoramento.where(condicao).order_by(order_by)
 
     respond_to_index(@monitoramentos)
   end
@@ -33,22 +38,7 @@ class MonitoramentosController < ApplicationController
   # GET /monitoramentos/new.xml
   def new
     carrega_dados
-
-    periodo = Util.periodo_atual
-    datas = Util.periodo_hora_inicial_e_final(periodo)
-    @monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
-
-    if @monitoramento.nil?
-      @monitoramento = Monitoramento.new
-      @monitoramento.user = current_user
-      @monitoramento.periodo = periodo
-      @monitoramento.data = datas[:inicio]
-      @monitoramento.data_final = datas[:fim]
-      @monitoramento.efetivado = false
-      @monitoramento.visor = nil
-      @monitoramento.save
-    end
-
+    @monitoramento = cria_novo_monitoramento
     respond_to_new(@monitoramento)
   end
 
@@ -88,10 +78,26 @@ class MonitoramentosController < ApplicationController
     @monitoramento = respond_to_destroy(Monitoramento)
   end
 
+  def remove_ocorrencia
+    @monitoramento = Monitoramento.find(params[:id])
+    id_ocorrencia = MonitoramentoOcorrencia.find(params[:ocorrencia_id])
+
+    @monitoramento.ocorrencias.delete(id_ocorrencia)
+    if !@monitoramento.save
+      @erro = @monitoramento.errors.to_s
+    end
+
+    #respond_to do |format|
+    #  format.js { render :action => "monitoramentos/ocorrencias/js/reload_ocorrencia" }
+    #end
+
+  end
+
 private
 
   def set_monitor
-    @monitoramento = Monitoramento.find(params[:id])
+    @monitoramento = cria_novo_monitoramento
+    @monitoramento.save
     if !@monitoramento.update_attributes(params[:monitoramento])
       @erro = @monitoramento.errors.to_s
     end
@@ -117,26 +123,38 @@ private
   end
 
   def add_ocorrencia
-    @ocorrencia_item = OcorrenciaItem.find(params[:ocorrencia_itens][:descricao])
-
+    @ocorrencia_item = MonitoramentoOcorrencia.new(params[:ocorrencias])
     @monitoramento = Monitoramento.find(params[:id])
-    @monitoramento.ocorrencia_itens << @ocorrencia_item
+    @monitoramento.ocorrencias << @ocorrencia_item
     if !@monitoramento.save
       @erro = @monitoramento.errors.to_s
     end
 
     respond_to do |format|
-      format.js { render :action => "add_ocorrencia" }
+      format.js { render :action => "monitoramentos/ocorrencias/js/add_ocorrencia" }
     end
   end
 
   def carrega_ocorrencia_itens
-#    @monitoramento = Monitoramento.find(params[:id])
-    id_ocorrencia = params[:ocorrencia_itens][:ocorrencia]
+    id_ocorrencia = params[:ocorrencia_grupo]
     @itens = OcorrenciaItem.where(:ocorrencia_id => id_ocorrencia).order_by([[:descricao, :asc]]);
 
     respond_to do |format|
-      format.js { render :action => "carrega_ocorrencia_itens" }
+      format.js { render :action => "monitoramentos/ocorrencias/js/carrega_ocorrencia_itens" }
+    end
+  end
+
+  def carrega_ocorrencia_cameras
+    @carrega_cameras = true #indica de deve aparecer o combo com as cameras
+    respond_to do |format|
+      format.js { render :action => "monitoramentos/ocorrencias/js/carrega_cameras" }
+    end
+  end
+
+  def carrega_ocorrencia_hora
+    @carrega_cameras = true #indica de deve aparecer o combo com as cameras
+    respond_to do |format|
+      format.js { render :action => "monitoramentos/ocorrencias/js/exibe_hora" }
     end
   end
 
@@ -144,6 +162,8 @@ private
     return set_monitor if ( params.include?(:set_monitor) )
     return add_cameras if ( params.include?(:add_cameras) )
     return carrega_ocorrencia_itens if ( params.include?(:carrega_ocorrencia_itens) )
+    return carrega_ocorrencia_cameras if ( params.include?(:carrega_ocorrencia_cameras) )
+    return carrega_ocorrencia_hora if ( params.include?(:carrega_ocorrencia_hora) )
     return add_ocorrencia if ( params.include?(:add_ocorrencia) )
 
     false
@@ -152,6 +172,24 @@ private
   def carrega_dados
     @cameras_all = Camera.all.order_by([[:nome, :asc]])
     @ocorrencia_all = Ocorrencia.all.order_by([[:grupo, :asc]])
+  end
+
+  def cria_novo_monitoramento
+    periodo = Util.periodo_atual
+    datas = Util.periodo_hora_inicial_e_final(periodo)
+    monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
+
+    if monitoramento.nil?
+      monitoramento = Monitoramento.new
+      monitoramento.user = current_user
+      monitoramento.periodo = periodo
+      monitoramento.data = datas[:inicio]
+      monitoramento.data_final = datas[:fim]
+      monitoramento.efetivado = false
+      monitoramento.visor = nil
+    end
+
+    monitoramento
   end
 
 end

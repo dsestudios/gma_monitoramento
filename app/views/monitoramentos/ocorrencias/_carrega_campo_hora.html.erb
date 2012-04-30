@@ -1,0 +1,11 @@
+<%= simple_fields_for :ocorrencias do |f| %>
+    <td <%= ocorrencia ? "id='campo_ocorrencia_hora'" : "" %> width="18%" height="30" class="fundo_forms" style="padding-top:10px">
+      <% if ocorrencia.nil? %>
+        <%= f.input :hora, :as => :time, :label => false %>
+        <%#= f.time_select :hora, :hora %>
+        <%= link_to_function(t("screen.button.add"), "executa_click('#add_ocorrencia')" ) %>
+      <% else %>
+        <%= ocorrencia.hora ? l(ocorrencia.hora, :format => :time) : t("messages.nao_informado") %>
+      <% end %>
+    </td>
+<% end %>
