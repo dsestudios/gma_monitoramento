@@ -198,10 +198,10 @@ DEPENDENCIES
   database_cleaner
   devise (= 1.5.1)
   factory_girl_rails
-  jquery-rails
+  jquery-rails (= 1.0.18)
   launchy
   mongoid (= 2.2.4)
   mongoid-paperclip (= 0.0.7)
-  mongoid_rails_migrations
+  mongoid_rails_migrations (= 0.0.14)
   rails (= 3.0.11)
-  simple_form
+  simple_form (= 1.5.2)
