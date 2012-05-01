@@ -83,7 +83,7 @@ module Mongoid
         # arguments specified by the user that invoked Mongoid::Paperclip#has_mongoid_attached_file
         has_attached_file(field, options)
 
-#        recreate_access_method(field)
+        recreate_access_method(field)
 
         ##
         # Define the necessary collection fields in Mongoid for Paperclip
@@ -106,7 +106,9 @@ module Mongoid
       def recreate_access_method(name)
         define_method name do |*args|
           value = attachment_for(name)
-          return value.send(:default_url) if not value.exists?
+          if not value.exists? and value.respond_to?(default_url)
+            return value.send(:default_url)
+          end
           (args.length > 0) ? value.to_s(args.first) : value
         end
       end
