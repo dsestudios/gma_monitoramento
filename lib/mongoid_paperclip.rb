@@ -83,7 +83,7 @@ module Mongoid
         # arguments specified by the user that invoked Mongoid::Paperclip#has_mongoid_attached_file
         has_attached_file(field, options)
 
-        recreate_access_method(field)
+#        recreate_access_method(field)
 
         ##
         # Define the necessary collection fields in Mongoid for Paperclip
