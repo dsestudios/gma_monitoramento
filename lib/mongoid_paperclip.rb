@@ -106,7 +106,7 @@ module Mongoid
       def recreate_access_method(name)
         define_method name do |*args|
           value = attachment_for(name)
-          if not value.exists? and value.respond_to?(default_url)
+          if not value.exists? and value.respond_to?(:default_url)
             return value.send(:default_url)
           end
           (args.length > 0) ? value.to_s(args.first) : value
