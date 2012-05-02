@@ -23,7 +23,7 @@ pt-BR:
   time:
     formats:
       default: "%A, %d de %B de %Y, %H:%M hs"
-      time: "%H:%M"
+      time: "%H:%M:%S"
       short: "%d/%m, %H:%M hs"
       long: "%A, %d de %B de %Y, %H:%M hs"
       only_second: "%S"
