@@ -1,5 +1,5 @@
 <%= simple_fields_for :ocorrencias do |f| %>
-    <td <%= ocorrencia ? "id='campo_ocorrencia_descricao'" : "" %> width="30%" height="30" class="fundo_forms" style="padding-top:10px">
+    <td id='campo_ocorrencia_descricao' width="30%" height="30" class="fundo_forms" style="padding-top:10px">
       <% if ocorrencia.nil? %>
         <%= f.input :ocorrencia_item, :as => :select, :label => false, :input_html => { :style => "width:95%", :onChange => "executa_click('#carrega_ocorrencia_cameras')"}, :collection => @itens, :label_method => :descricao %>
       <% else %>

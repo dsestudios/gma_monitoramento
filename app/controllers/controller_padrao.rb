@@ -44,10 +44,14 @@ module ControllerPadrao
   end
 
   # GET
-  def respond_to_edit(model_class)
-    symbol_model = model_class.name.downcase.to_sym
-    object_model = model_class.find(params[:id])
-    eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
+  def respond_to_edit(model_class_or_object)
+    object_model = model_class_or_object
+
+    if model_class_or_object.instance_of? Class
+      symbol_model = model_class_or_object.name.downcase.to_sym
+      object_model = model_class_or_object.find(params[:id])
+      eval("@#{symbol_model} = object_model")  #força a variavel global de mesmo nome do model a recebel o novo object
+    end
 
     object_model
   end
@@ -77,7 +81,7 @@ module ControllerPadrao
   end
 
   # PUT
-  def respond_to_update(model_class_or_object)
+  def respond_to_update(model_class_or_object, args={})
     object_model = model_class_or_object
     model_class = model_class_or_object
 
@@ -90,11 +94,22 @@ module ControllerPadrao
     end
 
     symbol_model = model_class.name.downcase.to_sym
-
     respond_to do |format|
       if object_model.update_attributes(params[symbol_model])
-        format.js
-        format.html { redirect_to( model_class, :notice => t("messages.notice.edit_registro", :model => model_class.nome_exibicao )) }
+        if args.include? :redirect_to
+          redirect_to args[:redirect_to]
+          return
+        end
+        args[:redirect_success] ||= model_class
+        args[:notice] ||= t("messages.notice.edit_registro", :model => model_class.nome_exibicao )
+
+        flash.notice = args[:notice]
+        if args[:js_refresh]
+          format.js { render :js => "window.location.reload(true)" }
+        else
+          format.js { render :js => "window.location = '#{args[:redirect_success]}'" }
+        end
+        format.html { redirect_to( args[:redirect_success], :notice => args[:notice] ) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

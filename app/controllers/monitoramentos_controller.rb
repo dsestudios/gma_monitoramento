@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class MonitoramentosController < ApplicationController
   load_and_authorize_resource
   #before_filter :carrega_dados
@@ -39,7 +40,11 @@ class MonitoramentosController < ApplicationController
   def new
     carrega_dados
     @monitoramento = cria_novo_monitoramento
-    respond_to_new(@monitoramento)
+    if @monitoramento.new_record?
+      respond_to_new(@monitoramento)
+    else
+      redirect_to edit_monitoramento_path(@monitoramento)
+    end
   end
 
   # GET /monitoramentos/1/edit
@@ -69,7 +74,7 @@ class MonitoramentosController < ApplicationController
       return
     end
 
-    @monitoramento = respond_to_update(Monitoramento)
+    @monitoramento = respond_to_update(Monitoramento, :redirect_success => edit_monitoramento_path(@monitoramento), :notice => t("messages.monitoramento_salvo", :hora => l(Time.now, :format => :time)))
   end
 
   # DELETE /monitoramentos/1
@@ -83,26 +88,24 @@ class MonitoramentosController < ApplicationController
     id_ocorrencia = MonitoramentoOcorrencia.find(params[:ocorrencia_id])
 
     @monitoramento.ocorrencias.delete(id_ocorrencia)
-    if !@monitoramento.save
-      @erro = @monitoramento.errors.to_s
-    end
+    @monitoramento.save
 
-    #respond_to do |format|
-    #  format.js { render :action => "monitoramentos/ocorrencias/js/reload_ocorrencia" }
-    #end
-
+    render :nothing => true
   end
 
 private
 
   def set_monitor
     @monitoramento = cria_novo_monitoramento
-    @monitoramento.save
-    if !@monitoramento.update_attributes(params[:monitoramento])
-      @erro = @monitoramento.errors.to_s
+
+    if not params[:monitoramento][:visor].blank?
+      @monitoramento.save
+      @monitoramento.update_attributes(params[:monitoramento])
+      redirect_to edit_monitoramento_path(@monitoramento)
+    else
+      redirect_to new_monitoramento_path
     end
 
-    redirect_to new_monitoramento_path
   end
 
   def add_cameras
@@ -110,25 +113,19 @@ private
 
     parametros = params[:monitoramento]
     if parametros.nil?
-      if !@monitoramento.update_attributes({:camera_ids => []})
-        @erro = @monitoramento.errors.to_s
-      end
+      @monitoramento.update_attributes({:camera_ids => []})
     else
-      if !@monitoramento.update_attributes(params[:monitoramento])
-        @erro = @monitoramento.errors.to_s
-      end
+      @monitoramento.update_attributes(params[:monitoramento])
     end
 
-    redirect_to new_monitoramento_path
+    redirect_to edit_monitoramento_path(@monitoramento)
   end
 
   def add_ocorrencia
     @ocorrencia_item = MonitoramentoOcorrencia.new(params[:ocorrencias])
     @monitoramento = Monitoramento.find(params[:id])
     @monitoramento.ocorrencias << @ocorrencia_item
-    if !@monitoramento.save
-      @erro = @monitoramento.errors.to_s
-    end
+    @monitoramento.save
 
     respond_to do |format|
       format.js { render :action => "monitoramentos/ocorrencias/js/add_ocorrencia" }

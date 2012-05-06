@@ -12,7 +12,7 @@
 
       <br />
       <ul>Até o momento você já informou:</ul>
-      <li><%= @user.monitoramentos.count %> relatórios de monitoramento.</li>
+      <li><%= link_to "#{@user.monitoramentos.count} relatórios de monitoramento.", "home/meus_monitoramentos" %></li>
       <li><%= @ocorrencias_count %> ocorrências.</li>
     </td>
   </tr>

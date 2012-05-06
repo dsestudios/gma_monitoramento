@@ -190,6 +190,7 @@ pt-BR:
     nenhuma_mesa_cadastrada: "Não existem mesas cadastrados."
     precisa_cadastra_mesa: "Para continuar é necessario cadastrar pelo menos uma mesa."
     nao_informado: "Não informado"
+    monitoramento_salvo: "Relatório salvo com sucesso. Salvo pela última vez às %{hora}."
     notice:
       acesso_negado: "Você não tem permissão para acessar esta área."
       new_registro: "%{model} críado com sucesso."

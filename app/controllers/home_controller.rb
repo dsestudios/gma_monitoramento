@@ -17,4 +17,15 @@ class HomeController < ApplicationController
 
   end
 
+  def meus_monitoramentos
+    order_by = [[:data, :asc], [:data_final, :asc]]
+
+    @periodo = "Todos"
+    @visor_nome = "Todos"
+    @monitoramentos = Monitoramento.where(:user_id => current_user.id).order_by(order_by)
+
+    params[:titulo] = "Meus monitoramentos"
+    render "monitoramentos/relatorios/_relatorio"
+  end
+
 end

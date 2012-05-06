@@ -20,8 +20,8 @@ class Ability
 
   def permissao_de_monitor(user)
     can [:update], User, :id => user.id #somente poderar alterar a propria conta
-    can [:read], Monitoramento
 
+    can [:read], Monitoramento
     can [:update, :create, :destroy], Monitoramento do |m|
       if m.user.nil?
         true
@@ -31,7 +31,7 @@ class Ability
         m.user.id == user.id and (Util.periodo_hora_inicial(m.periodo, m.data) + 48.hours) > Time.now
       end
     end
-
+    can [:remove_ocorrencia], Monitoramento
   end
 
   def sem_permissao
