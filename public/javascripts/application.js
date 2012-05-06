@@ -5,6 +5,7 @@ function add_field(local_append, model_item, id_padrao, content, maximo_field_ve
       }
   }
 
+  //Acho que nao ta servindo pra nada
   var novo_id = "new_" + model_item;
   var new_id = new Date().getTime();
   var regexp = new RegExp(novo_id, "g");
