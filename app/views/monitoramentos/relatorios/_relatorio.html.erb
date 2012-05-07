@@ -6,6 +6,8 @@ Filtos:
 <li> <%= Visor.nome_exibicao %>: <%= @visor_nome %> </li>
 </p>
 
+<span align="center"><%= paginate @monitoramentos %></span><br />
+
 <table id="tabela_listagem_clara" width="100%" border="0" cellspacing="6">
   <tr>
     <th>GCM</th>
@@ -24,5 +26,6 @@ Filtos:
     <td width="30%"><%= links_to_operacao(monitoramento) %></td>
   </tr>
 <% end %>
-<%= paginate @monitoramentos %>
 </table>
+
+<br /><span align="center"><%= paginate @monitoramentos %></span>

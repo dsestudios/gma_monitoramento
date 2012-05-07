@@ -19,10 +19,11 @@ class HomeController < ApplicationController
 
   def meus_monitoramentos
     order_by = [[:data, :asc], [:data_final, :asc]]
+    condicao = {:user_id => current_user.id}
 
     @periodo = "Todos"
     @visor_nome = "Todos"
-    @monitoramentos = Monitoramento.where(:user_id => current_user.id).order_by(order_by)
+    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(Util.paginacao_relatorio)
 
     params[:titulo] = "Meus monitoramentos"
     render "monitoramentos/relatorios/_relatorio"
