@@ -65,6 +65,11 @@ class Util
       return {:inicio => inicio, :fim => fim}
     end
 
+    #total de registros por paginas nos relatorios
+    def paginacao_relatorio
+      27
+    end
+
   end
 
 end

@@ -3,6 +3,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 pt-BR:
+  #kaminari
+  views:
+    pagination:
+      previous: "Anterior"
+      next: "Próximo"
+      first: "Primeiro"
+      last: "Último"
+      truncate: "..."
+
   # formatos de data e hora
   date:
     formats:

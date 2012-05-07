@@ -18,11 +18,11 @@ class MonitoramentosController < ApplicationController
     condicao = {}
     condicao[:periodo] = periodo if periodo
     condicao[:visor_id] = mesa if mesa
-    order_by = [[:data, :asc], [:data_final, :asc]]
+    order_by = [[:data, :desc], [:data_final, :desc]]
 
     @periodo = periodo ? Util.periodo_descricao(periodo) : "Todos"
     @visor_nome = mesa ? Visor.find(mesa).nome : "Todos"
-    @monitoramentos = Monitoramento.where(condicao).order_by(order_by)
+    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(Util.paginacao_relatorio)
 
     respond_to_index(@monitoramentos)
   end
@@ -98,7 +98,7 @@ private
   def set_monitor
     @monitoramento = cria_novo_monitoramento
     @monitoramento.save
-    if !@monitoramento.update_attributes(params[:monitoramento])
+    if !@monitoramento.update_attributes(params[:mornitoramento])
       @erro = @monitoramento.errors.to_s
     end
 
