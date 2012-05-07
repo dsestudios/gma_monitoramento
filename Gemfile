@@ -39,7 +39,7 @@ gem "simple_form", "1.5.2"
 gem "jquery-rails", "1.0.18"
 gem "mongoid_rails_migrations", "0.0.14" #permite criar e executar migrations com Mongoid
 #gem "aws-s3" >> Gem do Amazon Sevice para hospedagem de arquivo no amazon (por enquanto nao utilizada))
-gem "kaminari" #Gem para paginação
+gem "kaminari", "0.13.0" #Gem para paginação
 
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug'
