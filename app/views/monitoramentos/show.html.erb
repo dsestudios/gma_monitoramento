@@ -6,8 +6,18 @@
 </p>
 
 <p>
-  <b>Data:</b>
+  <b>Mesa:</b>
+  <%= @monitoramento.visor ? "#{@monitoramento.visor.numero ? @monitoramento.visor.numero : "0"} - #{@monitoramento.visor.nome}" : "" %>
+</p>
+
+<p>
+  <b>Data inical:</b>
   <%= l(@monitoramento.data) %>
+</p>
+
+<p>
+  <b>Data final:</b>
+  <%= l(@monitoramento.data_final) %>
 </p>
 
 <p>
@@ -15,30 +25,52 @@
   <%= @monitoramento.periodo_descricao %>
 </p>
 
-<p>
-  <b>Cameras:</b>
-  <% @monitoramento.cameras.each do |c| %>
-    <p><%= image_tag(c.foto_do_lugar(:thumb)) %></p>
-    <p><%= c.nome + " (#{c.numero_camera})" %></p>
-  <% end %>
-</p>
+<hr>
 
 <p>
   <b>Novidades:</b>
-  <%= @monitoramento.novidades %>
+  <p><ul><%= @monitoramento.novidades %></ul>
 </p>
 
+<hr>
+
 <p>
-  <b>Ocorrencias:</b>
-  <% @monitoramento.ocorrencia_itens.each do |o| %>
-    <li><%= "#{o.ocorrencia.grupo} - #{o.descricao}" %>
+  <b>Cameras:</b>
+  <% @monitoramento.cameras.order_by([:numero_camera, :asc]).each do |c| %>
+    <br><br>
+    <table>
+        <tr>
+          <td><%= image_tag(c.foto_do_lugar(:thumb)) %></td>
+          <td>
+            <%= c.nome + " (#{c.numero_camera})" %>
+            <table>
+                <tr><td>Ocorrências:</td></tr>
+                <tr><td>
+                <% @monitoramento.ocorrencias.where(:camera_id => c.id).order_by([:hora, :asc]).each do |o| %>
+                    <li><%= "#{o.hora ? l(o.hora, :format => :time) : t("messages.nao_informado")} - #{o.ocorrencia_item.ocorrencia.grupo} - #{o.ocorrencia_item.descricao}" %>
+                 <% end %>
+                </td></tr>
+             </table>
+            <table>
+                <tr><td>Defeitos apresentados:</td></tr>
+                <tr><td>
+                <% @monitoramento.camera_defeitos.where(:camera_id => c.id).each do |defeito| %>
+                    <li><%= defeito.defeito %></li>
+                 <% end %>
+                </td></tr>
+             </table>
+          </td>
+         </tr>
+     </table>
   <% end %>
 </p>
 
+<hr>
+
 <p>
-  <b>Cameras defeitos</b>
-  <% @monitoramento.camera_defeitos.each do |c| %>
-    <li><%= "#{c.camera.nome} - #{c.defeito}" %>
+  <b>Ocorrências em ordem cronológica:</b>
+  <% @monitoramento.ocorrencias.order_by([:hora, :asc]).each do |o| %>
+    <li><%= "#{o.hora ? l(o.hora, :format => :time) : t("messages.nao_informado")} - #{o.camera ? o.camera.nome : "Camera não informada"} - #{o.ocorrencia_item.ocorrencia.grupo} - #{o.ocorrencia_item.descricao}" %>
   <% end %>
 </p>
 
