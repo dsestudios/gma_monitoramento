@@ -230,3 +230,7 @@ pt-BR:
       tarde: "Tarde"
       noite: "Noite"
       madrugada: "Madrugada"
+
+  versao:
+    build: "1.0.1"
+    data: "09/07/2012"
