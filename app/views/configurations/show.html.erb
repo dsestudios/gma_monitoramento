@@ -1,0 +1,31 @@
+<%= admin_bloco do %>
+
+    <p>
+      <b>Apelido:</b>
+      <%= @configuration.nickname %>
+    </p>
+
+    <p>
+      <b>Nome:</b>
+      <%= @configuration.name %>
+    </p>
+
+    <p>
+      <b>Descrição:</b>
+      <%= @configuration.description %>
+    </p>
+
+    <p>
+      <b>Valor padrão:</b>
+      <%= @configuration.default %>
+    </p>
+
+    <p>
+      <b>Valor atual:</b>
+      <%= @configuration.value %> (em <%= @configuration.unit %>)
+    </p>
+
+    <%= link_to t("screen.button.edit"), edit_configuration_path(@configuration) %> |
+    <%= link_to_back(configurations_path) %>
+
+<% end %>

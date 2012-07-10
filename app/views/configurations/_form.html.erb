@@ -1,0 +1,13 @@
+<%= simple_form_for(@configuration) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <span class="texto1"><%= @configuration.name %> </span> <br><br>
+    <span class=""><%= @configuration.description %> </span> <br><br>
+    <%= f.input :value, :placeholder => "valor padrão '#{@configuration.default}'", :hint => "em #{@configuration.unit}" %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

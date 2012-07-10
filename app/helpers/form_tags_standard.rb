@@ -27,10 +27,13 @@ module FormTagsStandard
     link_to(t("screen.button.destroy"), model, :confirm => t("screen.messages.destroy_registro", :model => model.class.nome_exibicao.downcase), :method => :delete)
   end
 
-  def links_to_operacao model, *args
-     "#{link_to t("screen.button.show"), model} |
-      #{link_to t("screen.button.edit"), [:edit, model] } |
-      #{link_to_delete(model)}".html_safe
+  def links_to_operacao model, args = {}
+    links = ""
+    links << link_to(t("screen.button.show"), model) if args[:show] != false
+    links << " | " + link_to(t("screen.button.edit"), [:edit, model]) if args[:edit] != false
+    links << " | " + link_to_delete(model) if args[:delete] != false
+
+    links.html_safe
   end
 
   def link_label_to(*args, &block)

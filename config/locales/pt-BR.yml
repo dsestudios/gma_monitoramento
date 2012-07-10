@@ -223,6 +223,9 @@ pt-BR:
     monitoramento:
       singular: "Monitoramento"
       plural: "Monitoramentos"
+    configuration:
+      singular: "Configuração"
+      plural: "Configurações"
 
   termos:
     periodo:
@@ -232,5 +235,5 @@ pt-BR:
       madrugada: "Madrugada"
 
   versao:
-    build: "1.0.1"
-    data: "09/07/2012"
+    build: "1.0.2"
+    data: "10/07/2012"

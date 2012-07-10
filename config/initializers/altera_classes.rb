@@ -34,3 +34,12 @@ class Object
     end
 
 end
+
+#module Devise
+
+#  def self.timeout_in
+#    @@timeout_in = Configuration.login_timeout.value.to_i.minutes
+#    @@timeout_in
+#  end
+
+#end

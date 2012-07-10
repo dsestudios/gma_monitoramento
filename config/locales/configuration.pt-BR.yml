@@ -1,0 +1,14 @@
+# encoding: UTF-8
+
+#apelido-unico
+ #name:
+ #description:
+ #unit (unidade de medida)
+
+pt-BR:
+  configuration:
+
+    login_timeout:
+      name: "Tempo máximo de inatividade (em minutos)"
+      description: "Define quanto tempo o usuário poderá ficar sem operar o sistema. Passado este tempo será necessário logar novamente."
+      unit: "minutos"

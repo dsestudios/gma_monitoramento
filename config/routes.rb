@@ -14,6 +14,7 @@ GmaMonitoramento::Application.routes.draw do
     resources :ocorrencias
     resources :cameras
     resources :visores
+    resources :configurations
   end
 
   #, skip: :registrations do

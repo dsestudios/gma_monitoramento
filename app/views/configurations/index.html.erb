@@ -1,0 +1,23 @@
+<%= admin_bloco do %>
+
+    <p><%= link_to t("screen.button.new"), new_configuration_path %></p>
+
+    <table id="tabela_listagem" width="100%" border="0" cellspacing="6">
+      <tr>
+        <th>Nome</th>
+        <th>Valor atual</th>
+        <th width="22%">Ação</th>
+      </tr>
+
+        <% @configurations.each do |configuration| %>
+          <tr title='<%= configuration.description %>'>
+            <td><%= configuration.name %></td>
+            <td><%= configuration.value %> <%= configuration.unit %> </td>
+            <td><%= links_to_operacao(configuration, :delete => false) %></td>
+          </tr>
+        <% end %>
+    </table>
+
+    <%= link_to_back %>
+
+<% end %>
