@@ -6,7 +6,13 @@
     <%= f.input :numero, :as => :integer %>
   </div>
 
+  <%= link_label_to("Selecionar câmeras fixas", "#", :id=>"seleciona_cameras_exibir_div" ) %>
+
   <div class="actions">
     <%= f.button :submit %>
   </div>
+
+  <%= render 'seleciona_cameras', :objeto => @visor %>
 <% end %>
+
+

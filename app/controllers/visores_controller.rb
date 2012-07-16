@@ -34,6 +34,7 @@ class VisoresController < ApplicationController
   # PUT /visores/1
   # PUT /visores/1.xml
   def update
+    params[:visor][:cameras_fixa_ids] ||= {}
     @visor = respond_to_update(Visor)
   end
 

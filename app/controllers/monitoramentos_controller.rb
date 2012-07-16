@@ -99,6 +99,8 @@ private
     @monitoramento = cria_novo_monitoramento
 
     if not params[:monitoramento][:visor].blank?
+      visor = Visor.find(params[:monitoramento][:visor])
+      @monitoramento.cameras << visor.cameras_fixa
       @monitoramento.save
       @monitoramento.update_attributes(params[:monitoramento])
       redirect_to edit_monitoramento_path(@monitoramento)

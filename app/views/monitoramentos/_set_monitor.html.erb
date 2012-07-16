@@ -10,7 +10,7 @@
         <%= simple_form_for(@monitoramento, :html => {:class => ''} ) do |f| %>
                 <div id="osx-modal-data">
                     <h2>Selecione a <%= Visor.nome_exibicao.downcase %>:</h2>
-                    <p> <%= f.input :visor, :as => :select, :label => false, :input_html => { :style => "width:70%"}, :collection => Visor.all, :label_method => lambda{ |v| "#{v.numero} - #{v.nome}" } %></p>
+                    <p> <%= f.input :visor, :as => :select, :label => false, :input_html => { :style => "width:70%"}, :collection => Visor.all.order_by([:numero, :asc]), :label_method => lambda{ |v| "#{v.numero} - #{v.nome}" } %></p>
                     <p><%= f.button :submit, :id => "set_monitor", :name => "set_monitor", :value => t("screen.button.continue") %> <%= link_to t("screen.button.cancel"), root_path %> </p>
                 </div>
         <% end %>

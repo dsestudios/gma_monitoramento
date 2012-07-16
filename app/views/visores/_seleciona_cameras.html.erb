@@ -1,0 +1,19 @@
+<div id="seleciona_cameras" style="width: 100%; top: 145px; " class="div_flutuante">
+
+    <div style="overflow: auto; height: 400px;">
+        <%= grid_imagem_block( Camera.all.order_by([:nome,:asc]), :foto_do_lugar, :nome, 4 ) do |c| %>
+          <%= check_box_tag "visor[cameras_fixa_ids][]", c.id, objeto.cameras_fixa.include?(c) %>
+          <%= c.nome %>
+        <% end %>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <p><%= link_label_to t("screen.button.confirm"), "#", :id => "ocultar_div" %></p>
+
+</div>
+
+<script type="text/javascript">
+    div_dialog("seleciona_cameras")
+</script>

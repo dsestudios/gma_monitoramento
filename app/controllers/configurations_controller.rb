@@ -28,7 +28,7 @@ class ConfigurationsController < ApplicationController
   # POST /configurations
   # POST /configurations.xml
   def create
-    @configuration = respond_to_create(Configuration)
+    #@configuration = respond_to_create(Configuration)
   end
 
   # PUT /configurations/1
