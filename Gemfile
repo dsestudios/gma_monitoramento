@@ -29,6 +29,7 @@ source 'http://rubygems.org'
 #############################
 
 gem "rails", "3.0.11"
+gem "mongo", "1.6.2"
 gem "mongoid", "2.2.6"
 gem "bson_ext", "1.4"
 gem "devise", "1.5.1"

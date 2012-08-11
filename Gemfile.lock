@@ -205,6 +205,7 @@ DEPENDENCIES
   jquery-rails (= 1.0.18)
   kaminari (= 0.13.0)
   launchy
+  mongo (= 1.6.2)
   mongoid (= 2.2.6)
   mongoid-paperclip (= 0.0.7)
   mongoid_rails_migrations (= 0.0.14)
