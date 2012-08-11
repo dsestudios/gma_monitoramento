@@ -4,6 +4,7 @@ GmaMonitoramento::Application.routes.draw do
   resources :users
   get "admin/index"
   get "home/meus_monitoramentos"
+  get "busca/index"
   resources :monitoramentos do
     member do
       get "remove_ocorrencia"

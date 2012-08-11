@@ -1,0 +1,23 @@
+<% titulo("Busca avançada") %>
+
+<%= simple_form_for :busca, :html => {:method => :get} do |f| %>
+    <%= f.error_notification %>
+
+    <div class="inputs">
+      <%= f.input :periodo, :collection => Util.todos_periodos, required: false, as: :check_boxes  %>
+      <%= f.input :periodo_inicial, :label => "De", required: false, as: :date %>
+      <%= f.input :periodo_final, :label => "até", required: false, as: :date %>
+    </div>
+
+    <%= link_label_to("Selecionar câmeras", "#", :id=>"seleciona_cameras_exibir_div" ) %>
+
+    <div class="actions">
+      <%= f.button :submit, :value => "Procurar" %>
+    </div>
+
+    <% if @monitoramentos %>
+        <%#= render "/monitoramentos/relatorios/_relatorio" %>
+    <% end %>
+
+    <%= render 'seleciona_cameras' %>
+<% end %>

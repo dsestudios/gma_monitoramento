@@ -65,6 +65,15 @@ class Util
       return {:inicio => inicio, :fim => fim}
     end
 
+    def todos_periodos
+      periodos = {}
+      periodos[I18n.t("termos.periodo.manha")] = "M"
+      periodos[I18n.t("termos.periodo.tarde")] = "T"
+      periodos[I18n.t("termos.periodo.noite")] = "N"
+      periodos[I18n.t("termos.periodo.madrugada")] = "D"
+      periodos
+    end
+
     #total de registros por paginas nos relatorios
     def paginacao_relatorio
       27

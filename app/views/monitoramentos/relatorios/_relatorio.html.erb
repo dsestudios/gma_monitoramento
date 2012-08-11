@@ -1,10 +1,15 @@
-<p><%= link_to 'Novo', new_monitoramento_path %></p>
+<p><%= link_to_back(:back) %></p>
 
-<p>
-Filtos:
-<li> Período: <%= @periodo %> </li>
-<li> <%= Visor.nome_exibicao %>: <%= @visor_nome %> </li>
-</p>
+<div id="mensagem">
+  <p class="notice"> <%= Visor.nome_exibicao %>: <%= @visor_nome %> </p>
+  <p class="notice"> Período: <%= @periodo %> </p>
+  <% if @periodo_inicial %>
+      <p class="notice"> De <%= @periodo_inicial %> até <%= @periodo_final %> </p>
+  <% end %>
+  <% if @cameras %>
+    <p class="notice"><%= Camera.nome_exibicao %>: <%= @cameras %></p>
+  <% end %>
+</div>
 
 <span align="center"><%= paginate @monitoramentos %></span><br />
 
