@@ -25,6 +25,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.singular("ocorrencias", "ocorrencia")
   inflect.plural("ocorrencia", "ocorrencias")
 
-  inflect.uncountable %w( home admin busca )
+  inflect.uncountable %w( home admin busca estatistica )
 
 end

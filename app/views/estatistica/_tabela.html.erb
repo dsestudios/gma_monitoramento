@@ -1,0 +1,75 @@
+<td colspan="20" align="left" valign="top" class="fundo_meio">
+
+    <table width="100%" border="0">
+      <tr>
+      <td colspan="30" align="center">
+        <%= image_tag "ajax-loader.gif", id: "ajax_load", style:"display:none" %>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <table width="100%" border="0">
+            <tr>
+              <td><div align="center" class="fundo_botao"><%= Ocorrencia.nome_exibicao.upcase %></div></td>
+            </tr>
+
+            <!-- DESCRIÇÃO DAS OCORRENCIAS -->
+            <% @ocorrencias.each do |oi| %>
+                <% @color = @color == "#FF9900" ? "#FFFF00" : "#FF9900" %>
+                <% @klass = @klass == "fundo_amarelo_escuro" ? "fundo_amarelo_claro" : "fundo_amarelo_escuro" %>
+                <tr>
+                  <td bgcolor="<%= @color %>">
+                    <div align="center" class="<%= @klass %>">
+                      <%= oi.descricao %>
+                    </div>
+                  </td>
+                </tr>
+            <% end %>
+
+          </table>
+        </td>
+
+        <td>
+          <table width="100%" border="0">
+            <tr>
+              <td class="fundo_botao"><div align="center" class="fundo_botao">JAN</div></td>
+              <td class="fundo_botao"><div align="center">FEV</div></td>
+              <td class="fundo_botao"><div align="center">MAR</div></td>
+              <td class="fundo_botao"><div align="center">ABR</div></td>
+              <td class="fundo_botao"><div align="center">MAI</div></td>
+              <td class="fundo_botao"><div align="center">JUN</div></td>
+              <td class="fundo_botao"><div align="center">JUL</div></td>
+              <td class="fundo_botao"><div align="center">AGO</div></td>
+              <td class="fundo_botao"><div align="center">SET</div></td>
+              <td class="fundo_botao"><div align="center">OUT</div></td>
+              <td class="fundo_botao"><div align="center">NOV</div></td>
+              <td class="fundo_botao"><div align="center">DEZ</div></td>
+              <td class="fundo_botao"><div align="center">TOTAL</div></td>
+            </tr>
+
+            <!-- DESCRIÇÃO DAS OCORRENCIAS -->
+            <% tr = "bgcolor='#666699'" %>
+            <% @ocorrencias.each do |oi| %>
+                <% tr = tr == "" ? "bgcolor='#666699'" : "" %>
+                <% meses = oi.meses %>
+
+                <tr <%= tr %>>
+                  <% 13.times do |i| %>
+                      <% mes = meses[i+1] %>
+                      <% mes = "&nbsp;".html_safe if mes == 0 %>
+                      <% if tr == "" %>
+                          <td bgcolor="#514A73"><div align="center"><%= mes %></div></td>
+                      <% else %>
+                          <td><div align="center"><%= mes %></div></td>
+                      <% end %>
+                  <% end %>
+                </tr>
+
+            <% end %>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+</td>

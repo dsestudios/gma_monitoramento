@@ -1,0 +1,26 @@
+.fundo_amarelo_claro {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #000000;
+    background-color: #FFFF00;
+}
+.fundo_amarelo_escuro {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #000000;
+    background-color: #FF9900;
+    font-weight: bolder;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+}
+
+.fundo_botao {
+    background-image: url(/images/css_filetes/fundo_botao.gif);
+    background-repeat: repeat-x;
+    background-position: left;
+    font-family: verdana;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}

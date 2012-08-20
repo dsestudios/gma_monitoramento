@@ -1,0 +1,2 @@
+module EstatisticaHelper
+end
