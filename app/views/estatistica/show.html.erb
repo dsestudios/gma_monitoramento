@@ -1,2 +1,128 @@
-<h1>Estatistica#show</h1>
-<p>Find me in app/views/estatistica/show.html.erb</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- TemplateBeginEditable name="doctitle" -->
+  <title>Relatório de Estatísticas</title>
+  <!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+  <!-- TemplateEndEditable -->
+  <style type="text/css">
+      .texto_esq {
+          font-weight: bold;
+          font-size: 16px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .texto_central {
+          text-align: right;
+          font-size: 30px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .txt_desc {	font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          font-style: normal;
+          font-size: 14px;
+      }
+      .fundo_itens {
+          color: #000;
+          background-color: #F7F7F7;
+      }
+      .titulo_tabela {
+          font-weight: bold;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .cor_tab_1 {
+          color: #000;
+          background-color: #D6D6D6;
+      }
+  </style>
+</head>
+
+<body>
+
+<%= flash[:notice] %>
+
+<table width="100%" border="1" cellpadding="10" cellspacing="0">
+<tr>
+<td height="900"><table width="100%" border="0" cellspacing="0">
+<tr>
+<td valign="top"><table width="100%" border="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="baseline"><span class="texto_esq"> Relatório de Estatísticas</span></td>
+    <td align="right" valign="baseline"><span class="texto_central">Central de Vídeo Monitoramento</span></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top"><hr /></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0">
+  <tr>
+    <td width="7%"><span class="txt_desc">Operador</span>:</td>
+    <td width="19%"><table width="100%" border="0" cellspacing="10">
+      <tr>
+        <td align="left" bgcolor="#F7F7F7" class="fundo_itens"><%= @operador %></td>
+      </tr>
+    </table></td>
+    <td width="3%"><span class="txt_desc">Ano:</span></td>
+    <td width="8%"><table width="100%" border="0" cellspacing="10">
+      <tr>
+        <td class="fundo_itens"><%= @ano %></td>
+      </tr>
+    </table></td>
+    <td width="6%"><span class="txt_desc">Câmera</span>:</td>
+    <td width="21%"><table width="100%" border="0" cellspacing="10">
+      <tr>
+        <td class="fundo_itens"><%= @camera %></td>
+      </tr>
+    </table></td>
+    <td width="8%"><span class="txt_desc">Ocorrência:</span></td>
+    <td width="28%"><table width="100%" border="0" cellspacing="10">
+      <tr>
+        <td class="fundo_itens"><%= @grupo %></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="100%" border="1" cellspacing="0">
+<tr>
+  <th scope="col"><span class="titulo_tabela">NOVIDADES</span></th>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">JAN</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">FEV</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">MAR</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">ABR</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">MAI</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">JUN</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">JUL</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">AGO</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">SET</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">OUT</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">NOV</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">DEZ</div></td>
+  <td class="fundo_botao"><div align="center" class="titulo_tabela">TOTAL</div></td>
+</tr>
+
+<!-- QUANTIDADE DAS OCORRENCIAS -->
+<% tr = "" %>
+<% @ocorrencias.each do |oi| %>
+    <% tr = tr == "" ? "cor_tab_1" : "" %>
+    <% meses = oi.meses %>
+
+    <tr class="<%= tr %>">
+      <th scope="row"><span class="titulo_tabela"><%= oi.descricao %></span></th>
+      <% 13.times do |i| %>
+          <% mes = meses[i+1] %>
+          <% mes = "&nbsp;".html_safe if mes == 0 %>
+          <td><%= mes %></td>
+      <% end %>
+    </tr>
+
+<% end %>
+
+</table></td>
+</tr>
+</table></td>
+</tr>
+</table>
+
+</body>
+</html>

@@ -10,27 +10,6 @@
     <td><br><br></td>
   </tr>
 
-    <tr>
-      <td colspan="30">
-       <% @ocorrencia_grupos.each do |o| %>
-          <%= link_label_to o.grupo, "#", {:onclick => "$('#ajax_load').css('display', 'block'); $('#grupo').attr('value', '#{o.id}'); $('#form').submit();"} %>
-       <% end %>
-      </td>
-      <!-- row 3
-      <td colspan="2"><img name="estatisticas_listar_IN_r3_c1" src="images/estatisticas_listar_IN_r3_c1.jpg" width="13" height="40" border="0" id="estatisticas_listar_IN_r3_c1" alt="" /></td>
-      <td colspan="4"><img name="estatisticas_listar_IN_r3_c3" src="images/estatisticas_listar_IN_r3_c3.jpg" width="162" height="40" border="0" id="estatisticas_listar_IN_r3_c3" alt="" /></td>
-      <td><img name="estatisticas_listar_IN_r3_c7" src="images/estatisticas_listar_IN_r3_c7.jpg" width="35" height="40" border="0" id="estatisticas_listar_IN_r3_c7" alt="" /></td>
-      <td colspan="3"><img name="estatisticas_listar_IN_r3_c8" src="images/estatisticas_listar_IN_r3_c8.jpg" width="162" height="40" border="0" id="estatisticas_listar_IN_r3_c8" alt="" /></td>
-      <td colspan="3"><img name="estatisticas_listar_IN_r3_c11" src="images/estatisticas_listar_IN_r3_c11.jpg" width="29" height="40" border="0" id="estatisticas_listar_IN_r3_c11" alt="" /></td>
-      <td colspan="3"><img name="estatisticas_listar_IN_r3_c14" src="images/estatisticas_listar_IN_r3_c14.jpg" width="165" height="40" border="0" id="estatisticas_listar_IN_r3_c14" alt="" /></td>
-      <td colspan="3"><img name="estatisticas_listar_IN_r3_c17" src="images/estatisticas_listar_IN_r3_c17.jpg" width="27" height="40" border="0" id="estatisticas_listar_IN_r3_c17" alt="" /></td>
-      <td><img name="estatisticas_listar_IN_r3_c20" src="images/estatisticas_listar_IN_r3_c20.jpg" width="163" height="40" border="0" id="estatisticas_listar_IN_r3_c20" alt="" /></td>
-    -->
-    </tr>
-    <tr><!-- row 4 -->
-      <td colspan="22" class="fundo_meio">&nbsp;</td>
-      <td><br><br><br></td>
-    </tr>
     <tr><!-- row 5 -->
 
       <td >
@@ -45,8 +24,35 @@
         <%= f.input :camera, :label => Camera.nome_exibicao, :as => :select, :required => false, :include_blank => "Todas", :input_html => { :class=>"fundo_meio"}, :collection => @cameras, :label_method => :nome %>
       </td>
 
+      <td >
+        <%= link_to t("screen.button.print"), "show", {:target=>"_blank", :onclick => "link_submit(this, 'form');"} %>
+      </td>
+
       <%= hidden_field_tag :grupo, params[:grupo] %>
 
+    </tr>
+
+    <tr><!-- row 4 -->
+        <td colspan="22" class="fundo_meio">&nbsp;</td>
+        <td><br><br><br></td>
+    </tr>
+
+    <tr>
+        <td colspan="30">
+          <% @ocorrencia_grupos.each do |o| %>
+              <%= link_label_to o.grupo, "#", {:onclick => "$('#ajax_load').css('display', 'block'); $('#grupo').attr('value', '#{o.id}'); $('#form').submit();"} %>
+          <% end %>
+        </td>
+        <!-- row 3
+          <td colspan="2"><img name="estatisticas_listar_IN_r3_c1" src="images/estatisticas_listar_IN_r3_c1.jpg" width="13" height="40" border="0" id="estatisticas_listar_IN_r3_c1" alt="" /></td>
+          <td colspan="4"><img name="estatisticas_listar_IN_r3_c3" src="images/estatisticas_listar_IN_r3_c3.jpg" width="162" height="40" border="0" id="estatisticas_listar_IN_r3_c3" alt="" /></td>
+          <td><img name="estatisticas_listar_IN_r3_c7" src="images/estatisticas_listar_IN_r3_c7.jpg" width="35" height="40" border="0" id="estatisticas_listar_IN_r3_c7" alt="" /></td>
+          <td colspan="3"><img name="estatisticas_listar_IN_r3_c8" src="images/estatisticas_listar_IN_r3_c8.jpg" width="162" height="40" border="0" id="estatisticas_listar_IN_r3_c8" alt="" /></td>
+          <td colspan="3"><img name="estatisticas_listar_IN_r3_c11" src="images/estatisticas_listar_IN_r3_c11.jpg" width="29" height="40" border="0" id="estatisticas_listar_IN_r3_c11" alt="" /></td>
+          <td colspan="3"><img name="estatisticas_listar_IN_r3_c14" src="images/estatisticas_listar_IN_r3_c14.jpg" width="165" height="40" border="0" id="estatisticas_listar_IN_r3_c14" alt="" /></td>
+          <td colspan="3"><img name="estatisticas_listar_IN_r3_c17" src="images/estatisticas_listar_IN_r3_c17.jpg" width="27" height="40" border="0" id="estatisticas_listar_IN_r3_c17" alt="" /></td>
+          <td><img name="estatisticas_listar_IN_r3_c20" src="images/estatisticas_listar_IN_r3_c20.jpg" width="163" height="40" border="0" id="estatisticas_listar_IN_r3_c20" alt="" /></td>
+        -->
     </tr>
 
     <tr><!-- row 6 -->

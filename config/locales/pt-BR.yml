@@ -189,6 +189,7 @@ pt-BR:
       cancel: "Cancelar"
       continue: "Continuar"
       add: "Adicionar"
+      print: "Imprimir"
     messages:
       destroy_registro: "Tem certeza que deseja excluir este %{model}?"
 
@@ -204,6 +205,7 @@ pt-BR:
       acesso_negado: "Você não tem permissão para acessar esta área."
       new_registro: "%{model} críado com sucesso."
       edit_registro: "%{model} atualizado com sucesso."
+      informa_um_grupo: "É necessario selecionar um grupo de ocorrências."
     alert:
 
   #Nome de exibição dos Models
@@ -235,5 +237,5 @@ pt-BR:
       madrugada: "Madrugada"
 
   versao:
-    build: "1.0.5"
-    data: "19/08/2012"
+    build: "1.0.6"
+    data: "07/09/2012"

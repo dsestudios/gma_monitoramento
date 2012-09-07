@@ -64,6 +64,39 @@ function elemento_existe(id, qtde_max){
   return $('#'+id).length >= qtde_max;
 }
 
-//function existe(componente) {
-    //if ( componente[0] && componente[0].parentNode ) {
-//}
+/**
+ * Gerar parametros (nome=valor) de todos os componentes do tipo informado
+ *
+ * @param _form = Nome dos forms que estão os componentes
+ * @return {String}
+ */
+function getComponentTypeParameters(_form, _componentType){
+    var form = document.getElementById(_form);
+    var inputs = form.getElementsByTagName(_componentType);
+
+    var dados = '';
+    for( var i=0; i<inputs.length; i++ ){
+        dados += inputs[i].name+'='+inputs[i].value+'&';
+    }
+    return dados;
+}
+
+/**
+ * Gerar parametros (nome=valor) de todos os campos
+ *
+ * @param _form = Nome dos forms que estão os campos
+ * @return {String}
+ */
+function getParametros(_form){
+    return '?'+getComponentTypeParameters(_form,'input')+getComponentTypeParameters(_form,'textarea')+getComponentTypeParameters(_form, 'select');
+}
+
+function link_submit(field_link, form_submit){
+    var link_original = $(field_link).attr("link_original");
+    if (link_original == null || link_original == undefined){
+        link_original = $(field_link).attr("href")
+        $(field_link).attr("link_original", link_original );
+    }
+
+    $(field_link).attr("href", link_original + getParametros(form_submit));
+}
