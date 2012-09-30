@@ -17,7 +17,7 @@
       </td>
 
       <td >
-        <%= f.input :ano, :as => :select, :required => false, :include_blank => "Todos", :input_html => { :class=>"fundo_meio"}, :collection => @anos %>
+        <%= f.input :ano, :as => :select, :selected => Time.now.year, :required => false, :include_blank => "Todos", :input_html => { :class=>"fundo_meio"}, :collection => @anos %>
       </td>
 
       <td >

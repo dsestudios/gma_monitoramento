@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- TemplateBeginEditable name="doctitle" -->
+  <title>Relatório de Monitoramento</title>
+  <!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+  <!-- TemplateEndEditable -->
+  <style type="text/css">
+      .texto_esq {
+          font-weight: bold;
+          font-size: 14px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .texto_central {
+          text-align: right;
+          font-size: 30px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .txt_desc {	font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          font-style: normal;
+          font-size: 14px;
+      }
+      .fundo_itens {
+          color: #000;
+          background-color: #F7F7F7;
+      }
+      .titulo_tabela {
+          font-weight: bold;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .cor_tab_1 {
+          color: #000;
+          background-color: #D6D6D6;
+      }
+      .cameras {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+      }
+  </style>
+</head>
+
+<body>
+<table width="100%" border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <td height="1060" align="center" valign="top"><table width="100%" border="0" cellspacing="0">
+      <tr>
+        <td height="1038" valign="top"><table width="100%" border="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="baseline"><span class="texto_esq"> Relatório do Turno de Serviço</span></td>
+            <td align="right" valign="baseline"><span class="texto_central">Central de Vídeo Monitoramento</span></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="left" valign="top"><hr /></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0">
+            <tr>
+              <td width="7%"><span class="txt_desc">Operador</span>:</td>
+              <td width="31%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td align="left" bgcolor="#F7F7F7" class="fundo_itens">
+
+<%= @monitoramento.user.nome %>
+
+                  </td>
+                </tr>
+              </table></td>
+              <td width="3%"><span class="txt_desc">Data:</span></td>
+              <td width="20%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td class="fundo_itens">
+
+<%= l(@monitoramento.data, :format => :complet) %>
+
+                  </td>
+                </tr>
+              </table></td>
+              <td width="7%" align="right"><span class="txt_desc">Período:</span></td>
+              <td width="32%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td class="fundo_itens">
+
+<%= @monitoramento.periodo_descricao %>
+
+                  </td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td colspan="3" class="cameras">Câmeras</td>
+                    </tr>
+                    <% @cameras_linhas.each do |array| %>
+                        <tr>
+                          <% array.each do |c| %>
+                            <td><%= c.nome %></td>
+                          <% end %>
+                        </tr>
+                    <% end %>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0
+              " cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td class="cameras">Ocorrências</td>
+                    </tr>
+                    <tr>
+                      <td><p>
+
+<%= @ocorrencias_lista %>
+
+                      </p></td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0
+              " cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td class="cameras">Novidades</td>
+                    </tr>
+                    <tr>
+
+<td><p>
+
+  <%= @monitoramento.novidades %>
+
+</p></td>
+
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+
+
+          </table>
+
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0
+              " cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td class="cameras">Câmeras com Defeito</td>
+                    </tr>
+                    <tr>
+                      <td><p>
+
+<%= @cameras_defeito_lista %>
+
+                      </p></td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

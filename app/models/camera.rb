@@ -12,7 +12,8 @@ class Camera
   #relacionamentos
   has_many :camera_defeitos
   has_many :monitoramento_ocorrencias
-  has_and_belongs_to_many :monitoramentos
+  has_and_belongs_to_many :monitoramentos, index: true
+
 
   has_mongoid_attached_file :foto_do_lugar,
                             :styles => {:medium => "300x300>", :thumb => "100x100>"},

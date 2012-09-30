@@ -1,5 +1,6 @@
 class ConverteDadosMonitoramentoOcorrencia < Mongoid::Migration
   def self.up
+=begin
     monitoramentos = Monitoramento.all
     monitoramentos.each do |m|
       m.ocorrencia_itens.each do |o|
@@ -9,6 +10,8 @@ class ConverteDadosMonitoramentoOcorrencia < Mongoid::Migration
         mo.save
       end
     end
+=end
+    puts "Ja executado: ConverteDadosMonitoramentoOcorrencia"
   end
 
   def self.down

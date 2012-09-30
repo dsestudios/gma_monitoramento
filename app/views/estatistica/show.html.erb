@@ -105,14 +105,10 @@
 <% tr = "" %>
 <% @ocorrencias.each do |oi| %>
     <% tr = tr == "" ? "cor_tab_1" : "" %>
-    <% meses = oi.meses %>
-
     <tr class="<%= tr %>">
       <th scope="row"><span class="titulo_tabela"><%= oi.descricao %></span></th>
       <% 13.times do |i| %>
-          <% mes = meses[i+1] %>
-          <% mes = "&nbsp;".html_safe if mes == 0 %>
-          <td><%= mes %></td>
+          <td><%= oi.mes_soma_exibicao(i+1) %></td>
       <% end %>
     </tr>
 

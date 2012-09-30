@@ -28,13 +28,46 @@ class EstatisticaController < ApplicationController
     end
   end
 
-  class ViewResumo
-    attr_accessor :descricao, :meses, :total
-  end
-
   private
 
   def processa_estatistica
+    @ocorrencias = []
+    @grupo = params[:grupo]
+    return false if @grupo.blank?
+
+    filtros = params[:estatistica].clone
+    filtros[:grupo] = @grupo
+    estatistica = Estatistica.new(filtros)
+    @grupo = estatistica.grupo
+
+    @ocorrencias = estatistica.ocorrencia_itens_por_mes(estatistica.gera_dados_estatisticos)
+  end
+
+  def carrega_filtros
+    @ocorrencia_grupos = Ocorrencia.all.order_by([[:grupo, :asc]])
+    @operadores = User.all.order_by([[:nome, :asc]])
+    @cameras = Camera.all.order_by([[:nome, :asc]])
+
+    menor_ano = Monitoramento.all.order_by([[:data, :asc]]).limit(1) #traz o monitotamento mais antigo
+    menor_ano = !menor_ano.empty? ? menor_ano.first.data.year : Time.now.year
+    @anos = ((menor_ano..Time.now.year).to_a) #cria um array do menor ano até o ano atual
+  end
+
+  def gera_descricao(valor, class_model=nil, method_descricao=nil)
+    if valor.nil? or (valor.blank? or valor[0,1] == "T")
+      return "Todos"
+    end
+
+    if not class_model or not method_descricao
+      return valor
+    end
+
+    class_model.find(valor).send(method_descricao)
+  end
+
+  ##################
+=begin
+  def processa_estatistica_antigo
     @ocorrencias = []
     @grupo = params[:grupo]
 
@@ -42,10 +75,10 @@ class EstatisticaController < ApplicationController
 
     @grupo = Ocorrencia.find(@grupo)
     ocorrencias_itens = @grupo.ocorrencia_itens
-    @ocorrencias = estatistica_filtrada(ocorrencias_itens, params[:estatistica])
+    @ocorrencias = estatistica_filtrada_antigo(ocorrencias_itens, params[:estatistica])
   end
 
-  def estatistica_filtrada(ocorrencia_itens, filtros)
+  def estatistica_filtrada_antigo(ocorrencia_itens, filtros)
     meses_total = {}
     13.times do |i|
       meses_total[i+1] = 0;
@@ -72,27 +105,6 @@ class EstatisticaController < ApplicationController
 
     estatistica
   end
-
-  def carrega_filtros
-    @ocorrencia_grupos = Ocorrencia.all.order_by([[:grupo, :asc]])
-    @operadores = User.all.order_by([[:nome, :asc]])
-    @cameras = Camera.all.order_by([[:nome, :asc]])
-
-    menor_ano = Monitoramento.all.order_by([[:data, :asc]]).limit(1) #traz o monitotamento mais antigo
-    menor_ano = !menor_ano.empty? ? menor_ano.first.data.year : Time.now.year
-    @anos = ((menor_ano..Time.now.year).to_a) #cria um array do menor ano até o ano atual
-  end
-
-  def gera_descricao(valor, class_model=nil, method_descricao=nil)
-    if valor.nil? or (valor.blank? or valor[0,1] == "T")
-      return "Todos"
-    end
-
-    if not class_model or not method_descricao
-      return valor
-    end
-
-    class_model.find(valor).send(method_descricao)
-  end
+=end
 
 end

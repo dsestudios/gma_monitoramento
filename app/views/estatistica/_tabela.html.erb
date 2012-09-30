@@ -51,16 +51,12 @@
             <% tr = "bgcolor='#666699'" %>
             <% @ocorrencias.each do |oi| %>
                 <% tr = tr == "" ? "bgcolor='#666699'" : "" %>
-                <% meses = oi.meses %>
-
                 <tr <%= tr %>>
                   <% 13.times do |i| %>
-                      <% mes = meses[i+1] %>
-                      <% mes = "&nbsp;".html_safe if mes == 0 %>
                       <% if tr == "" %>
-                          <td bgcolor="#514A73"><div align="center"><%= mes %></div></td>
+                          <td bgcolor="#514A73"><div align="center"><%= oi.mes_soma_exibicao(i+1) %></div></td>
                       <% else %>
-                          <td><div align="center"><%= mes %></div></td>
+                          <td><div align="center"><%= oi.mes_soma_exibicao(i+1) %></div></td>
                       <% end %>
                   <% end %>
                 </tr>

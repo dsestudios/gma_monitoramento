@@ -35,6 +35,8 @@ class User
 
   attr_accessible :nome, :nome_usuario, :email, :password, :password_confirmation, :remember_me, :role, :avatar
 
+  index({nome_usuario: 1}, { unique: true })
+
   #retorna a descrição do papel do usuário de acordo com a seu campo Role
   def role_descricao
     Ability.tipos_de_usuarios[role.to_sym]

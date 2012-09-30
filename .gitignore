@@ -4,3 +4,6 @@ log/*.log
 tmp/
 .idea/
 public/system/
+rails_best_practices_output.html
+output.html
+output_file

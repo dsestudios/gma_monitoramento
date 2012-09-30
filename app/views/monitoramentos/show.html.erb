@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+    <%= link_to t("screen.button.print"), monitoramento_path(:print => true), {:target=>"_blank"} %>
+</p>
+
+<p>
   <b>GMC:</b>
   <%= @monitoramento.user.nome %>
 </p>

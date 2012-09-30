@@ -3,14 +3,19 @@ class OcorrenciaItem
   include Mongoid::Document
 
   field :descricao, :type => String
-  belongs_to :ocorrencia, :class_name => "Ocorrencia"
 
+  belongs_to :ocorrencia, :class_name => "Ocorrencia", index: true
   has_many :monitoramento_ocorrencias
-  has_and_belongs_to_many :monitoramentos
+
+  #NAO USA MAIS
+  #has_and_belongs_to_many :monitoramentos
 
   #validates_presence_of :descricao  #da o pau pois se ele é removido do form e estiver em branco tenta focar e ai da pau
   validates_uniqueness_of :descricao, :case_sensitive => false, :scope => :ocorrencia_id
   validates_length_of :descricao, :in => 1..50, :allow_blank => false, :allow_nil => false
+
+
+
 
   # Retorna a quantidade desta ocorrencia em cada mes do ano
   # @param filtros :ano - Filtra per ano

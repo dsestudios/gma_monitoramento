@@ -9,15 +9,16 @@ class Monitoramento
   field :efetivado, :type => Boolean
 
   #relacionamentos
-  belongs_to :user
-  belongs_to :visor
+  belongs_to :user, index: true
+  belongs_to :visor, index: true
   has_many :camera_defeitos
   has_many :ocorrencias, :class_name => "MonitoramentoOcorrencia"
-  has_and_belongs_to_many :cameras
-  has_and_belongs_to_many :ocorrencia_itens
+  has_and_belongs_to_many :cameras, index: true
 
+  #ASSOCIACAO NAO MAIS USADA -> passou a usar o :ocorrencias
+  #has_and_belongs_to_many :ocorrencia_itens
+  #accepts_nested_attributes_for :ocorrencia_itens, :allow_destroy => true, :reject_if => lambda{|a| a[:descricao].blank? }
 
-  accepts_nested_attributes_for :ocorrencia_itens, :allow_destroy => true, :reject_if => lambda{|a| a[:descricao].blank? }
   accepts_nested_attributes_for :camera_defeitos, :allow_destroy => true, :reject_if => lambda{|a| a[:defeito].blank? }
 
   validates_associated :user, :visor, :cameras

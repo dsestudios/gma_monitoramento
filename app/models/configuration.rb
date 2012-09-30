@@ -10,4 +10,6 @@ class Configuration
 
   field :nickname, :type => String
   field :value, :type => String
+
+  index({nickname: 1}, { unique: true })
 end

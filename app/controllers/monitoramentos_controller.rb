@@ -32,6 +32,13 @@ class MonitoramentosController < ApplicationController
   # GET /monitoramentos/1.xml
   def show
     carrega_dados
+
+    if params[:print]
+      @monitoramento = Monitoramento.find(params[:id])
+      show_print
+      return
+    end
+
     @monitoramento = respond_to_show(Monitoramento)
   end
 
@@ -90,10 +97,66 @@ class MonitoramentosController < ApplicationController
     @monitoramento.ocorrencias.delete(id_ocorrencia)
     @monitoramento.save
 
+    id_ocorrencia.destroy #remove o objeto do banco
+
     render :nothing => true
   end
 
 private
+
+  def listagem_ocorrencias
+    ocorrencias_lista = []
+    @monitoramento.ocorrencias.each do |o|
+      ocorrencia = []
+      ocorrencia << o.ocorrencia_item.ocorrencia.grupo
+      ocorrencia << o.ocorrencia_item.descricao
+      ocorrencia << o.camera.nome
+      ocorrencia << (o.hora ? I18n.l(o.hora, :format => :time) : t("messages.nao_informado"))
+      ocorrencias_lista << ocorrencia.join(" > ")
+    end
+
+    ocorrencias_lista.sort.join("<br />").html_safe
+  end
+
+  def listagem_cameras_defeitos
+    cameras_defeito_lista = []
+    @monitoramento.camera_defeitos.each do |c|
+      camera = []
+      camera << c.camera.nome
+      camera << c.defeito
+      cameras_defeito_lista << camera.join(" > ")
+    end
+
+    cameras_defeito_lista.sort.join("<br />").html_safe
+  end
+
+  def listagem_cameras
+    cameras_linhas = []
+    linha = []
+
+    cameras_ordenadas = @monitoramento.cameras.order_by([[:nome, :asc]])
+    cameras_ordenadas.each do |c|
+      linha << c
+      if linha.size == 3 or cameras_ordenadas.last == c
+        cameras_linhas << linha
+        linha = []
+      end
+    end
+    cameras_linhas
+  end
+
+  def show_print
+    @cameras_linhas = listagem_cameras
+    @ocorrencias_lista = listagem_ocorrencias
+    @cameras_defeito_lista = listagem_cameras_defeitos
+
+    respond_to do |format|
+      format.html do
+        render "monitoramentos/relatorios/_show_print", :layout=>false
+      end
+    end
+
+  end
 
   def set_monitor
     @monitoramento = cria_novo_monitoramento
@@ -124,8 +187,13 @@ private
   end
 
   def add_ocorrencia
-    @ocorrencia_item = MonitoramentoOcorrencia.new(params[:ocorrencias])
     @monitoramento = Monitoramento.find(params[:id])
+
+    @ocorrencia_item = MonitoramentoOcorrencia.new(params[:ocorrencias])
+    @ocorrencia_item.data = @monitoramento.data
+    @ocorrencia_item.user = @monitoramento.user
+    @ocorrencia_item.ocorrencia= @ocorrencia_item.ocorrencia_item.ocorrencia
+
     @monitoramento.ocorrencias << @ocorrencia_item
     @monitoramento.save
 
