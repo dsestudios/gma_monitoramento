@@ -253,7 +253,11 @@
 
 </table>
 
-    <span style="margin-left: 2%" ><%= submit_tag("Salvar", :disable_with => "Salvando...") %></span> &nbsp;&nbsp;&nbsp;&nbsp; <%= link_to t("screen.button.print"), monitoramento_path(:print => true), {:target=>"_blank"} %>
+    <span style="margin-left: 2%" ><%= submit_tag("Salvar", :disable_with => "Salvando...") %></span>
+    <% if params["action"] == "edit" %>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to t("screen.button.print"), monitoramento_path(:print => true), {:target=>"_blank"} %>
+    <% end %>
 
 <% end %>
 
