@@ -1,6 +1,7 @@
 # encoding: UTF-8
 class Monitoramento
   include Mongoid::Document
+  include Mongoid::Search
 
   field :data, :type => Date
   field :data_final, :type => Date  #quando é perido noturno começa em um dia e termina no outro
@@ -23,8 +24,16 @@ class Monitoramento
 
   validates_associated :user, :visor, :cameras
 
+  search_in :novidades,
+            {:camera_defeitos => [:defeito, :camera => :nome],
+            :ocorrencias => [:camera => :nome, :ocorrencia_item => :descricao]},
+            {:match => :all,
+            #:allow_empty_search => true,
+            :relevant_search => true,
+            :ignore_list => Rails.root.join("config", "ignorelist.yml")}
+
   def periodo_descricao
-    Util.periodo_descricao(periodo)
+    UtilGma.periodo_descricao(periodo)
   end
 
 end

@@ -1,0 +1,22 @@
+<td xmlns="http://www.w3.org/1999/html">
+  <img name="index_r3_c10" src="/images/imagens_index/index_r3_c10.jpg" width="50" height="41" border="0" alt="">
+</td>
+<td>
+  <img name="link_busca" src="/images/imagens_index/link_busca.jpg" width="54" height="41" border="0" alt="">
+</td>
+<td class="barra_menu">
+    <%= text_field_tag :busca_rapida, '', :maxlength=>55, :size=>14 %>
+</td>
+<td>
+    <%= link_to '<img name="botao_ir_busca" src="/images/imagens_index/botao_ir_busca.jpg" width="50" height="41" border="0" alt="">'.html_safe, {}, {:name => "botao_busca_rapida"} %>
+</td>
+
+<script type="text/javascript">
+
+    $(function(){
+        $("body").on("click", "a[name=botao_busca_rapida]", function(){
+            $("a[name=botao_busca_rapida]").attr("href", "/busca/index?busca_rapida=true&query=" + $("#busca_rapida").attr("value") );
+        });
+    });
+
+</script>

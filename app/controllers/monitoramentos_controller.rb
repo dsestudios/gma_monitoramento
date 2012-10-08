@@ -21,9 +21,9 @@ class MonitoramentosController < ApplicationController
     condicao[:visor_id] = mesa if mesa
     order_by = [[:data, :desc], [:data_final, :desc]]
 
-    @periodo = periodo ? Util.periodo_descricao(periodo) : "Todos"
-    @visor_nome = mesa ? Visor.find(mesa).nome : "Todos"
-    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(Util.paginacao_relatorio)
+    @periodo = periodo ? UtilGma.periodo_descricao(periodo) : nil
+    @visor_nome = mesa ? Visor.find(mesa).nome : nil
+    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(UtilGma.paginacao_relatorio)
 
     respond_to_index(@monitoramentos)
   end
@@ -36,6 +36,12 @@ class MonitoramentosController < ApplicationController
     if params[:print]
       @monitoramento = Monitoramento.find(params[:id])
       show_print
+      return
+    end
+
+    if params[:turno_diario]
+      @monitoramento = Monitoramento.find(params[:id])
+      relatorio_turno_diario
       return
     end
 
@@ -104,51 +110,11 @@ class MonitoramentosController < ApplicationController
 
 private
 
-  def listagem_ocorrencias
-    ocorrencias_lista = []
-    @monitoramento.ocorrencias.each do |o|
-      ocorrencia = []
-      ocorrencia << o.ocorrencia_item.ocorrencia.grupo
-      ocorrencia << o.ocorrencia_item.descricao
-      ocorrencia << o.camera.nome
-      ocorrencia << (o.hora ? I18n.l(o.hora, :format => :time) : t("messages.nao_informado"))
-      ocorrencias_lista << ocorrencia.join(" > ")
-    end
-
-    ocorrencias_lista.sort.join("<br />").html_safe
-  end
-
-  def listagem_cameras_defeitos
-    cameras_defeito_lista = []
-    @monitoramento.camera_defeitos.each do |c|
-      camera = []
-      camera << c.camera.nome
-      camera << c.defeito
-      cameras_defeito_lista << camera.join(" > ")
-    end
-
-    cameras_defeito_lista.sort.join("<br />").html_safe
-  end
-
-  def listagem_cameras
-    cameras_linhas = []
-    linha = []
-
-    cameras_ordenadas = @monitoramento.cameras.order_by([[:nome, :asc]])
-    cameras_ordenadas.each do |c|
-      linha << c
-      if linha.size == 3 or cameras_ordenadas.last == c
-        cameras_linhas << linha
-        linha = []
-      end
-    end
-    cameras_linhas
-  end
-
   def show_print
-    @cameras_linhas = listagem_cameras
-    @ocorrencias_lista = listagem_ocorrencias
-    @cameras_defeito_lista = listagem_cameras_defeitos
+    relatorio = Relatorio.new(@monitoramento)
+    @cameras_linhas = relatorio.listagem_cameras
+    @ocorrencias_lista = relatorio.listagem_ocorrencias
+    @cameras_defeito_lista = relatorio.listagem_cameras_defeitos
 
     respond_to do |format|
       format.html do
@@ -156,6 +122,17 @@ private
       end
     end
 
+  end
+
+  def relatorio_turno_diario
+    @relatorio = Relatorio.new(@monitoramento)
+    @relatorio_valores = @relatorio.resumo_do_dia(@monitoramento.data)
+
+    respond_to do |format|
+      format.html do
+        render "monitoramentos/relatorios/_turno_diario", :layout=>false
+      end
+    end
   end
 
   def set_monitor
@@ -242,8 +219,8 @@ private
   end
 
   def cria_novo_monitoramento
-    periodo = Util.periodo_atual
-    datas = Util.periodo_hora_inicial_e_final(periodo)
+    periodo = UtilGma.periodo_atual
+    datas = UtilGma.periodo_hora_inicial_e_final(periodo)
     monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
 
     if monitoramento.nil?

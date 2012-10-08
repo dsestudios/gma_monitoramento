@@ -1,4 +1,6 @@
 class EstatisticaController < ApplicationController
+  load_and_authorize_resource
+
   def index
     carrega_filtros
     processa_estatistica

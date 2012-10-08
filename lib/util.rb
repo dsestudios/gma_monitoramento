@@ -1,84 +1,71 @@
-class Util
+# encoding: utf-8
 
-  class << self
+# MONKEY PACTHING - gem mongo_search - para que a busca do campo possa consular mais um nivel de relacionamento do modelo
+module Util
 
-    #MANAHA = 6h01h a 12h - M
-    #TARDE = 12H01 a 18h - T
-    #NOITE = 18h01 as 00h00 - N
-    #MADRUGADA = 00h01 as 6h - D
-    def periodo_atual
-      agora = Time.now
-      manha = periodo_hora_inicial("M", agora)
-      tarde = periodo_hora_inicial("T", agora)
-      noite = periodo_hora_inicial("N", agora)
-      madrugada = periodo_hora_inicial("D", agora)
+  def self.keywords(klass, field, stem_keywords, ignore_list)
+    if field.is_a?(Hash)
+      field.keys.map do |key|
+        attribute = klass.send(key)
+        unless attribute.blank?
+          method = field[key]
+          if attribute.is_a?(Array)
+            if method.is_a?(Array)
 
-      return "N" if agora > noite
-      return "T" if agora > tarde
-      return "M" if agora > manha
-      return "D" if agora > madrugada
+              #verifica de deve consultar o relacionamento do relacionamento
+              array_indexing = []
+              method.map do |value_method|
+                attribute.map do |a|
+                  if value_method.is_a?(Hash)
+                    value_method.map do |key_hash, value_hash|
+                      text_indexing = a.send(key_hash).send(value_hash)
+                      array_indexing << Util.normalize_keywords(text_indexing, stem_keywords, ignore_list)
+                    end
+                  elsif
+                    array_indexing << Util.normalize_keywords(a.send(value_method), stem_keywords, ignore_list)
+                  end
+                end
+              end
 
-      "N"
+              array_indexing
+            else
+              attribute.map(&method).map { |t| Util.normalize_keywords t, stem_keywords, ignore_list }
+            end
+          elsif attribute.is_a?(Hash)
+            if method.is_a?(Array)
+              method.map {|m| Util.normalize_keywords attribute[m.to_sym], stem_keywords, ignore_list }
+            else
+              Util.normalize_keywords(attribute[method.to_sym], stem_keywords, ignore_list)
+            end
+          else
+            Util.normalize_keywords(attribute.send(method), stem_keywords, ignore_list)
+          end
+        end
+      end
+    else
+      value = klass[field]
+      value = value.join(' ') if value.respond_to?(:join)
+      Util.normalize_keywords(value, stem_keywords, ignore_list) if value
     end
+  end
 
-    def periodo_descricao(periodo="")
-      periodo = periodo_atual if periodo.blank?
-      return I18n.t("termos.periodo.manha") if periodo == "M"
-      return I18n.t("termos.periodo.tarde") if periodo == "T"
-      return I18n.t("termos.periodo.noite") if periodo == "N"
-      return I18n.t("termos.periodo.madrugada") if periodo == "D"
-    end
+  def self.normalize_keywords(text, stem_keywords, ignore_list)
+    ligatures = {"œ"=>"oe", "æ"=>"ae"}
 
-    def periodo_carga_horaria periodo
-      return 6.hours if periodo == "M"
-      return 6.hours if periodo == "T"
-      return 6.hours - 1.minute if periodo == "N"
-      return 6.hours if periodo == "D"
-    end
-
-    def periodo_hora_inicial periodo, agora = Time.now
-      return Time.new(agora.year, agora.month, agora.day, 0) if periodo == "D"
-      return Time.new(agora.year, agora.month, agora.day, 6) if periodo == "M"
-      return Time.new(agora.year, agora.month, agora.day, 12) if periodo == "T"
-      return Time.new(agora.year, agora.month, agora.day, 18) if periodo == "N"
-
-      # COM A ADIÇÃO DA MADRUGADA ISSO NAO EXISTE MAIS
-      #tratamento no caso da NOITE
-      #caso seja começo da noite então a hora inicial deve retroceder 1 dia,
-      #pois o turno noturno começa as 18h e termina as 6h do outro dia
-      #if periodo == "N"
-      #  if agora.hour < 6
-      #    agora = agora.ago(1.day)
-      #  end
-      #  return Time.new(agora.year, agora.month, agora.day, 18)
-      #end
-
-    end
-
-    # Retorna HASH a hora inicial e final de um periodo de acordo com a data informada
-    # RETORNA:
-    # :inicio => Data Inicial
-    # :fim => Hora Final
-    def periodo_hora_inicial_e_final periodo, data = Time.now
-      inicio = periodo_hora_inicial(periodo, data)
-      fim = inicio + periodo_carga_horaria(periodo)
-      return {:inicio => inicio, :fim => fim}
-    end
-
-    def todos_periodos
-      periodos = {}
-      periodos[I18n.t("termos.periodo.manha")] = "M"
-      periodos[I18n.t("termos.periodo.tarde")] = "T"
-      periodos[I18n.t("termos.periodo.noite")] = "N"
-      periodos[I18n.t("termos.periodo.madrugada")] = "D"
-      periodos
-    end
-
-    #total de registros por paginas nos relatorios
-    def paginacao_relatorio
-      27
-    end
-
+    return [] if text.blank?
+    text = text.to_s.
+      mb_chars.
+      normalize(:kd).
+      downcase.
+      to_s.
+      gsub(/[._:;'"`,?|+={}()!@#%^&*<>~\$\-\\\/\[\]]/, ' '). # strip punctuation
+      gsub(/[^[:alnum:]\s]/,'').   # strip accents
+      gsub(/[#{ligatures.keys.join("")}]/) {|c| ligatures[c]}.
+      split(' ').
+      reject { |word| word.size < 2 }
+    text = text.reject { |word| ignore_list.include?(word) } unless ignore_list.blank?
+    text = text.map(&:stem) if stem_keywords
+    text
   end
 
 end

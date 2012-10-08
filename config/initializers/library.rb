@@ -1,4 +1,5 @@
 require 'util'
+require 'util_gma'
 require 'dados_semente'
 
 require 'my-way/base'

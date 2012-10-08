@@ -8,8 +8,8 @@ class HomeController < ApplicationController
     @user.monitoramentos.each{|m| @ocorrencias_count += m.ocorrencias.count}
 
     #TODO fazer DRY com o MODEL do monitoramento
-    periodo = Util.periodo_atual
-    datas = Util.periodo_hora_inicial_e_final(periodo)
+    periodo = UtilGma.periodo_atual
+    datas = UtilGma.periodo_hora_inicial_e_final(periodo)
     monitoramento = Monitoramento.find(:first, :conditions => {:user_id => current_user.id, :periodo => periodo, :data => datas[:inicio], :data_final => datas[:fim] })
     if monitoramento && monitoramento.visor
       @monitoramento_nao_finalizado = monitoramento
@@ -23,7 +23,7 @@ class HomeController < ApplicationController
 
     @periodo = "Todos"
     @visor_nome = "Todos"
-    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(Util.paginacao_relatorio)
+    @monitoramentos = Monitoramento.where(condicao).order_by(order_by).page(params[:page]).per(UtilGma.paginacao_relatorio)
 
     params[:titulo] = "Meus monitoramentos"
     render "monitoramentos/relatorios/_relatorio"

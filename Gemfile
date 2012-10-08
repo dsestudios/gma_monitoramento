@@ -42,6 +42,7 @@ gem "jquery-rails", "1.0.18"
 gem "mongoid_rails_migrations", "0.0.14" #permite criar e executar migrations com Mongoid
 #gem "aws-s3" >> Gem do Amazon Sevice para hospedagem de arquivo no amazon (por enquanto nao utilizada))
 gem "kaminari", "0.13.0" #Gem para paginação
+gem 'mongoid_search', '0.2.8'
 
 group :development, :test do
 #  gem 'ruby-debug19', :require => 'ruby-debug'

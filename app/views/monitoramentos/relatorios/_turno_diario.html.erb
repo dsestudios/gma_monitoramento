@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- TemplateBeginEditable name="doctitle" -->
+  <title>Relatório do Turno de Serviço Diário</title>
+  <!-- TemplateEndEditable -->
+  <!-- TemplateBeginEditable name="head" -->
+  <!-- TemplateEndEditable -->
+  <style type="text/css">
+      .texto_esq {
+          font-weight: bold;
+          font-size: 14px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .texto_central {
+          text-align: right;
+          font-size: 30px;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .txt_desc {	font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          font-style: normal;
+          font-size: 14px;
+      }
+      .fundo_itens {
+          color: #000;
+          background-color: #F7F7F7;
+      }
+      .titulo_tabela {
+          font-weight: bold;
+          font-family: Arial, Helvetica, sans-serif;
+      }
+      .cor_tab_1 {
+          color: #000;
+          background-color: #D6D6D6;
+      }
+      .cameras {
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: center;
+      }
+      .texto_left {
+          padding-left: 4%;
+          text-align: left;
+      }
+  </style>
+</head>
+
+<body>
+<table width="100%" border="1" cellpadding="10" cellspacing="0">
+  <tr>
+    <td height="1060" align="center" valign="top"><table width="100%" border="0" cellspacing="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="1038" valign="top"><table width="100%" border="0" cellspacing="0">
+          <tr>
+            <td align="left" valign="baseline"><span class="texto_esq"> Relatório do Turno de Serviço Diário</span></td>
+            <td align="right" valign="baseline"><span class="texto_central">Central de Vídeo Monitoramento</span></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="left" valign="top"><hr /></td>
+          </tr>
+        </table>
+          <table width="100%" border="0" cellspacing="0">
+            <tr>
+              <td width="7%"><span class="txt_desc">Operador</span>:</td>
+              <td width="31%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td align="left" bgcolor="#F7F7F7" class="fundo_itens">
+
+<%= @relatorio.operador %>
+
+                  </td>
+                </tr>
+              </table></td>
+              <td width="3%"><span class="txt_desc">Data:</span></td>
+              <td width="20%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td class="fundo_itens">
+
+<%= @relatorio.data %>
+
+                  </td>
+                </tr>
+              </table></td>
+              <td width="7%" align="right"><span class="txt_desc">Período:</span></td>
+              <td width="32%"><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td class="fundo_itens">
+
+<%= @relatorio.periodo %>
+
+                  </td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td align="center" valign="middle"><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td width="51%" class="cameras">Ocorrências Manhã</td>
+                      <td width="49%" class="cameras">Novidades Manhã</td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+                        <p>
+
+<%= @relatorio_valores["M"][:ocorrencias] %>
+
+                        </p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+
+<%= @relatorio_valores["M"][:novidades] %>
+
+                      </td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0
+              " cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td width="51%" class="cameras">Ocorrências Tarde</td>
+                      <td width="49%" class="cameras">Novidades Tarde</td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+                        <p>
+
+<%= @relatorio_valores["T"][:ocorrencias] %>
+
+                        </p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+
+<%= @relatorio_valores["T"][:novidades] %>
+
+                      </td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td width="50%" class="cameras">Ocorrências Noite</td>
+                      <td width="50%" class="cameras">Novidades Noite</td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+                        <p>
+
+<%= @relatorio_valores["N"][:ocorrencias] %>
+
+                        </p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+
+<%= @relatorio_valores["N"][:novidades] %>
+
+                      </td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table>
+              </td>
+            </tr>
+
+
+          </table>
+
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0" cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td width="50%" class="cameras">Ocorrências Madrugada</td>
+                      <td width="50%" class="cameras">Novidades Madrugada</td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+                        <p>
+
+<%= @relatorio_valores["D"][:ocorrencias] %>
+
+                        </p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+
+<%= @relatorio_valores["D"][:novidades] %>
+
+                      </td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="1" cellspacing="0">
+            <tr>
+              <td><table width="100%" border="0
+              " cellspacing="10">
+                <tr>
+                  <td><table width="100%" border="0" cellspacing="0">
+                    <tr>
+                      <td width="50%" class="cameras">Defeitos Manhã</td>
+                      <td width="50%" class="cameras">Defeitos Tarde</td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+<p><%= @relatorio_valores["M"][:defeitos] %></p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+<p><%= @relatorio_valores["T"][:defeitos] %></p>
+                    </tr>
+                    <tr>
+                      <td align="center" valign="middle"><span class="cameras">Defeitos Noite</span></td>
+                      <td align="center" valign="middle"><span class="cameras">Defeitos Madrugada</span></td>
+                    </tr>
+                    <tr>
+                      <td class="texto_left" valign="middle">
+<p><%= @relatorio_valores["N"][:defeitos] %></p>
+                      </td>
+                      <td class="texto_left" valign="middle">
+<p><%= @relatorio_valores["D"][:defeitos] %></p>
+                      </td>
+                    </tr>
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</body>
+</html>

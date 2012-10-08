@@ -28,7 +28,7 @@ class Ability
       else
         #somente podera ter acesso se for Monitoramento do usuário logado
         #e não ter passado 48 horas desde seu lançamento
-        m.user.id == user.id and (Util.periodo_hora_inicial(m.periodo, m.data) + 48.hours) > Time.now
+        m.user.id == user.id and (UtilGma.periodo_hora_inicial(m.periodo, m.data) + 48.hours) > Time.now
       end
     end
     can [:remove_ocorrencia], Monitoramento

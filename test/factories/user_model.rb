@@ -60,11 +60,11 @@ FactoryGirl.define do
 end
 
 FactoryGirl.define do
-  p = Util.periodo_hora_inicial_e_final(Util.periodo_atual)
+  p = UtilGma.periodo_hora_inicial_e_final(UtilGma.periodo_atual)
   factory :monitoramento do
     data p[:inicio]
     data_final p[:fim]
-    periodo Util.periodo_atual
+    periodo UtilGma.periodo_atual
     novidades "Aqui estão descritas as novidades"
     efetivado false
     association :user, factory: :user
